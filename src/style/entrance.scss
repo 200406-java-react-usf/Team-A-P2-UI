@@ -1,0 +1,15 @@
+.viewport {
+    display: inline-block;
+    width: 550px;
+    height: 550px;
+    border-radius: 50%;
+    background-color: rgba(0, 0, 0, 0);
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    border: 1px solid white;
+    transition: all 500ms linear;
+}
