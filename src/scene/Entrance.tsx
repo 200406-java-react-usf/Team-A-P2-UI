@@ -29,7 +29,8 @@ function Entrance() {
             )
         ),
         //mouse move range -- opt 15
-        maxGap: 30
+        maxXGap: 45,
+        maxYGap: 30
     };
 
     function moveCameraXY(event: any) {
@@ -42,9 +43,9 @@ function Entrance() {
                 (window.innerHeight / 2)) *
             -1;
         const newPerspectiveOriginX =
-            perspectiveOrigin.x + (xGap * perspectiveOrigin.maxGap) / 100;
+            perspectiveOrigin.x + (xGap * perspectiveOrigin.maxXGap) / 100;
         const newPerspectiveOriginY =
-            perspectiveOrigin.y + (yGap * perspectiveOrigin.maxGap) / 100;
+            perspectiveOrigin.y + (yGap * perspectiveOrigin.maxYGap) / 100;
 
         document.documentElement.style.setProperty(
             "--scenePerspectiveOriginX",
