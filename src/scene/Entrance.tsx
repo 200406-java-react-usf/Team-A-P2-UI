@@ -115,6 +115,9 @@ function Entrance() {
                         <div id="cube-face-3-e" className="cube-face">
                             3-e
                         </div>
+                        <div id="cube-face-3-g" className="cube-face">
+                            3-g
+                        </div>
                         <div id="cube-face-4-a" className="cube-face">
                             4
                         </div>
