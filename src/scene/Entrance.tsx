@@ -28,7 +28,7 @@ function Entrance() {
                 "--scenePerspectiveOriginY"
             )
         ),
-        //mouse move range -- opt 15
+        //mouse move range -- opt 45, 30
         maxXGap: 45,
         maxYGap: 30
     };
@@ -107,16 +107,17 @@ function Entrance() {
                             3-c
                         </div>
                         <div id="cube-face-3-d" className="cube-face">
-                            3-d
+                            counter top
+                            <div></div>
                         </div>
                         <div id="cube-face-3-f" className="cube-face">
-                            3-f
+                            seat top
                         </div>
                         <div id="cube-face-3-e" className="cube-face">
-                            3-e
+                            seat back
                         </div>
                         <div id="cube-face-3-g" className="cube-face">
-                            3-g
+                            seat side
                         </div>
                         <div id="cube-face-4-a" className="cube-face">
                             4

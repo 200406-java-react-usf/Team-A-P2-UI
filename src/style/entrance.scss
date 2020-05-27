@@ -136,8 +136,9 @@
 #cube-face-3-d {
     height: 100px;
     width: 1200px;
-    transform: rotateX(-90deg) translateY(650px) translateZ(500px);
-    background-color: rgba(255, 2, 179);
+    transform-origin: 50% 50%;
+    transform: rotateX(90deg) rotateZ(0deg) translateY(-650px) translateX(0px) translateZ(-400px);
+    background-color: rgb(255, 184, 234);
 }
 
 #cube-face-3-e {
