@@ -4,12 +4,11 @@ import {
   Switch,
   Route
 } from "react-router-dom";
-import './App.css';
+
 import { Provider } from 'react-redux';
 import { store } from './Store';
 
 import Entrance from './scene/Entrance';
-
 
 function App() {
 
