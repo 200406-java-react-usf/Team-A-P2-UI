@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useCallback} from 'react';
 import { Redirect, Link, useHistory } from 'react-router-dom';
 
 import "../style/entrance.scss"
@@ -12,28 +12,7 @@ function Entrance() {
     let timeout = function (ms: number) {
         return new Promise(resolve => setTimeout(resolve, ms))
     }
-
-
-    // alias for div
-    let room = document.getElementById("cube") as HTMLDivElement;
-
-    const perspectiveOrigin = {
-        x: parseFloat(
-            getComputedStyle(document.documentElement).getPropertyValue(
-                "--scenePerspectiveOriginX"
-            )
-        ),
-        y: parseFloat(
-            getComputedStyle(document.documentElement).getPropertyValue(
-                "--scenePerspectiveOriginY"
-            )
-        ),
-        //mouse move range -- opt 45, 30
-        maxXGap: 45,
-        maxYGap: 30
-    };
-
-    function moveCameraXY(event: any) {
+    const moveCameraXY = useCallback((event: any)=> {
         const xGap =
             (((event.clientX - window.innerWidth / 2) * 100) /
                 (window.innerWidth / 2)) *
@@ -55,12 +34,63 @@ function Entrance() {
             "--scenePerspectiveOriginY",
             newPerspectiveOriginY.toString()
         );
-    }
+    }, [setReadyState])
+    
+    useEffect(() => {
+        if (!readyState) {
+            window.addEventListener("mousemove", moveCameraXY)
+        } else {
+            window.removeEventListener("mousemove", moveCameraXY)
+        }
+    
+        return () => window.removeEventListener("mousemove", moveCameraXY)
+    }, [readyState]);
+    // alias for div
+    let room = document.getElementById("cube") as HTMLDivElement;
+
+    const perspectiveOrigin = {
+        x: parseFloat(
+            getComputedStyle(document.documentElement).getPropertyValue(
+                "--scenePerspectiveOriginX"
+            )
+        ),
+        y: parseFloat(
+            getComputedStyle(document.documentElement).getPropertyValue(
+                "--scenePerspectiveOriginY"
+            )
+        ),
+        //mouse move range -- opt 45, 30
+        maxXGap: 45,
+        maxYGap: 30
+    };
+
+    // function moveCameraXY(event: any) {
+    //     const xGap =
+    //         (((event.clientX - window.innerWidth / 2) * 100) /
+    //             (window.innerWidth / 2)) *
+    //         -1;
+    //     const yGap =
+    //         (((event.clientY - window.innerHeight / 2) * 100) /
+    //             (window.innerHeight / 2)) *
+    //         -1;
+    //     const newPerspectiveOriginX =
+    //         perspectiveOrigin.x + (xGap * perspectiveOrigin.maxXGap) / 100;
+    //     const newPerspectiveOriginY =
+    //         perspectiveOrigin.y + (yGap * perspectiveOrigin.maxYGap) / 100;
+
+    //     document.documentElement.style.setProperty(
+    //         "--scenePerspectiveOriginX",
+    //         newPerspectiveOriginX.toString()
+    //     );
+    //     document.documentElement.style.setProperty(
+    //         "--scenePerspectiveOriginY",
+    //         newPerspectiveOriginY.toString()
+    //     );
+    // }
     //z
     function moveCameraZ() {
         document.documentElement.style.setProperty("--cameraZ", window.pageYOffset.toString());
     }
-    window.addEventListener("mousemove", moveCameraXY);
 
     let roomReset = () => {
         let room = document.getElementById("cube") as HTMLDivElement;
