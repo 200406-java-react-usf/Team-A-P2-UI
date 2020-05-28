@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback} from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { Redirect, Link, useHistory } from 'react-router-dom';
 
 import "../style/entrance.scss"
@@ -12,7 +12,7 @@ function Entrance() {
     let timeout = function (ms: number) {
         return new Promise(resolve => setTimeout(resolve, ms))
     }
-    const moveCameraXY = useCallback((event: any)=> {
+    const moveCameraXY = useCallback((event: any) => {
         const xGap =
             (((event.clientX - window.innerWidth / 2) * 100) /
                 (window.innerWidth / 2)) *
@@ -35,14 +35,14 @@ function Entrance() {
             newPerspectiveOriginY.toString()
         );
     }, [setReadyState])
-    
+
     useEffect(() => {
         if (!readyState) {
             window.addEventListener("mousemove", moveCameraXY)
         } else {
             window.removeEventListener("mousemove", moveCameraXY)
         }
-    
+
         return () => window.removeEventListener("mousemove", moveCameraXY)
     }, [readyState]);
     // alias for div
@@ -104,7 +104,7 @@ function Entrance() {
     let cameraMovement = async (e: any) => {
         let room = document.getElementById("cube") as HTMLDivElement;
 
-        console.log(e.currentTarget.id+ " in")
+        console.log(e.currentTarget.id + " in")
         roomReset();
         switch (e.currentTarget.id) {
             case "camera-btn-load":
@@ -124,26 +124,32 @@ function Entrance() {
                 break;
         }
     }
-
+    let displayLogin = async () => {
+        let room = document.getElementById("cube") as HTMLDivElement;
+        let navbar = document.getElementById("camera-bar") as HTMLDivElement;
+        navbar.classList.add("hidden");
+        room.classList.add("cube-login");
+        roomReset();
+    }
     return (
         <>
             <div className="wrapper">
                 <div id="viewport" className="viewport">
                     <div id="camera" className="camera">
                         <div id="camera-bar" className="camera-bar">
-                            <div id="camera-btn-load" onMouseEnter={cameraMovement} className="camera-btn">
-                                NEW GAME
-                            </div>
-                            <div id="camera-btn-new" onMouseEnter={cameraMovement} className="camera-btn">
+                            <div id="camera-btn-load" onMouseEnter={cameraMovement} onClick={displayLogin} className="camera-btn">
                                 LOAD GAME
                             </div>
-                            <div id="camera-btn-credit"  onMouseEnter={cameraMovement} className="camera-btn">
+                            <div id="camera-btn-new" onMouseEnter={cameraMovement} className="camera-btn">
+                                NEW GAME
+                            </div>
+                            <div id="camera-btn-credit" onMouseEnter={cameraMovement} className="camera-btn">
                                 CREDIT
                             </div>
-                            <div id="camera-btn-setting"  onMouseEnter={cameraMovement} className="camera-btn">
+                            <div id="camera-btn-setting" onMouseEnter={cameraMovement} className="camera-btn">
                                 SETTING
                             </div>
-                            <div id="camera-btn-exit"  onMouseEnter={cameraMovement} className="camera-btn">
+                            <div id="camera-btn-exit" onMouseEnter={cameraMovement} className="camera-btn">
                                 EXIT
                             </div>
 
