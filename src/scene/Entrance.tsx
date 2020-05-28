@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { Redirect, Link, useHistory } from 'react-router-dom';
 
 import "../style/entrance.scss"
@@ -6,16 +6,7 @@ import "../style/entrance.scss"
 
 
 function Entrance() {
-
-    const [readyState, setReadyState] = useState(false);
-
-    let timeout = function (ms: number) {
-        return new Promise(resolve => setTimeout(resolve, ms))
-    }
-
-
-    // alias for div
-    let room = document.getElementById("cube") as HTMLDivElement;
+    const [readyLogin, setReadyLogin] = useState(false);
 
     const perspectiveOrigin = {
         x: parseFloat(
@@ -33,8 +24,51 @@ function Entrance() {
         maxYGap: 30
     };
 
-    function moveCameraXY(event: any) {
-        const xGap =
+
+    // useEffect(() => {
+
+
+    //     window.addEventListener("mousemove", cameraXY);
+    //     return () => window.removeEventListener("mousemove", cameraXY);
+
+    //     // let cameraRoamCheck = async () => {
+    //     //     const cameraXY = (event: any) => {
+    //     //         const xGap =
+    //     //             (((event.clientX - window.innerWidth / 2) * 100) /
+    //     //                 (window.innerWidth / 2)) *
+    //     //             -1;
+    //     //         const yGap =
+    //     //             (((event.clientY - window.innerHeight / 2) * 100) /
+    //     //                 (window.innerHeight / 2)) *
+    //     //             -1;
+    //     //         const newPerspectiveOriginX =
+    //     //             perspectiveOrigin.x + (xGap * perspectiveOrigin.maxXGap) / 100;
+    //     //         const newPerspectiveOriginY =
+    //     //             perspectiveOrigin.y + (yGap * perspectiveOrigin.maxYGap) / 100;
+
+    //     //         document.documentElement.style.setProperty(
+    //     //             "--scenePerspectiveOriginX",
+    //     //             newPerspectiveOriginX.toString()
+    //     //         );
+    //     //         document.documentElement.style.setProperty(
+    //     //             "--scenePerspectiveOriginY",
+    //     //             newPerspectiveOriginY.toString()
+    //     //         );
+    //     //     }
+    //     //     if (readyLogin) {
+    //     //         return () => window.removeEventListener("mousemove", cameraXY);
+    //     //     } else if (!readyLogin) {
+    //     //         window.addEventListener("mousemove", cameraXY);
+    //     //     }
+    //     // }
+    //     //cameraRoamCheck()
+    // }, [readyLogin]);
+
+    // Event handler utilizing useCallback ...
+    // ... so that reference never changes.
+    const cameraXY = useCallback(
+        (event: any) => {
+            const xGap =
             (((event.clientX - window.innerWidth / 2) * 100) /
                 (window.innerWidth / 2)) *
             -1;
@@ -55,12 +89,53 @@ function Entrance() {
             "--scenePerspectiveOriginY",
             newPerspectiveOriginY.toString()
         );
+        },
+        [setReadyLogin]
+    );
+
+
+
+
+// Hook
+    // Create a ref that stores handler
+    const savedHandler = useRef();
+
+    // Update ref.current value if handler changes.
+    // This allows our effect below to always get latest handler ...
+    // ... without us needing to pass it in effect deps array ...
+    // ... and potentially cause effect to re-run every render.
+    useEffect(() => {
+        savedHandler.current = handler;
+    }, [handler]);
+
+    useEffect(
+        () => {
+            // Make sure element supports addEventListener
+            // On 
+            const isSupported = element && element.addEventListener;
+            if (!isSupported) return;
+
+            // Create event listener that calls handler function stored in ref
+            const eventListener = event => savedHandler.current(event);
+
+            // Add event listener
+            element.addEventListener(eventName, eventListener);
+
+            // Remove event listener on cleanup
+            return () => {
+                element.removeEventListener(eventName, eventListener);
+            };
+        },
+        [eventName, element] // Re-run if eventName or element changes
+    );
+    let timeout = function (ms: number) {
+        return new Promise(resolve => setTimeout(resolve, ms))
     }
+
     //z
     function moveCameraZ() {
         document.documentElement.style.setProperty("--cameraZ", window.pageYOffset.toString());
     }
-    window.addEventListener("mousemove", moveCameraXY);
 
     let roomReset = () => {
         let room = document.getElementById("cube") as HTMLDivElement;
@@ -73,15 +148,13 @@ function Entrance() {
     }
     let cameraMovement = async (e: any) => {
         let room = document.getElementById("cube") as HTMLDivElement;
-
-        console.log(e.currentTarget.id+ " in")
         roomReset();
         switch (e.currentTarget.id) {
             case "camera-btn-load":
-                room.classList.add("cube-right");
+                room.classList.add("cube-front");
                 break;
             case "camera-btn-new":
-                room.classList.add("cube-front");
+                room.classList.add("cube-right");
                 break;
             case "camera-btn-credit":
                 room.classList.add("cube-left");
@@ -95,25 +168,32 @@ function Entrance() {
         }
     }
 
+    let displayLogin = async () => {
+        let room = document.getElementById("cube") as HTMLDivElement;
+        roomReset();
+        setReadyLogin(true);
+        room.classList.add("cube-login");
+    }
+
     return (
         <>
             <div className="wrapper">
                 <div id="viewport" className="viewport">
                     <div id="camera" className="camera">
                         <div id="camera-bar" className="camera-bar">
-                            <div id="camera-btn-load" onMouseEnter={cameraMovement} className="camera-btn">
-                                NEW GAME
-                            </div>
-                            <div id="camera-btn-new" onMouseEnter={cameraMovement} className="camera-btn">
+                            <div id="camera-btn-load" onMouseEnter={cameraMovement} onClick={displayLogin} className="camera-btn">
                                 LOAD GAME
                             </div>
-                            <div id="camera-btn-credit"  onMouseEnter={cameraMovement} className="camera-btn">
+                            <div id="camera-btn-new" onMouseEnter={cameraMovement} className="camera-btn">
+                                NEW GAME
+                            </div>
+                            <div id="camera-btn-credit" onMouseEnter={cameraMovement} className="camera-btn">
                                 CREDIT
                             </div>
-                            <div id="camera-btn-setting"  onMouseEnter={cameraMovement} className="camera-btn">
+                            <div id="camera-btn-setting" onMouseEnter={cameraMovement} className="camera-btn">
                                 SETTING
                             </div>
-                            <div id="camera-btn-exit"  onMouseEnter={cameraMovement} className="camera-btn">
+                            <div id="camera-btn-exit" onMouseEnter={cameraMovement} className="camera-btn">
                                 EXIT
                             </div>
 
