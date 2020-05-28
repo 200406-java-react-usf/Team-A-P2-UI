@@ -66,9 +66,27 @@ function Entrance() {
         <>
             <div className="wrapper">
                 <div id="viewport" className="viewport">
-                    CAMERA
+                    <div id="camera" className="camera">
+                        <div id="camera-bar" className="camera-bar">
+                            <div id="camera-btn-load" className="camera-btn">
+                                NEW GAME
+                            </div>
+                            <div id="camera-btn-new" className="camera-btn">
+                                LOAD GAME
+                            </div>
+                            <div id="camera-btn-credit" className="camera-btn">
+                                CREDIT
+                            </div>
+                            <div id="camera-btn-setting" className="camera-btn">
+                                SETTING
+                            </div>
+                            <div id="camera-btn-exit" className="camera-btn">
+                                EXIT
+                            </div>
 
-                    <div id="cube" className="cube">
+                        </div>
+                    </div>
+                    <div id="cube" className="cube-front">
                         <div id="cube-face-1-a" className="cube-face">
                             1-a
                         </div>
@@ -107,8 +125,9 @@ function Entrance() {
                             3-c
                         </div>
                         <div id="cube-face-3-d" className="cube-face">
-                            counter top
-                            <div></div>
+                            <div id="entrance-menu" className="cube-face">
+
+                            </div>
                         </div>
                         <div id="cube-face-3-f" className="cube-face">
                             seat top
