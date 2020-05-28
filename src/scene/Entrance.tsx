@@ -14,8 +14,8 @@ function Entrance() {
     }
 
 
-
-    let films = [];
+    // alias for div
+    let room = document.getElementById("cube") as HTMLDivElement;
 
     const perspectiveOrigin = {
         x: parseFloat(
@@ -62,25 +62,58 @@ function Entrance() {
     }
     window.addEventListener("mousemove", moveCameraXY);
 
+    let roomReset = () => {
+        let room = document.getElementById("cube") as HTMLDivElement;
+
+        room.classList.remove("cube-front");
+        room.classList.remove("cube-left");
+        room.classList.remove("cube-right");
+        room.classList.remove("cube-back");
+        room.classList.remove("cube-floor");
+    }
+    let cameraMovement = async (e: any) => {
+        let room = document.getElementById("cube") as HTMLDivElement;
+
+        console.log(e.currentTarget.id+ " in")
+        roomReset();
+        switch (e.currentTarget.id) {
+            case "camera-btn-load":
+                room.classList.add("cube-right");
+                break;
+            case "camera-btn-new":
+                room.classList.add("cube-front");
+                break;
+            case "camera-btn-credit":
+                room.classList.add("cube-left");
+                break;
+            case "camera-btn-setting":
+                room.classList.add("cube-floor");
+                break;
+            case "camera-btn-exit":
+                room.classList.add("cube-back");
+                break;
+        }
+    }
+
     return (
         <>
             <div className="wrapper">
                 <div id="viewport" className="viewport">
                     <div id="camera" className="camera">
                         <div id="camera-bar" className="camera-bar">
-                            <div id="camera-btn-load" className="camera-btn">
+                            <div id="camera-btn-load" onMouseEnter={cameraMovement} className="camera-btn">
                                 NEW GAME
                             </div>
-                            <div id="camera-btn-new" className="camera-btn">
+                            <div id="camera-btn-new" onMouseEnter={cameraMovement} className="camera-btn">
                                 LOAD GAME
                             </div>
-                            <div id="camera-btn-credit" className="camera-btn">
+                            <div id="camera-btn-credit"  onMouseEnter={cameraMovement} className="camera-btn">
                                 CREDIT
                             </div>
-                            <div id="camera-btn-setting" className="camera-btn">
+                            <div id="camera-btn-setting"  onMouseEnter={cameraMovement} className="camera-btn">
                                 SETTING
                             </div>
-                            <div id="camera-btn-exit" className="camera-btn">
+                            <div id="camera-btn-exit"  onMouseEnter={cameraMovement} className="camera-btn">
                                 EXIT
                             </div>
 
@@ -160,7 +193,7 @@ function Entrance() {
                             5-c
                         </div>
                         <div id="cube-face-6-a" className="cube-bot">
-                            6
+                            FLOOR
                         </div>
                     </div>
                 </div>
