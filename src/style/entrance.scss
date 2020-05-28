@@ -73,14 +73,16 @@
 
 .cube-login {
     position: absolute;
-    top: 1030px;
+    top: 940px;
+    left: 0px;
     bottom: 0;
     right: 50px;
     margin: auto;
     height: 800px;
     width: 1200px;
-    transform: translateZ(485px) rotateY(0deg) rotateX(-90deg) rotateZ(0deg);
+    transform: translateZ(495px) rotateY(0deg) rotateX(-90deg) rotateZ(0deg);
     transform-style: preserve-3d;
+    transition: all 1s cubic-bezier(.35, .04, .6, .94);
 }
 
 .cube-right {
@@ -93,6 +95,20 @@
     height: 800px;
     width: 1200px;
     transform: translateZ(350px) rotateY(90deg) rotateX(0deg) rotateZ(0deg);
+    transform-style: preserve-3d;
+    transition: all 1s cubic-bezier(.35, .04, .6, .94);
+}
+
+.cube-addnew {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: -200px;
+    right: 0;
+    margin: auto;
+    height: 800px;
+    width: 1200px;
+    transform: translateZ(700px) rotateY(90deg) rotateX(0deg) rotateZ(0deg);
     transform-style: preserve-3d;
     transition: all 1s cubic-bezier(.35, .04, .6, .94);
 }
@@ -111,6 +127,20 @@
     transition: all 1s cubic-bezier(.35, .04, .6, .94);
 }
 
+.cube-credit {
+    position: absolute;
+    top: 0;
+    bottom: 100px;
+    left: 0;
+    right: 0;
+    margin: auto;
+    height: 800px;
+    width: 1200px;
+    transform: translateZ(800px) rotateY(-90deg) rotateX(0deg) rotateZ(0deg);
+    transform-style: preserve-3d;
+    transition: all 1s cubic-bezier(.35, .04, .6, .94);
+}
+
 .cube-back {
     position: absolute;
     top: 0;
@@ -121,6 +151,20 @@
     height: 800px;
     width: 1200px;
     transform: translateZ(350px) rotateY(180deg) rotateX(0deg) rotateZ(0deg);
+    transform-style: preserve-3d;
+    transition: all 1s cubic-bezier(.35, .04, .6, .94);
+}
+
+.cube-exit {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    height: 800px;
+    width: 1200px;
+    transform: translateZ(550px) rotateY(180deg) rotateX(0deg) rotateZ(0deg);
     transform-style: preserve-3d;
     transition: all 1s cubic-bezier(.35, .04, .6, .94);
 }
@@ -149,6 +193,20 @@
     height: 800px;
     width: 1200px;
     transform: translateZ(50px) rotateY(180deg) rotateX(90deg) rotateZ(0deg);
+    transform-style: preserve-3d;
+    transition: all 1s cubic-bezier(.35, .04, .6, .94);
+}
+
+.cube-setting {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    height: 800px;
+    width: 1200px;
+    transform: translateZ(550px) rotateY(180deg) rotateX(90deg) rotateZ(0deg);
     transform-style: preserve-3d;
     transition: all 1s cubic-bezier(.35, .04, .6, .94);
 }
@@ -186,6 +244,7 @@
     user-select: none;
     transform: rotateY(-180deg) rotateZ(45deg) translateY(300px) translateX(-300px) translateZ(-750px);
     background-color: rgba(0, 211, 28, 0.801);
+    transition: all 1s cubic-bezier(.35, .04, .6, .94);
 }
 
 #cube-face-1-e {
@@ -197,6 +256,31 @@
     user-select: none;
     transform: rotateY(-180deg) rotateZ(45deg) translateY(500px) translateX(0px) translateZ(-750px);
     background-color: rgba(251, 255, 0, 0.363);
+    transition: all 1s cubic-bezier(.35, .04, .6, .94);
+}
+
+.cube-exit #cube-face-1-d {
+    position: absolute;
+    height: 600px;
+    width: 300px;
+    border: 1px solid rgb(0, 0, 0);
+    border-radius: 3px;
+    user-select: none;
+    transform: rotateY(-180deg) rotateZ(45deg) translateY(500px) translateX(-500px) translateZ(-750px);
+    background-color: rgb(0, 0, 0);
+    transition: all 1s cubic-bezier(.35, .04, .6, .94);
+}
+
+.cube-exit #cube-face-1-e {
+    position: absolute;
+    height: 600px;
+    width: 300px;
+    border: 1px solid rgb(3, 3, 3);
+    border-radius: 3px;
+    user-select: none;
+    transform: rotateY(-180deg) rotateZ(45deg) translateY(600px) translateX(300px) translateZ(-750px);
+    background-color: rgb(0, 0, 0);
+    transition: all 1s cubic-bezier(.35, .04, .6, .94);
 }
 
 #cube-face-2-a {

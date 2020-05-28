@@ -9,6 +9,8 @@ function Entrance() {
 
     const [readyState, setReadyState] = useState(false);
 
+    const [action, setAction] = useState("default");
+
     let timeout = function (ms: number) {
         return new Promise(resolve => setTimeout(resolve, ms))
     }
@@ -37,13 +39,15 @@ function Entrance() {
     }, [setReadyState])
 
     useEffect(() => {
+        let camera = document.getElementById("camera") as HTMLDivElement;
+        // for some reason, it still create multiple instances on remove listener
         if (!readyState) {
-            window.addEventListener("mousemove", moveCameraXY)
+            camera.addEventListener("mousemove", moveCameraXY)
         } else {
-            window.removeEventListener("mousemove", moveCameraXY)
+            camera.removeEventListener("mousemove", moveCameraXY)
         }
 
-        return () => window.removeEventListener("mousemove", moveCameraXY)
+        return () => camera.removeEventListener("mousemove", moveCameraXY)
     }, [readyState]);
     // alias for div
     let room = document.getElementById("cube") as HTMLDivElement;
@@ -60,8 +64,8 @@ function Entrance() {
             )
         ),
         //mouse move range -- opt 45, 30
-        maxXGap: 45,
-        maxYGap: 30
+        maxXGap: 10,
+        maxYGap: 10
     };
 
     // function moveCameraXY(event: any) {
@@ -108,10 +112,10 @@ function Entrance() {
         roomReset();
         switch (e.currentTarget.id) {
             case "camera-btn-load":
-                room.classList.add("cube-right");
-                break;
-            case "camera-btn-new":
                 room.classList.add("cube-front");
+                break;
+            case "camera-btn-addnew":
+                room.classList.add("cube-right");
                 break;
             case "camera-btn-credit":
                 room.classList.add("cube-left");
@@ -124,12 +128,68 @@ function Entrance() {
                 break;
         }
     }
-    let displayLogin = async () => {
+    let displayfocus = async (e: any) => {
+        let target = e.currentTarget.id;
         let room = document.getElementById("cube") as HTMLDivElement;
-        let navbar = document.getElementById("camera-bar") as HTMLDivElement;
-        navbar.classList.add("hidden");
-        room.classList.add("cube-login");
+        let camera = document.getElementById("camera") as HTMLDivElement;
+        let cameraLock = document.getElementById("camera-lock") as HTMLDivElement;
+        switch (target) {
+            case "camera-btn-load":
+                setAction("login");
+                room.classList.add("cube-login");
+                break;
+            case "camera-btn-addnew":
+                setAction("addnew");
+                room.classList.add("cube-addnew");
+                break;
+            case "camera-btn-credit":
+                setAction("credit");
+                room.classList.add("cube-credit");
+                break;
+            case "camera-btn-exit":
+                setAction("exit");
+                room.classList.add("cube-exit");
+                break;
+            case "camera-btn-setting":
+                setAction("setting");
+                room.classList.add("cube-setting");
+                break;
+        }
+        camera.classList.add("hidden");
+        cameraLock.classList.remove("hidden");
         roomReset();
+    }
+    let backAction = async () => {
+        let room = document.getElementById("cube") as HTMLDivElement;
+        let camera = document.getElementById("camera") as HTMLDivElement;
+        let cameraLock = document.getElementById("camera-lock") as HTMLDivElement;
+
+        camera.classList.remove("hidden");
+        cameraLock.classList.add("hidden");
+        roomReset();
+
+        switch (action) {
+            case "login":
+                room.classList.remove("cube-login");
+                room.classList.add("cube-front");
+                break;
+            case "addnew":
+                room.classList.remove("cube-addnew");
+                room.classList.add("cube-front");
+                break;
+            case "credit":
+                room.classList.remove("cube-credit");
+                room.classList.add("cube-front");
+                break;
+            case "exit":
+                room.classList.remove("cube-exit");
+                room.classList.add("cube-front");
+                break;
+            case "setting":
+                room.classList.remove("cube-setting");
+                room.classList.add("cube-front");
+                break;
+        }
     }
     return (
         <>
@@ -137,22 +197,31 @@ function Entrance() {
                 <div id="viewport" className="viewport">
                     <div id="camera" className="camera">
                         <div id="camera-bar" className="camera-bar">
-                            <div id="camera-btn-load" onMouseEnter={cameraMovement} onClick={displayLogin} className="camera-btn">
+                            <div id="camera-btn-load" onMouseEnter={cameraMovement} onClick={displayfocus} className="camera-btn">
                                 LOAD GAME
                             </div>
-                            <div id="camera-btn-new" onMouseEnter={cameraMovement} className="camera-btn">
+                            <div id="camera-btn-addnew" onMouseEnter={cameraMovement} onClick={displayfocus} className="camera-btn">
                                 NEW GAME
                             </div>
-                            <div id="camera-btn-credit" onMouseEnter={cameraMovement} className="camera-btn">
+                            <div id="camera-btn-credit" onMouseEnter={cameraMovement} onClick={displayfocus} className="camera-btn">
                                 CREDIT
                             </div>
-                            <div id="camera-btn-setting" onMouseEnter={cameraMovement} className="camera-btn">
+                            <div id="camera-btn-setting" onMouseEnter={cameraMovement} onClick={displayfocus} className="camera-btn">
                                 SETTING
                             </div>
-                            <div id="camera-btn-exit" onMouseEnter={cameraMovement} className="camera-btn">
+                            <div id="camera-btn-exit" onMouseEnter={cameraMovement} onClick={displayfocus} className="camera-btn">
                                 EXIT
                             </div>
-
+                        </div>
+                    </div>
+                    <div id="camera-lock" className="camera hidden">
+                        <div id="camera-lock-bar" className="camera-bar">
+                            <div id="camera-btn-back" onClick={backAction} className="camera-btn">
+                                CANCEL
+                                    </div>
+                            <div id="camera-btn-confirm" className="camera-btn">
+                                CONFIRM
+                            </div>
                         </div>
                     </div>
                     <div id="cube" className="cube-front">
