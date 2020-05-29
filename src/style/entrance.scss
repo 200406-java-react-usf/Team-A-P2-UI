@@ -228,7 +228,7 @@
     animation-delay: 500ms;
     animation-duration: 5s;
     animation-timing-function: linear;
-    animation-fill-mode: infinite;
+    animation-iteration-count: infinite;
 }
 
 .cube-top-ani #cube-face-5-e {
@@ -244,7 +244,7 @@
     animation-delay: 750ms;
     animation-duration: 5s;
     animation-timing-function: linear;
-    animation-fill-mode: infinite;
+    animation-iteration-count: infinite;
 }
 
 .cube-top-ani #cube-face-5-f {
@@ -260,7 +260,7 @@
     animation-delay: 1000ms;
     animation-duration: 5s;
     animation-timing-function: linear;
-    animation-fill-mode: infinite;
+    animation-iteration-count: infinite;
 }
 
 @keyframes spin1 {

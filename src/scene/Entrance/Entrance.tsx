@@ -49,8 +49,7 @@ function Entrance() {
 
         return () => camera.removeEventListener("mousemove", moveCameraXY)
     }, [readyState]);
-    // alias for div
-    let room = document.getElementById("cube") as HTMLDivElement;
+
 
     const perspectiveOrigin = {
         x: parseFloat(
@@ -63,7 +62,7 @@ function Entrance() {
                 "--scenePerspectiveOriginY"
             )
         ),
-        //mouse move range -- opt 10, 10
+        //mouse move range -- opt 20, 10
         maxXGap: 20,
         maxYGap: 10
     };
@@ -80,8 +79,6 @@ function Entrance() {
     }
     let cameraMovement = async (e: any) => {
         let room = document.getElementById("cube") as HTMLDivElement;
-
-        console.log(e.currentTarget.id + " in")
         roomReset();
         switch (e.currentTarget.id) {
             case "camera-btn-load":
@@ -165,7 +162,6 @@ function Entrance() {
         }
     }
     let fwdAction = async() => {
-        console.log("confirm clicked")
         let room = document.getElementById("cube") as HTMLDivElement;
         let cameraLock = document.getElementById("camera-lock") as HTMLDivElement;
         room.classList.remove("cube-login");
@@ -259,7 +255,7 @@ function Entrance() {
                         <div id="cube-face-1-e" className="cube-face-door">
                             1-e
                         </div>
-                        <div id="cube-face-1-a" className="cube-face">
+                        <div id="cube-face-2-a" className="cube-face">
                             2-a
                         </div>
                         <div id="cube-face-2-b" className="cube-face">

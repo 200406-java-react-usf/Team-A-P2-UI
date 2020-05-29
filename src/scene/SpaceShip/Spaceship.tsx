@@ -49,8 +49,7 @@ function Spaceship() {
 
         return () => camera.removeEventListener("mousemove", moveCameraXY)
     }, [readyState]);
-    // alias for div
-    let room = document.getElementById("cube") as HTMLDivElement;
+
 
     const perspectiveOrigin = {
         x: parseFloat(
@@ -63,69 +62,59 @@ function Spaceship() {
                 "--scenePerspectiveOriginY"
             )
         ),
-        //mouse move range -- opt 10, 10
-        maxXGap: 100,
-        maxYGap: 100
+        //mouse move range -- opt 20, 10
+        maxXGap: 20,
+        maxYGap: 10
     };
 
 
     let roomReset = () => {
-        let room = document.getElementById("cube") as HTMLDivElement;
-
-        room.classList.remove("cube-front");
-        room.classList.remove("cube-left");
-        room.classList.remove("cube-right");
-        room.classList.remove("cube-back");
-        room.classList.remove("cube-floor");
+        let room = document.getElementById("cube-spaceship") as HTMLDivElement;
+        room.classList.remove("cube-spaceship-front");
+        room.classList.remove("cube-spaceship-left");
+        room.classList.remove("cube-spaceship-right");
+        room.classList.remove("cube-spaceship-back");
+        room.classList.remove("cube-spaceship-floor");
     }
     let cameraMovement = async (e: any) => {
-        let room = document.getElementById("cube") as HTMLDivElement;
-
-        console.log(e.currentTarget.id + " in")
+        let room = document.getElementById("cube-spaceship") as HTMLDivElement;
         roomReset();
         switch (e.currentTarget.id) {
-            case "camera-btn-load":
-                room.classList.add("cube-front");
+            case "camera-btn-map":
+                room.classList.add("cube-spaceship-front");
                 break;
-            case "camera-btn-addnew":
-                room.classList.add("cube-right");
+            case "camera-btn-trade":
+                room.classList.add("cube-spaceship-right");
                 break;
-            case "camera-btn-credit":
-                room.classList.add("cube-left");
+            case "camera-btn-inventory":
+                room.classList.add("cube-spaceship-left");
                 break;
-            case "camera-btn-setting":
-                room.classList.add("cube-floor");
-                break;
-            case "camera-btn-exit":
-                room.classList.add("cube-back");
+            case "camera-btn-menu":
+                room.classList.add("cube-spaceship-back");
                 break;
         }
     }
     let displayfocus = async (e: any) => {
         let target = e.currentTarget.id;
-        let room = document.getElementById("cube") as HTMLDivElement;
+        let room = document.getElementById("cube-spaceship") as HTMLDivElement;
         let camera = document.getElementById("camera") as HTMLDivElement;
         let cameraLock = document.getElementById("camera-lock") as HTMLDivElement;
         switch (target) {
-            case "camera-btn-load":
-                setAction("login");
-                room.classList.add("cube-login");
+            case "camera-btn-map":
+                setAction("map");
+                room.classList.add("cube-spaceship-map");
                 break;
-            case "camera-btn-addnew":
-                setAction("addnew");
-                room.classList.add("cube-addnew");
+            case "camera-btn-trade":
+                setAction("trade");
+                room.classList.add("cube-spaceship-trade");
                 break;
-            case "camera-btn-credit":
-                setAction("credit");
-                room.classList.add("cube-credit");
+            case "camera-btn-inventory":
+                setAction("inventory");
+                room.classList.add("cube-spaceship-inventory");
                 break;
-            case "camera-btn-exit":
-                setAction("exit");
-                room.classList.add("cube-exit");
-                break;
-            case "camera-btn-setting":
-                setAction("setting");
-                room.classList.add("cube-setting");
+            case "camera-btn-menu":
+                setAction("menu");
+                room.classList.add("cube-spaceship-menu");
                 break;
         }
         camera.classList.add("hidden");
@@ -133,50 +122,66 @@ function Spaceship() {
         roomReset();
     }
     let backAction = async () => {
-        let room = document.getElementById("cube") as HTMLDivElement;
+        let room = document.getElementById("cube-spaceship") as HTMLDivElement;
         let camera = document.getElementById("camera") as HTMLDivElement;
         let cameraLock = document.getElementById("camera-lock") as HTMLDivElement;
 
         camera.classList.remove("hidden");
         cameraLock.classList.add("hidden");
-        //roomReset();
+        roomReset();
 
         switch (action) {
-            case "login":
-                room.classList.remove("cube-login");
-                room.classList.add("cube-front");
+            case "map":
+                room.classList.remove("cube-spaceship-map");
+                room.classList.add("cube-spaceship-front");
                 break;
-            case "addnew":
-                room.classList.remove("cube-addnew");
-                room.classList.add("cube-right");
+            case "trade":
+                room.classList.remove("cube-spaceship-trade");
+                room.classList.add("cube-spaceship-right");
                 break;
-            case "credit":
-                room.classList.remove("cube-credit");
-                room.classList.add("cube-left");
+            case "inventory":
+                room.classList.remove("cube-spaceship-inventory");
+                room.classList.add("cube-spaceship-left");
                 break;
-            case "exit":
-                room.classList.remove("cube-exit");
-                room.classList.add("cube-back");
-                break;
-            case "setting":
-                room.classList.remove("cube-setting");
-                room.classList.add("cube-floor");
+            case "menu":
+                room.classList.remove("cube-spaceship-menu");
+                room.classList.add("cube-spaceship-back");
                 break;
         }
     }
-    let fwdAction = async () => {
-        console.log("confirm clicked")
-        let room = document.getElementById("cube") as HTMLDivElement;
-        let cameraLock = document.getElementById("camera-lock") as HTMLDivElement;
-        room.classList.remove("cube-login");
-        room.classList.remove("cube-addnew");
-        cameraLock.classList.add("hidden");
-        room.classList.add("cube-top");
+    let travel = async () => {
+        let room = document.getElementById("cube-spaceship") as HTMLDivElement;
+        let background = document.getElementById("background") as HTMLDivElement;
+
+        room.classList.remove("cube-spaceship-map");
+        room.classList.add("cube-spaceship-front");
         await timeout(1000);
-        room.classList.remove("cube-top");
-        room.classList.add("cube-top-ani");
+        room.classList.remove("cube-spaceship-front");
+        room.classList.add("cube-spaceship-zoom");
+        await timeout(500);
+        room.classList.remove("cube-spaceship-zoom")
+        room.classList.add("cube-spaceship-launch");
+        await timeout(1000);
+
+        background.classList.add("background-below");
         await timeout(2000);
-        // redirect here
+        room.classList.remove("cube-spaceship-launch");
+        room.classList.add("cube-spaceship-jumpPrep");
+        await timeout(100);
+        room.classList.remove("cube-spaceship-jumpPrep");
+        room.classList.add("cube-spaceship-jump");
+        await timeout(2000);
+        room.classList.remove("cube-spaceship-jump");
+        room.classList.add("cube-spaceship-jumpPrep");
+        background.classList.remove("background-below");
+
+        await timeout(2000);
+        room.classList.remove("cube-spaceship-jumpPrep");
+        room.classList.add("cube-spaceship-map");
+        await timeout(500);
+        background.classList.remove("background-below");
+
+        // room.classList.add("cube-spaceship-jump");
     }
     return (
         <>
@@ -184,48 +189,52 @@ function Spaceship() {
                 <div id="viewport" className="viewport">
                     <div id="camera" className="camera">
                         <div id="camera-bar" className="camera-bar">
-                            <div id="camera-btn-map"className="camera-btn-spaceship">
-                                VIEW GALAXY MAP
-                            </div>
-                            <div id="camera-btn-map"  className="camera-btn-spaceship">
-                                TRADE WITH CITY
-                            </div>
-                            <div id="camera-btn-map"  className="camera-btn-spaceship">
+                            <div id="camera-btn-inventory" onMouseEnter={cameraMovement} onClick={displayfocus} className="camera-btn-spaceship">
                                 CURRENT INVENTORY
                             </div>
-                            <div id="camera-btn-map" className="camera-btn-spaceship-small">
+                            <div id="camera-btn-map" onMouseEnter={cameraMovement} onClick={displayfocus} className="camera-btn-spaceship">
+                                VIEW GALAXY MAP
+                            </div>
+                            <div id="camera-btn-trade" onMouseEnter={cameraMovement} onClick={displayfocus} className="camera-btn-spaceship">
+                                TRADE WITH CITY
+                            </div>
+                            <div id="camera-btn-menu" onMouseEnter={cameraMovement} onClick={displayfocus} className="camera-btn-spaceship">
                                 BACK TO MENU
                             </div>
                         </div>
                     </div>
                     <div id="camera-lock" className="camera hidden">
-                        {(action === "exit") ?
+                        {(action === "map") ?
                             <div id="camera-lock-bar" className="camera-bar">
                                 <div id="camera-btn-back" onClick={backAction} className="camera-btn">
                                     CANCEL
                                     </div>
-                                <div id="camera-btn-confirm" className="camera-btn">
-                                    EXIT
+                                <div id="camera-btn-confirm" onClick={travel} className="camera-btn">
+                                    TRAVEL
                                 </div>
                             </div>
                             : null}
-                        {(action === "setting") ?
+                        {(action === "trade") ?
                             <div id="camera-lock-bar" className="camera-bar">
                                 <div id="camera-btn-back" onClick={backAction} className="camera-btn">
                                     CANCEL
                                     </div>
-                                <div id="camera-btn-confirm" className="camera-btn">
-                                    SUBMIT
-                                </div>
                             </div>
                             : null}
-                        {(action === "credit") ?
+                        {(action === "inventory") ?
+                            <div id="camera-lock-bar" className="camera-bar">
+                                <div id="camera-btn-back" onClick={backAction} className="camera-btn">
+                                    CANCEL
+                                    </div>
+                            </div>
+                            : null}
+                        {(action === "menu") ?
                             <div id="camera-lock-bar" className="camera-bar">
                                 <div id="camera-btn-back" onClick={backAction} className="camera-btn">
                                     CANCEL
                                     </div>
                                 <div id="camera-btn-confirm" className="camera-btn">
-                                    DETAILS
+                                    MAIN MENU
                                 </div>
                             </div>
                             : null}
@@ -240,17 +249,14 @@ function Spaceship() {
                         <div id="cube-face-spaceship-1-c" className="cube-face-spaceship">
                             1-c
                         </div>
-                        <div id="cube-face-spaceship-1-d" className="cube-face-spaceship-door">
-                            1-d
-                        </div>
-                        <div id="cube-face-spaceship-1-e" className="cube-face-spaceship-door">
-                            1-e
-                        </div>
-                        <div id="cube-face-spaceship-1-a" className="cube-face-spaceship">
+                        <div id="cube-face-spaceship-2-a" className="cube-face-spaceship">
                             2-a
                         </div>
                         <div id="cube-face-spaceship-2-b" className="cube-face-spaceship">
                             2-b
+                        </div>
+                        <div id="cube-face-spaceship-2-b-door" className="cube-face-spaceship">
+                            door
                         </div>
                         <div id="cube-face-spaceship-2-c" className="cube-face-spaceship">
                             2-c
@@ -268,8 +274,17 @@ function Spaceship() {
                         <div id="cube-face-spaceship-3-c" className="cube-face-spaceship">
                             3-c
                         </div>
+                        <div id="cube-face-spaceship-3-d" className="cube-face-spaceship">
+                            3-d
+                        </div>
+                        <div id="cube-face-spaceship-3-e" className="cube-face-spaceship">
+                            3-e
+                        </div>
+                        <div id="cube-face-spaceship-3-f" className="cube-face-spaceship">
+                            3-f
+                        </div>
                         <div id="cube-face-spaceship-4-a" className="cube-face-spaceship">
-                            4
+                            4-a
                         </div>
                         <div id="cube-face-spaceship-4-b" className="cube-face-spaceship">
                             4-b
@@ -280,6 +295,23 @@ function Spaceship() {
                         <div id="cube-face-spaceship-4-d" className="cube-face-spaceship">
                             4-d
                         </div>
+                        <div id="cube-face-spaceship-slot">
+                            <div className="invent-row">
+                                <div id="cube-invent-slot-1" className="cube-invent-slot"></div>
+                                <div id="cube-invent-slot-2" className="cube-invent-slot"></div>
+                                <div id="cube-invent-slot-3" className="cube-invent-slot"></div>
+                            </div>
+                            <div className="invent-row">
+                                <div id="cube-invent-slot-4" className="cube-invent-slot"></div>
+                                <div id="cube-invent-slot-5" className="cube-invent-slot"></div>
+                                <div id="cube-invent-slot-6" className="cube-invent-slot"></div>
+                            </div>
+                            <div className="invent-row">
+                                <div id="cube-invent-slot-7" className="cube-invent-slot"></div>
+                                <div id="cube-invent-slot-8" className="cube-invent-slot"></div>
+                                <div id="cube-invent-slot-9" className="cube-invent-slot"></div>
+                            </div>
+                        </div>
                         <div id="cube-face-spaceship-5-a" className="cube-top-spaceship">
                             5-a
                         </div>
@@ -288,15 +320,6 @@ function Spaceship() {
                         </div>
                         <div id="cube-face-spaceship-5-c" className="cube-face-spaceship">
                             5-c
-                        </div>
-                        <div id="cube-face-spaceship-5-d" className="cube-top-spaceship">
-                            5-d
-                        </div>
-                        <div id="cube-face-spaceship-5-e" className="cube-face-spaceship">
-                            5-e
-                        </div>
-                        <div id="cube-face-spaceship-5-f" className="cube-face-spaceship">
-                            5-f
                         </div>
                         <div id="cube-face-spaceship-6-a" className="cube-bot-spaceship">
                             FLOOR
@@ -307,7 +330,18 @@ function Spaceship() {
                         <div id="cube-face-spaceship-6-c" className="cube-bot-spaceship">
                             table top
                         </div>
+                        <div id="cube-face-spaceship-6-d" className="cube-bot-spaceship">
+                            <div id="cube-wrap">
+                                <div id="cube-mini-1" className="cube-face"></div>
+                                <div id="cube-mini-2" className="cube-face"></div>
+                                <div id="cube-mini-3" className="cube-face"></div>
+                                <div id="cube-mini-4" className="cube-face"></div>
+                                <div id="cube-mini-5" className="cube-face"></div>
+                                <div id="cube-mini-6" className="cube-face"></div>
+                            </div>
+                        </div>
                     </div>
+                    <div id="background" className = "background" ></div>
                 </div>
             </div>
         </>
