@@ -1,0 +1,32 @@
+@import "./main.scss";
+.user-wrapper {
+    margin: 20px 20px 0px 20px;
+    padding-top: 10px;
+    width: 280px;
+    height: 510px;
+    background-color: rgba(0, 128, 0, 0.678);
+}
+
+.username-row {
+    top: 30px;
+    margin: 10px 20px 20px 20px;
+    height: 100px;
+    line-height: 100px;
+    text-align: center;
+    background-color: rgba(255, 255, 255);
+}
+
+.info-row {
+    margin: 20px;
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+    background-color: rgba(255, 255, 255);
+}
+
+.info-filler {
+    margin: 20px;
+    height: 220px;
+    text-align: center;
+    background-color: rgba(255, 255, 255);
+}

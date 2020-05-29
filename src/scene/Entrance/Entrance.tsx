@@ -5,6 +5,7 @@ import "../../style/entrance.scss"
 
 
 
+
 function Entrance() {
 
     const [readyState, setReadyState] = useState(false);

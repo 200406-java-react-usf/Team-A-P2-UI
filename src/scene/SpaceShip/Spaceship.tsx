@@ -3,7 +3,7 @@ import { Redirect, Link, useHistory } from 'react-router-dom';
 
 import "../../style/spaceship.scss"
 
-
+import UserHolder from "../../components/UserHolder/UserHolder"
 
 function Spaceship() {
 
@@ -152,7 +152,9 @@ function Spaceship() {
     let travel = async () => {
         let room = document.getElementById("cube-spaceship") as HTMLDivElement;
         let background = document.getElementById("background") as HTMLDivElement;
+        let cameraLock = document.getElementById("camera-lock") as HTMLDivElement;
 
+        cameraLock.classList.add("hidden");
         room.classList.remove("cube-spaceship-map");
         room.classList.add("cube-spaceship-front");
         await timeout(1000);
@@ -180,6 +182,7 @@ function Spaceship() {
         room.classList.add("cube-spaceship-map");
         await timeout(500);
         background.classList.remove("background-below");
+        cameraLock.classList.remove("hidden");
 
         // room.classList.add("cube-spaceship-jump");
     }
@@ -222,11 +225,16 @@ function Spaceship() {
                             </div>
                             : null}
                         {(action === "inventory") ?
-                            <div id="camera-lock-bar" className="camera-bar">
-                                <div id="camera-btn-back" onClick={backAction} className="camera-btn">
-                                    CANCEL
+                            <>
+                                <div className="camera-info">
+                                    <UserHolder />
+                                </div>
+                                <div id="camera-lock-bar" className="camera-bar">
+                                    <div id="camera-btn-back" onClick={backAction} className="camera-btn">
+                                        CANCEL
                                     </div>
-                            </div>
+                                </div>
+                            </>
                             : null}
                         {(action === "menu") ?
                             <div id="camera-lock-bar" className="camera-bar">
@@ -341,7 +349,7 @@ function Spaceship() {
                             </div>
                         </div>
                     </div>
-                    <div id="background" className = "background" ></div>
+                    <div id="background" className="background" ></div>
                 </div>
             </div>
         </>
