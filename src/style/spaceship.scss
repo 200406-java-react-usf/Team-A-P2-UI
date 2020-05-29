@@ -1,0 +1,757 @@
+    @import "./main.scss";
+     :root {
+        --scenePerspective: 1;
+        --scenePerspectiveOriginX: 50;
+        --scenePerspectiveOriginY: 30;
+        --cameraSpeed: 500; // Where 1 is the fastest
+    }
+    
+    .background {
+        position: absolute;
+        top: 0px;
+        width: 1200px;
+        height: 2400px;
+        background-color: rgba(0, 0, 0, 0.438);
+        z-index: -100;
+        transition: all 2s cubic-bezier(.35, .04, .6, .94);
+    }
+    
+    .background-below {
+        top: 800px;
+        transition: all 2s cubic-bezier(.35, .04, .6, .94);
+    }
+    
+    .viewport {
+        width: 1200px;
+        height: 750px;
+        background-color: rgba(0, 0, 0, 0);
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        margin: auto;
+        perspective: calc(var(--scenePerspective) * var(--cameraSpeed) * 1px);
+        perspective-origin: calc(var(--scenePerspectiveOriginX) * 1%) calc(var(--scenePerspectiveOriginY) * 1%);
+        will-change: perspective-origin;
+        transform: translate3d(0, 0, 0);
+    }
+    
+    .camera {
+        width: 1200px;
+        height: 750px;
+        background-color: rgba(0, 0, 0, 0);
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        margin: auto;
+        border: 10px solid rgb(255, 0, 0);
+        z-index: 999;
+    }
+    
+    .camera-bar {
+        position: absolute;
+        width: 1200px;
+        height: 100px;
+        top: 600px;
+        background-color: rgba(64, 214, 26, 0.514);
+    }
+    
+    .camera-btn-spaceship {
+        display: inline-block;
+        width: 200px;
+        height: 50px;
+        line-height: 50px;
+        text-align: center;
+        margin: 25px 50px 25px 50px;
+        background-color: rgba(161, 69, 69, 0.514);
+    }
+    
+    .cube-spaceship-front {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        margin: auto;
+        height: 800px;
+        width: 1200px;
+        transform: translateZ(150px) rotateY(0deg) rotateX(0deg) rotateZ(0deg);
+        transform-style: preserve-3d;
+        transition: all 1s cubic-bezier(.35, .04, .6, .94);
+    }
+    
+    .cube-spaceship-map {
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        margin: auto;
+        height: 800px;
+        width: 1200px;
+        transform: translateZ(550px) translateY(75px) translateX(40px) rotateY(0deg) rotateX(-90deg) rotateZ(0deg);
+        transform-style: preserve-3d;
+        transition: all 1s cubic-bezier(.35, .04, .6, .94);
+    }
+    
+    .cube-spaceship-zoom {
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        margin: auto;
+        height: 800px;
+        width: 1200px;
+        transform: translateZ(550px) translateY(40px) translateX(0px) rotateY(0deg) rotateX(0deg) rotateZ(0deg);
+        transform-style: preserve-3d;
+        transition: all 1s cubic-bezier(.35, .04, .6, .94);
+    }
+    
+    .cube-spaceship-launch {
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        margin: auto;
+        height: 800px;
+        width: 1200px;
+        transform: translateZ(550px) translateY(40px) translateX(0px) rotateY(0deg) rotateX(0deg) rotateZ(0deg);
+        transform-style: preserve-3d;
+        transition: all 1s cubic-bezier(.35, .04, .6, .94);
+        animation: shake;
+        animation-duration: 0.5s;
+        animation-timing-function: linear;
+        animation-iteration-count: infinite;
+    }
+    
+    @keyframes shake {
+        0% {
+            transform: translateZ(550px) translateY(40px) translateX(0px) rotateY(0deg) rotateX(0deg) rotateZ(0deg)
+        }
+        25% {
+            transform: translateZ(553px) translateY(43px) translateX(3px) rotateY(3deg) rotateX(2deg) rotateZ(-1deg)
+        }
+        50% {
+            transform: translateZ(547px) translateY(41px) translateX(-2px) rotateY(2deg) rotateX(-2deg) rotateZ(3deg)
+        }
+        75% {
+            transform: translateZ(550px) translateY(40px) translateX(2px) rotateY(-1deg) rotateX(3deg) rotateZ(2deg)
+        }
+        100% {
+            transform: translateZ(553px) translateY(38px) translateX(0px) rotateY(2deg) rotateX(-1deg) rotateZ(1deg)
+        }
+    }
+    
+    .cube-spaceship-jumpPrep {
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        margin: auto;
+        height: 800px;
+        width: 1200px;
+        transform: translateZ(550px) translateY(40px) translateX(0px) rotateY(0deg) rotateX(0deg) rotateZ(0deg);
+        transform-style: preserve-3d;
+        transition: all 1s cubic-bezier(.35, .04, .6, .94);
+    }
+    
+    .cube-spaceship-jump {
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        margin: auto;
+        height: 800px;
+        width: 1200px;
+        transform: translateZ(550px) translateY(40px) translateX(0px) rotateY(0deg) rotateX(0deg) rotateZ(0deg);
+        transform-style: preserve-3d;
+    }
+    
+    .cube-spaceship-jump #cube-face-spaceship-3-d {
+        position: absolute;
+        height: 800px;
+        width: 1200px;
+        border: 1px solid green;
+        border-radius: 3px;
+        user-select: none;
+        transform: rotateY(0deg) translateZ(-900px);
+        background-color: rgba(0, 0, 0, 0.24);
+        animation-name: jump-spin-1;
+        animation-duration: 1s;
+        animation-iteration-count: infinite;
+    }
+    
+    @keyframes jump-spin-1 {
+        0% {
+            transform: rotateZ(0deg) rotateY(0deg) translateZ(-900px);
+        }
+        25% {
+            transform: rotateZ(360deg) rotateY(0deg) translateZ(-900px);
+        }
+        50% {
+            transform: rotateZ(1200deg) rotateY(0deg) translateZ(-900px);
+        }
+        75% {
+            transform: rotateZ(3600deg) rotateY(0deg) translateZ(-900px);
+        }
+        100% {
+            transform: rotateZ(7200deg) rotateY(0deg) translateZ(-900px);
+        }
+    }
+    
+    .cube-spaceship-jump #cube-face-spaceship-3-e {
+        position: absolute;
+        height: 800px;
+        width: 1200px;
+        border: 1px solid green;
+        border-radius: 3px;
+        user-select: none;
+        transform: rotateY(0deg) translateZ(-1000px);
+        background-color: rgba(0, 0, 0, 0.322);
+        animation-name: jump-spin-2;
+        animation-delay: 500ms;
+        animation-duration: 1s;
+        animation-iteration-count: infinite;
+    }
+    
+    @keyframes jump-spin-2 {
+        0% {
+            transform: rotateZ(0deg) rotateY(0deg) translateZ(-1000px);
+        }
+        25% {
+            transform: rotateZ(360deg) rotateY(0deg) translateZ(-1000px);
+        }
+        50% {
+            transform: rotateZ(1200deg) rotateY(0deg) translateZ(-1000px);
+        }
+        75% {
+            transform: rotateZ(3600deg) rotateY(0deg) translateZ(-1000px);
+        }
+        100% {
+            transform: rotateZ(7200deg) rotateY(0deg) translateZ(-1000px);
+        }
+    }
+    
+    .cube-spaceship-jump #cube-face-spaceship-3-f {
+        position: absolute;
+        height: 800px;
+        width: 1200px;
+        border: 1px solid green;
+        border-radius: 3px;
+        user-select: none;
+        transform: rotateY(0deg) translateZ(-1000px);
+        background-color: rgba(0, 0, 0, 0.322);
+        animation-name: jump-spin-3;
+        animation-delay: 1000ms;
+        animation-duration: 1s;
+        animation-iteration-count: infinite;
+    }
+    
+    @keyframes jump-spin-3 {
+        0% {
+            transform: rotateZ(0deg) rotateY(0deg) translateZ(-1100px);
+        }
+        25% {
+            transform: rotateZ(360deg) rotateY(0deg) translateZ(-1100px);
+        }
+        50% {
+            transform: rotateZ(1200deg) rotateY(0deg) translateZ(-1100px);
+        }
+        75% {
+            transform: rotateZ(3600deg) rotateY(0deg) translateZ(-1100px);
+        }
+        100% {
+            transform: rotateZ(7200deg) rotateY(0deg) translateZ(-1100px);
+        }
+    }
+    
+    .cube-spaceship-right {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        margin: auto;
+        height: 800px;
+        width: 1200px;
+        transform: translateZ(350px) rotateY(90deg) rotateX(0deg) rotateZ(0deg);
+        transform-style: preserve-3d;
+        transition: all 1s cubic-bezier(.35, .04, .6, .94);
+    }
+    
+    .cube-spaceship-trade {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: -200px;
+        right: 0;
+        margin: auto;
+        height: 800px;
+        width: 1200px;
+        transform: translateZ(700px) rotateY(90deg) rotateX(0deg) rotateZ(0deg);
+        transform-style: preserve-3d;
+        transition: all 1s cubic-bezier(.35, .04, .6, .94);
+    }
+    
+    .cube-spaceship-left {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        margin: auto;
+        height: 800px;
+        width: 1200px;
+        transform: translateZ(600px) rotateY(-90deg) rotateX(0deg) rotateZ(0deg);
+        transform-style: preserve-3d;
+        transition: all 1s cubic-bezier(.35, .04, .6, .94);
+    }
+    
+    .cube-spaceship-inventory {
+        position: absolute;
+        top: 0;
+        bottom: 100px;
+        left: 0;
+        right: 0;
+        margin: auto;
+        height: 800px;
+        width: 1200px;
+        transform: translateZ(800px) rotateY(-90deg) rotateX(0deg) rotateZ(0deg);
+        transform-style: preserve-3d;
+        transition: all 1s cubic-bezier(.35, .04, .6, .94);
+    }
+    
+    .cube-spaceship-back {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        margin: auto;
+        height: 800px;
+        width: 1200px;
+        transform: translateZ(350px) rotateY(180deg) rotateX(0deg) rotateZ(0deg);
+        transform-style: preserve-3d;
+        transition: all 1s cubic-bezier(.35, .04, .6, .94);
+    }
+    
+    .cube-spaceship-menu {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        margin: auto;
+        height: 800px;
+        width: 1200px;
+        transform: translateZ(550px) rotateY(180deg) rotateX(0deg) rotateZ(0deg);
+        transform-style: preserve-3d;
+        transition: all 1s cubic-bezier(.35, .04, .6, .94);
+    }
+    
+    .cube-face-spaceship {
+        position: absolute;
+        height: 800px;
+        width: 1200px;
+        border: 1px solid green;
+        border-radius: 3px;
+        user-select: none;
+    }
+    
+    #cube-face-spaceship-1-a {
+        transform: rotateY(-180deg) translateZ(-600px);
+        background-color: rgba(255, 0, 0, 0.089);
+    }
+    
+    #cube-face-spaceship-1-b {
+        transform: rotateY(-180deg) translateZ(-700px);
+        background-color: rgba(173, 5, 5, 0.658);
+    }
+    
+    #cube-face-spaceship-1-c {
+        transform: rotateY(-180deg) translateZ(-800px);
+        background-color: rgba(85, 2, 2, 0.925);
+    }
+    
+    #cube-face-spaceship-1-d {
+        position: absolute;
+        height: 600px;
+        width: 300px;
+        border: 1px solid green;
+        border-radius: 3px;
+        user-select: none;
+        transform: rotateY(-180deg) rotateZ(45deg) translateY(300px) translateX(-300px) translateZ(-750px);
+        background-color: rgba(0, 211, 28, 0.801);
+        transition: all 1s cubic-bezier(.35, .04, .6, .94);
+    }
+    
+    #cube-face-spaceship-1-e {
+        position: absolute;
+        height: 600px;
+        width: 300px;
+        border: 1px solid green;
+        border-radius: 3px;
+        user-select: none;
+        transform: rotateY(-180deg) rotateZ(45deg) translateY(500px) translateX(0px) translateZ(-750px);
+        background-color: rgba(251, 255, 0, 0.363);
+        transition: all 1s cubic-bezier(.35, .04, .6, .94);
+    }
+    
+    #cube-face-spaceship-2-a {
+        transform: rotateY( -90deg) translateZ(-600px);
+        background-color: rgba(196, 247, 10, 0.185);
+    }
+    
+    #cube-face-spaceship-2-b {
+        transform: rotateY( -90deg) translateZ(-700px);
+        background-color: rgba(189, 241, 0, 0.116);
+    }
+    
+    #cube-face-spaceship-2-b-door {
+        position: absolute;
+        height: 800px;
+        width: 400px;
+        border: 1px solid green;
+        border-radius: 3px;
+        user-select: none;
+        transform: rotateY(-90deg) rotateZ(0deg) translateY(0px) translateX(200px) translateZ(-1260px);
+        background-color: rgb(255, 255, 255);
+        transition: all 1s cubic-bezier(.35, .04, .6, .94);
+    }
+    
+    .cube-spaceship-right #cube-face-spaceship-2-b-door {
+        position: absolute;
+        height: 800px;
+        width: 400px;
+        border: 1px solid green;
+        border-radius: 3px;
+        user-select: none;
+        transform: rotateY(-90deg) rotateZ(0deg) translateY(-800px) translateX(200px) translateZ(-1260px);
+        background-color: rgb(255, 255, 255);
+        transition: all 1.5s cubic-bezier(.35, .04, .6, .94);
+    }
+    
+    .cube-spaceship-trade #cube-face-spaceship-2-b-door {
+        position: absolute;
+        height: 800px;
+        width: 400px;
+        border: 1px solid green;
+        border-radius: 3px;
+        user-select: none;
+        transform: rotateY(-90deg) rotateZ(0deg) translateY(-800px) translateX(200px) translateZ(-1260px);
+        background-color: rgb(255, 255, 255);
+        transition: all 1.5s cubic-bezier(.35, .04, .6, .94);
+    }
+    
+    #cube-face-spaceship-2-c {
+        transform: rotateY( -90deg) translateZ(-800px);
+        background-color: rgba(90, 114, 2, 0.363);
+    }
+    
+    #cube-face-spaceship-2-d {
+        transform: rotateY( -90deg) translateZ(-900px);
+        background-color: rgba(19, 24, 0, 0.363);
+    }
+    
+    #cube-face-spaceship-3-a {
+        transform: rotateY(0deg) translateZ(-600px);
+        background-color: rgba(10, 247, 208, 0.295);
+    }
+    
+    #cube-face-spaceship-3-b {
+        transform: rotateY(0deg) translateZ(-700px);
+        background-color: rgba(12, 102, 187, 0.281);
+    }
+    
+    #cube-face-spaceship-3-c {
+        transform: rotateY(0deg) translateZ(-800px);
+        background-color: rgba(41, 79, 129, 0.281);
+    }
+    
+    #cube-face-spaceship-3-d {
+        transform: rotateY(0deg) translateZ(-900px);
+        background-color: rgba(41, 79, 129, 0.342);
+    }
+    
+    #cube-face-spaceship-3-e {
+        transform: rotateY(0deg) translateZ(-1000px);
+        background-color: rgba(41, 79, 129, 0.493);
+    }
+    
+    #cube-face-spaceship-3-f {
+        transform: rotateY(0deg) translateZ(-1100px);
+        background-color: rgba(41, 79, 129, 0.466);
+    }
+    
+    #cube-face-spaceship-4-a {
+        transform: rotateY(90deg) translateZ(-600px);
+        background-color: rgba(10, 53, 247, 0.021);
+    }
+    
+    #cube-face-spaceship-4-b {
+        transform: rotateY(90deg) translateZ(-700px);
+        background-color: rgba(10, 53, 247, 0.034);
+    }
+    
+    #cube-face-spaceship-4-c {
+        transform: rotateY(90deg) translateZ(-800px);
+        background-color: rgba(10, 53, 247, 0.082);
+    }
+    
+    #cube-face-spaceship-4-d {
+        transform: rotateY(90deg) translateZ(-900px);
+        background-color: rgba(10, 53, 247, 0.068);
+    }
+    
+    #cube-face-spaceship-slot {
+        position: absolute;
+        height: 600px;
+        width: 600px;
+        border: 1px solid green;
+        border-radius: 3px;
+        user-select: none;
+        transform: rotateY(90deg) translateZ(-750px) translateX(370px) translateY(200px);
+        background-color: rgba(77, 247, 10, 0.253);
+    }
+    
+    .invent-row {
+        display: block;
+    }
+    
+    .cube-invent-slot {
+        width: 150px;
+        height: 150px;
+        display: inline-block;
+        position: relative;
+        background: rgba(0, 0, 0, .4);
+        transition: all 1s cubic-bezier(.8, 0, .2, 1);
+        background-color: rgba(247, 192, 10, 0.705);
+    }
+    
+    .cube-spaceship-left .cube-invent-slot {
+        transform: rotate(-180deg);
+        transition: all 3s cubic-bezier(.8, 0, .2, 1);
+    }
+    
+    #cube-invent-slot-1 {
+        transform-origin: top left;
+    }
+    
+    #cube-invent-slot-2 {
+        transform-origin: top center;
+    }
+    
+    #cube-invent-slot-3 {
+        transform-origin: top right;
+    }
+    
+    #cube-invent-slot-4 {
+        transform-origin: center left;
+    }
+    
+    #cube-invent-slot-5 {
+        transform-origin: center center;
+    }
+    
+    #cube-invent-slot-6 {
+        transform-origin: center right;
+    }
+    
+    #cube-invent-slot-7 {
+        transform-origin: bottom left;
+    }
+    
+    #cube-invent-slot-8 {
+        transform-origin: bottom center;
+    }
+    
+    #cube-invent-slot-9 {
+        transform-origin: bottom right;
+    }
+    
+    #cube-face-spaceship-5-a {
+        position: absolute;
+        height: 1200px;
+        width: 1200px;
+        border: 1px solid green;
+        border-radius: 3px;
+        user-select: none;
+        transform: rotateX(90deg) translateZ(600px);
+        background-color: rgba(95, 75, 76, 0.534)
+    }
+    
+    #cube-face-spaceship-5-b {
+        position: absolute;
+        height: 1200px;
+        width: 1200px;
+        border: 1px solid green;
+        border-radius: 3px;
+        user-select: none;
+        transform: rotateX(90deg) translateZ(700px);
+        background-color: rgba(51, 45, 45, 0.534)
+    }
+    
+    #cube-face-spaceship-5-c {
+        position: absolute;
+        height: 1200px;
+        width: 1200px;
+        border: 1px solid green;
+        border-radius: 3px;
+        user-select: none;
+        transform: rotateX(90deg) translateZ(800px);
+        background-color: rgba(7, 7, 7, 0.534)
+    }
+    
+    #cube-face-spaceship-6-a {
+        position: absolute;
+        height: 1200px;
+        width: 1200px;
+        border: 1px solid green;
+        border-radius: 3px;
+        user-select: none;
+        transform: rotateX(90deg) rotateZ(0deg) translateZ(-200px);
+        background-color: rgba(255, 0, 179, 0.418);
+    }
+    
+    #cube-face-spaceship-6-b {
+        position: absolute;
+        height: 300px;
+        width: 800px;
+        border: 1px solid green;
+        border-radius: 3px;
+        user-select: none;
+        transform: rotateX(90deg) rotateZ(0deg) translateX(200px) translateY(-200px) translateZ(-550px);
+        background-color: rgba(255, 0, 0, 0.192);
+    }
+    
+    #cube-face-spaceship-6-c {
+        position: absolute;
+        height: 300px;
+        width: 600px;
+        border: 1px solid green;
+        border-radius: 3px;
+        user-select: none;
+        transform: rotateX(90deg) rotateZ(0deg) translateX(300px) translateY(-200px) translateZ(-500px);
+        background-color: rgb(128, 128, 128);
+    }
+    
+    .cube-spaceship-map #cube-face-spaceship-6-d {
+        position: absolute;
+        margin: auto;
+        height: 100px;
+        width: 100px;
+        border-radius: 3px;
+        user-select: none;
+        transform: translateX(600px) translateY(350px) translateZ(-200px);
+    }
+    
+    .cube-spaceship-map #cube-face-spaceship-6-d .cube-face {
+        position: absolute;
+        height: 100px;
+        width: 100px;
+        border: 1px solid black;
+        border-radius: 3px;
+        user-select: none;
+        background-color: rgba(255, 0, 0, 0.363);
+        transform-style: preserve-3d;
+        transform: rotateX(90deg) rotateY(0deg) translateZ(0px) translateX(-30px) translateY(30px) translateZ(-101px);
+        transition: all 1.5s cubic-bezier(.35, .04, .6, .94);
+    }
+    
+    .cube-spaceship-map #cube-face-spaceship-6-d #cube-wrap {
+        position: absolute;
+        top: 300px;
+        bottom: 0px;
+        left: 0;
+        right: 0px;
+        margin: auto;
+        height: 100px;
+        width: 100px;
+        border-radius: 3px;
+        user-select: none;
+        transform-style: preserve-3d;
+        animation: none;
+        animation-duration: 5s;
+        animation-timing-function: linear;
+        animation-iteration-count: infinite;
+    }
+    
+    #cube-face-spaceship-6-d {
+        position: absolute;
+        margin: auto;
+        height: 100px;
+        width: 100px;
+        border-radius: 3px;
+        user-select: none;
+        transform: translateX(600px) translateY(350px) translateZ(-200px);
+        transform-style: preserve-3d;
+        transition: all 1.5s cubic-bezier(.35, .04, .6, .94);
+    }
+    
+    #cube-wrap {
+        position: absolute;
+        top: 300px;
+        bottom: 0px;
+        left: 0;
+        right: 0px;
+        margin: auto;
+        height: 100px;
+        width: 100px;
+        border-radius: 3px;
+        user-select: none;
+        transform-style: preserve-3d;
+        animation: rotate;
+        animation-duration: 5s;
+        animation-timing-function: linear;
+        animation-iteration-count: infinite;
+    }
+    
+    @keyframes rotate {
+        0% {
+            transform: rotateX(0deg) rotateY(0deg);
+        }
+        100% {
+            transform: rotateX(360deg) rotateY(360deg);
+        }
+    }
+    
+    #cube-wrap>.cube-face {
+        position: absolute;
+        height: 100px;
+        width: 100px;
+        border: 1px solid black;
+        border-radius: 3px;
+        user-select: none;
+        background-color: rgba(255, 0, 0, 0.363);
+    }
+    
+    #cube-mini-1 {
+        transform: rotateY(0deg) translateZ(50px);
+    }
+    
+    #cube-mini-2 {
+        transform: rotateY(90deg) translateZ(50px);
+    }
+    
+    #cube-mini-3 {
+        transform: rotateY(1800deg) translateZ(50px);
+    }
+    
+    #cube-mini-4 {
+        transform: rotateY(-90deg) translateZ(50px);
+    }
+    
+    #cube-mini-5 {
+        transform: rotateX(90deg) translateZ(50px);
+    }
+    
+    #cube-mini-6 {
+        transform: rotateX(-90deg) translateZ(50px);
+    }
