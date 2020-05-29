@@ -8,7 +8,8 @@ import {
 import { Provider } from 'react-redux';
 import { store } from './Store';
 
-import Entrance from './scene/Entrance';
+import Entrance from './scene/Entrance/Entrance';
+import Spaceship from './scene/SpaceShip/Spaceship';
 
 function App() {
 
@@ -20,6 +21,7 @@ function App() {
       <Router>
         <Switch>
           <Route exact path="/" render={() => <Entrance/>} />
+          <Route exact path="/spaceship" render={() => <Spaceship/>} />
         </Switch>
       </Router>
       </Provider>

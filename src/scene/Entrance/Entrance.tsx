@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { Redirect, Link, useHistory } from 'react-router-dom';
 
-import "../style/entrance.scss"
+import "../../style/entrance.scss"
 
 
 
@@ -63,38 +63,11 @@ function Entrance() {
                 "--scenePerspectiveOriginY"
             )
         ),
-        //mouse move range -- opt 45, 30
-        maxXGap: 10,
+        //mouse move range -- opt 10, 10
+        maxXGap: 20,
         maxYGap: 10
     };
 
-    // function moveCameraXY(event: any) {
-    //     const xGap =
-    //         (((event.clientX - window.innerWidth / 2) * 100) /
-    //             (window.innerWidth / 2)) *
-    //         -1;
-    //     const yGap =
-    //         (((event.clientY - window.innerHeight / 2) * 100) /
-    //             (window.innerHeight / 2)) *
-    //         -1;
-    //     const newPerspectiveOriginX =
-    //         perspectiveOrigin.x + (xGap * perspectiveOrigin.maxXGap) / 100;
-    //     const newPerspectiveOriginY =
-    //         perspectiveOrigin.y + (yGap * perspectiveOrigin.maxYGap) / 100;
-
-    //     document.documentElement.style.setProperty(
-    //         "--scenePerspectiveOriginX",
-    //         newPerspectiveOriginX.toString()
-    //     );
-    //     document.documentElement.style.setProperty(
-    //         "--scenePerspectiveOriginY",
-    //         newPerspectiveOriginY.toString()
-    //     );
-    // }
-    //z
-    function moveCameraZ() {
-        document.documentElement.style.setProperty("--cameraZ", window.pageYOffset.toString());
-    }
 
     let roomReset = () => {
         let room = document.getElementById("cube") as HTMLDivElement;
@@ -166,7 +139,7 @@ function Entrance() {
 
         camera.classList.remove("hidden");
         cameraLock.classList.add("hidden");
-        roomReset();
+        //roomReset();
 
         switch (action) {
             case "login":
@@ -175,21 +148,35 @@ function Entrance() {
                 break;
             case "addnew":
                 room.classList.remove("cube-addnew");
-                room.classList.add("cube-front");
+                room.classList.add("cube-right");
                 break;
             case "credit":
                 room.classList.remove("cube-credit");
-                room.classList.add("cube-front");
+                room.classList.add("cube-left");
                 break;
             case "exit":
                 room.classList.remove("cube-exit");
-                room.classList.add("cube-front");
+                room.classList.add("cube-back");
                 break;
             case "setting":
                 room.classList.remove("cube-setting");
-                room.classList.add("cube-front");
+                room.classList.add("cube-floor");
                 break;
         }
+    }
+    let fwdAction = async() => {
+        console.log("confirm clicked")
+        let room = document.getElementById("cube") as HTMLDivElement;
+        let cameraLock = document.getElementById("camera-lock") as HTMLDivElement;
+        room.classList.remove("cube-login");
+        room.classList.remove("cube-addnew");
+        cameraLock.classList.add("hidden");
+        room.classList.add("cube-top");
+        await timeout(1000);
+        room.classList.remove("cube-top");
+        room.classList.add("cube-top-ani");
+        await timeout(2000);
+        // redirect here
     }
     return (
         <>
@@ -215,14 +202,46 @@ function Entrance() {
                         </div>
                     </div>
                     <div id="camera-lock" className="camera hidden">
-                        <div id="camera-lock-bar" className="camera-bar">
-                            <div id="camera-btn-back" onClick={backAction} className="camera-btn">
-                                CANCEL
+                        {(action === "login" || action === "addnew") ?
+                            <div id="camera-lock-bar" className="camera-bar">
+                                <div id="camera-btn-back" onClick={backAction} className="camera-btn">
+                                    CANCEL
                                     </div>
-                            <div id="camera-btn-confirm" className="camera-btn">
-                                CONFIRM
+                                <div id="camera-btn-confirm" onClick={fwdAction} className="camera-btn">
+                                    CONFIRM
                             </div>
-                        </div>
+                            </div>
+                            : null}
+                        {(action === "exit") ?
+                            <div id="camera-lock-bar" className="camera-bar">
+                                <div id="camera-btn-back" onClick={backAction} className="camera-btn">
+                                    CANCEL
+                                    </div>
+                                <div id="camera-btn-confirm"  className="camera-btn">
+                                    EXIT
+                                </div>
+                            </div>
+                            : null}
+                        {(action === "setting") ?
+                            <div id="camera-lock-bar" className="camera-bar">
+                                <div id="camera-btn-back" onClick={backAction} className="camera-btn">
+                                    CANCEL
+                                    </div>
+                                <div id="camera-btn-confirm" className="camera-btn">
+                                    SUBMIT
+                                </div>
+                            </div>
+                            : null}
+                        {(action === "credit") ?
+                            <div id="camera-lock-bar" className="camera-bar">
+                                <div id="camera-btn-back" onClick={backAction} className="camera-btn">
+                                    CANCEL
+                                    </div>
+                                <div id="camera-btn-confirm" className="camera-btn">
+                                    DETAILS
+                                </div>
+                            </div>
+                            : null}
                     </div>
                     <div id="cube" className="cube-front">
                         <div id="cube-face-1-a" className="cube-face">
@@ -296,6 +315,15 @@ function Entrance() {
                         </div>
                         <div id="cube-face-5-c" className="cube-face">
                             5-c
+                        </div>
+                        <div id="cube-face-5-d" className="cube-top">
+                            5-d
+                        </div>
+                        <div id="cube-face-5-e" className="cube-face">
+                            5-e
+                        </div>
+                        <div id="cube-face-5-f" className="cube-face">
+                            5-f
                         </div>
                         <div id="cube-face-6-a" className="cube-bot">
                             FLOOR
