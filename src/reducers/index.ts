@@ -2,7 +2,7 @@ import { User } from "../dtos/user";
 import { combineReducers } from "redux";
 import { loginReducer } from "./login-reducer";
 import { logoutReducer } from "./logout-reducer";
-import { City } from "../dtos/city";
+import { City } from "../dtos/planet";
 
 export interface ILoginState {
     authUser: User;

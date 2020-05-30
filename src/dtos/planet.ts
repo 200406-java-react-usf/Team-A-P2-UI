@@ -1,4 +1,4 @@
-export class City{
+export class Planet{
 
     good_name: string;
     buy_price_mod: number;
