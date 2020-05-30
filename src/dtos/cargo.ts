@@ -4,20 +4,20 @@ export class Cargo {
     good_id: number;
     good_name: string;
     good_quantity: number;
-    good_base_price: number;
+    good_avg_price: number;
 
     constructor(
 
         good_id: number,
         good_name: string,
         good_quantity: number,
-        base_price: number,
+        good_avg_price: number,
 
     ) {
         this.good_id = good_id;
         this.good_name = good_name;
         this.good_quantity = good_quantity;
-        this.good_base_price = base_price;
+        this.good_avg_price = good_avg_price;
     }
 
 }

@@ -9,7 +9,7 @@ import GoodHolder from "../partials/GoodHolder/GoodHolder";
 import "../../style/cargoHolder.scss";
 
 export interface ICargoProps {
-    //userCargo: Cargo[];
+    // userCargo: Cargo[];
     //errorMessage: string;
 }
 

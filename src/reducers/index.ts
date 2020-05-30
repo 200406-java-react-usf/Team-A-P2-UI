@@ -2,7 +2,7 @@ import { User } from "../dtos/user";
 import { combineReducers } from "redux";
 import { loginReducer } from "./login-reducer";
 import { logoutReducer } from "./logout-reducer";
-import { City } from "../dtos/planet";
+import { Planet } from "../dtos/planet";
 
 export interface ILoginState {
     authUser: User;
@@ -12,7 +12,7 @@ export interface ILogoutState {
     errorMessage: string;
 }
 export interface ICityState{
-    currentCity: City;
+    currentlocation: Planet;
     errorMessage: string;
 }
 export interface IState {
