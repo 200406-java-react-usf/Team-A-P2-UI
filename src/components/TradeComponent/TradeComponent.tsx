@@ -53,7 +53,7 @@ function Trade(props: ICargoProps) {
         new Good(3, "Heavy Weaponry", 1000, "Can be used to snuff out a rebellion. Or to start one."),
         new Good(4, "Stimulants", 500, "Bro, maybe the galaxy is moving AROUND us!"),
         new Good(5, "Harvested Organs", 2000, "I poured my heart out for you."),
-        new Good(6, "Yavinnium Gas",200, "Makes you talk funny. Also an important isolant in superconductors."),
+        new Good(6, "Yavinnium Gas", 200, "Makes you talk funny. Also an important isolant in superconductors."),
         new Good(7, "Zeyd Fabric", 1500, "We have an array of vibrant color pallets, but of course black suits you, my Emperor."),
         new Good(8, "Memory Plastic", 300, "I still remeber the time when I was a young and happy dinosaur,"),
         new Good(9, "Luxious Fur Pelt", 500, "No it is not from a Wookie! When would you ask?"),
@@ -76,7 +76,7 @@ function Trade(props: ICargoProps) {
 
 
     //@ts-ignore
-    const [selectedCargo, setSelectedCargo] = useState(null as Good);
+    const [selectedCargo, setSelectedCargo] = useState(null as Car);
 
     const [goodName, setGoodName] = useState("");
     const [goodDesc, setGoodDesc] = useState("");
@@ -157,7 +157,7 @@ function Trade(props: ICargoProps) {
         let id = e.currentTarget.id.split("-")[1];
         //let result = await getGoodById(id)
         //setSelectedCargo(result.data);
-        setSelectedCargo(mockGoodList[id-1])
+        setSelectedCargo(mockGoodList[id - 1])
 
         let userlist = document.getElementById("cargo-wrapper-user") as HTMLDivElement;
         for (let i = 0; i < userlist.children.length; i++) {
@@ -178,17 +178,27 @@ function Trade(props: ICargoProps) {
         selectedCityCargo.classList.add("good-wrapper-selected");
     }
     let buyGood = async (e: any) => {
-        if(selectedCargo){
-        let id = selectedCargo.good_id;
-        let selectedCityPriceSlot = document.getElementById("city-" + id)?.children[3] as HTMLDivElement;
-        //@ts-ignore
-        let cityPrice = parseFloat(selectedCityPriceSlot.textContent);
+        if (selectedCargo) {
+            let id = selectedCargo.good_id;
+            let selectedCityPriceSlot = document.getElementById("city-" + id)?.children[3] as HTMLDivElement;
+            //@ts-ignore
+            let cityPrice = parseInt(selectedCityPriceSlot.textContent);
+            
+            //sellection(goodID, cityprice)
+            console.log("buy")
 
-
-        console.log(cityPrice)
         }
     }
-
+    let sellGood = async (e: any) => {
+        if (selectedCargo) {
+            let id = selectedCargo.good_id;
+            let selectedCityPriceSlot = document.getElementById("city-" + id)?.children[3] as HTMLDivElement;
+            //@ts-ignore
+            let cityPrice = parseInt(selectedCityPriceSlot.textContent);
+            //sellection(goodID, cityprice)
+            console.log("sell")
+        }
+    }
     return (
         <>
             <div id="cargo-wrapper-user" className="cargo-wrapper-user">
@@ -209,7 +219,7 @@ function Trade(props: ICargoProps) {
                     <div id="good-btn-buy unselect" className="good-btn-slot-trade-buy" onClick={buyGood}>
                         BUY
                     </div>
-                    <div id="good-btn-sell unselect" className="good-btn-slot-trade-sell">
+                    <div id="good-btn-sell unselect" className="good-btn-slot-trade-sell" onClick={sellGood}>
                         SELL
                     </div>
                 </div>

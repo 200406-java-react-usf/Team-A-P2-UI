@@ -77,6 +77,20 @@
         background-color: rgba(161, 69, 69, 0.514);
     }
     
+    .cube-spaceship-default {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        margin: auto;
+        height: 800px;
+        width: 1200px;
+        transform: translateZ(650px) rotateY(0deg) rotateX(90deg) rotateZ(0deg);
+        transform-style: preserve-3d;
+        transition: all 1s cubic-bezier(.35, .04, .6, .94);
+    }
+    
     .cube-spaceship-front {
         position: absolute;
         top: 0;

@@ -12,6 +12,7 @@ function Spaceship() {
     const [readyState, setReadyState] = useState(false);
 
     const [action, setAction] = useState("default");
+    let history = useHistory();
 
     let timeout = function (ms: number) {
         return new Promise(resolve => setTimeout(resolve, ms))
@@ -190,14 +191,24 @@ function Spaceship() {
         await timeout(500);
         background.classList.remove("background-below");
         cameraLock.classList.remove("hidden");
-
-        // room.classList.add("cube-spaceship-jump");
     }
+    let startAni = async () => {
+        await timeout(1000);
+        let room = document.getElementById("cube-spaceship") as HTMLDivElement;
+        let camera = document.getElementById("camera") as HTMLDivElement;
+        room.classList.remove("cube-spaceship-default");
+        room.classList.add("cube-spaceship-front");
+        camera.classList.remove("transparent");
+    }
+    let toMainMenu = async () => {
+        history.push('/')
+    }
+    startAni();
     return (
         <>
             <div className="wrapper">
                 <div id="viewport" className="viewport">
-                    <div id="camera" className="camera">
+                    <div id="camera" className="camera transparent">
                         <div id="camera-bar" className="camera-bar">
                             <div id="camera-btn-map" onMouseEnter={cameraMovement} onClick={displayfocus} className="camera-btn-spaceship">
                                 VIEW GALAXY MAP
@@ -255,13 +266,13 @@ function Spaceship() {
                                 <div id="camera-btn-back" onClick={backAction} className="camera-btn">
                                     CANCEL
                                     </div>
-                                <div id="camera-btn-confirm" className="camera-btn">
+                                <div id="camera-btn-confirm" onClick={toMainMenu} className="camera-btn">
                                     MAIN MENU
                                 </div>
                             </div>
                             : null}
                     </div>
-                    <div id="cube-spaceship" className="cube-spaceship-front">
+                    <div id="cube-spaceship" className="cube-spaceship-default">
                         <div id="cube-face-spaceship-1-a" className="cube-face-spaceship">
                             1-a
                         </div>

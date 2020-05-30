@@ -15,5 +15,4 @@ export class Cargo {
         this.good_quantity = quantity;
         this.good_avg_price = price;
     }
-
 }

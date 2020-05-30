@@ -9,8 +9,8 @@ import "../../style/entrance.scss"
 function Entrance() {
 
     const [readyState, setReadyState] = useState(false);
-
     const [action, setAction] = useState("default");
+    let history = useHistory();
 
     let timeout = function (ms: number) {
         return new Promise(resolve => setTimeout(resolve, ms))
@@ -137,7 +137,7 @@ function Entrance() {
 
         camera.classList.remove("hidden");
         cameraLock.classList.add("hidden");
-        //roomReset();
+        roomReset();
 
         switch (action) {
             case "login":
@@ -172,8 +172,10 @@ function Entrance() {
         await timeout(1000);
         room.classList.remove("cube-top");
         room.classList.add("cube-top-ani");
-        await timeout(2000);
+        await timeout(4500);
         // redirect here
+        history.push('/spaceship')
+
     }
     return (
         <>
