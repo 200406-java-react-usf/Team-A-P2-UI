@@ -4,6 +4,7 @@ import { Redirect, Link, useHistory } from 'react-router-dom';
 import "../../style/spaceship.scss"
 
 import UserHolder from "../../components/UserHolder/UserHolder"
+import CargoHolder from "../../components/CargoHolder/CargoHolder"
 
 function Spaceship() {
 
@@ -192,11 +193,11 @@ function Spaceship() {
                 <div id="viewport" className="viewport">
                     <div id="camera" className="camera">
                         <div id="camera-bar" className="camera-bar">
-                            <div id="camera-btn-inventory" onMouseEnter={cameraMovement} onClick={displayfocus} className="camera-btn-spaceship">
-                                CURRENT INVENTORY
-                            </div>
                             <div id="camera-btn-map" onMouseEnter={cameraMovement} onClick={displayfocus} className="camera-btn-spaceship">
                                 VIEW GALAXY MAP
+                            </div>
+                            <div id="camera-btn-inventory" onMouseEnter={cameraMovement} onClick={displayfocus} className="camera-btn-spaceship">
+                                CURRENT INVENTORY
                             </div>
                             <div id="camera-btn-trade" onMouseEnter={cameraMovement} onClick={displayfocus} className="camera-btn-spaceship">
                                 TRADE WITH CITY
@@ -227,7 +228,8 @@ function Spaceship() {
                         {(action === "inventory") ?
                             <>
                                 <div className="camera-info">
-                                    <UserHolder />
+                                    < UserHolder inGame = {true} />
+                                    < CargoHolder />
                                 </div>
                                 <div id="camera-lock-bar" className="camera-bar">
                                     <div id="camera-btn-back" onClick={backAction} className="camera-btn">

@@ -9,13 +9,13 @@ export interface IUserProps {
     //location: Planet;
     //currentCargoSize: number;
     //errorMessage: string;
+    inGame: boolean;
 }
 
 function UserHolder(props: IUserProps) {
 
     const [readyState, setReadyState] = useState(false);
-    const [ingameState, setIngame] = useState(false);
-
+    const [inGame, setInGame] = useState(props.inGame);
 
     //const [username, setusername] = useState(props.authUser.username);
     // const [currency, setcurrency] = useState(props.authUser.currency);
@@ -49,6 +49,12 @@ function UserHolder(props: IUserProps) {
                 </div>
                 <div className="info-filler">
                 </div>
+                {inGame?                 
+                <div className="info-upgrade">
+                    <div>UPGRADE</div>
+                </div>
+                : null}
+
             </div>
         </>
     );

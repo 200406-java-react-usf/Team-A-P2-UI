@@ -1,9 +1,10 @@
 @import "./main.scss";
 .user-wrapper {
-    margin: 20px 20px 0px 20px;
+    display: inline-block;
+    margin: 10px 10px 0px 20px;
     padding-top: 10px;
     width: 280px;
-    height: 510px;
+    height: 540px;
     background-color: rgba(0, 128, 0, 0.678);
 }
 
@@ -18,6 +19,7 @@
 
 .info-row {
     margin: 20px;
+    margin-top: 30px;
     height: 50px;
     line-height: 50px;
     text-align: center;
@@ -26,7 +28,29 @@
 
 .info-filler {
     margin: 20px;
-    height: 220px;
+    height: 150px;
     text-align: center;
     background-color: rgba(255, 255, 255);
+}
+
+.info-upgrade {
+    margin: 20px;
+    height: 50px;
+    text-align: center;
+    line-height: 50px;
+    background-color: rgb(255, 118, 118);
+}
+
+.info-upgrade:hover {
+    background-color: rgb(99, 55, 55);
+}
+
+.info-upgrade:hover>div {
+    text-align: center;
+    line-height: 50px;
+    display: none
+}
+
+.info-upgrade:hover:before {
+    content: "-1000 credit"
 }
