@@ -49,12 +49,14 @@
         margin: auto;
         border: 10px solid rgb(255, 0, 0);
         z-index: 999;
+        opacity: 1;
+        transition: all 1s cubic-bezier(.35, .04, .6, .94);
     }
     
     .camera-info {
         width: 1200px;
         height: 600px;
-        background-color: rgb(201, 214, 26);
+        background-color: rgb(143, 148, 74);
     }
     
     .camera-bar {
@@ -543,7 +545,7 @@
     
     .cube-spaceship-left .cube-invent-slot {
         transform: rotate(-180deg);
-        transition: all 3s cubic-bezier(.8, 0, .2, 1);
+        transition: all 2.5s cubic-bezier(.8, 0, .2, 1);
     }
     
     #cube-invent-slot-1 {

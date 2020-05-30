@@ -9,11 +9,20 @@ body {
     display: none;
 }
 
+.unselect {
+    user-select: none;
+}
+
+.transparent {
+    opacity: 0;
+    transition: all 1s cubic-bezier(.35, .04, .6, .94);
+}
+
 
 /* width */
 
 ::-webkit-scrollbar {
-    width: 20px;
+    width: 15px;
 }
 
 
@@ -21,7 +30,7 @@ body {
 
  ::-webkit-scrollbar-track {
     box-shadow: inset 0 0 5px grey;
-    border-radius: 10px;
+    border-radius: 5px;
 }
 
 
@@ -29,7 +38,7 @@ body {
 
  ::-webkit-scrollbar-thumb {
     background: red;
-    border-radius: 10px;
+    border-radius: 5px;
 }
 
 

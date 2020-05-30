@@ -9,8 +9,9 @@ export class Good {
     constructor(
         id: number,
         name: string,
+        price: number,
         desc: string,
-        price: number
+
     ) {
         this.good_id = id;
         this.good_name = name;

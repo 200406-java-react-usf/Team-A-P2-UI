@@ -5,6 +5,7 @@ import "../../style/spaceship.scss"
 
 import UserHolder from "../../components/UserHolder/UserHolder"
 import CargoHolder from "../../components/CargoHolder/CargoHolder"
+import Trade from "../../components/TradeComponent/TradeComponent"
 
 function Spaceship() {
 
@@ -120,6 +121,9 @@ function Spaceship() {
         }
         camera.classList.add("hidden");
         cameraLock.classList.remove("hidden");
+        await timeout(500)
+        cameraLock.classList.remove("transparent");
+
         roomReset();
     }
     let backAction = async () => {
@@ -129,6 +133,8 @@ function Spaceship() {
 
         camera.classList.remove("hidden");
         cameraLock.classList.add("hidden");
+        cameraLock.classList.add("transparent");
+
         roomReset();
 
         switch (action) {
@@ -207,7 +213,7 @@ function Spaceship() {
                             </div>
                         </div>
                     </div>
-                    <div id="camera-lock" className="camera hidden">
+                    <div id="camera-lock" className="camera hidden transparent">
                         {(action === "map") ?
                             <div id="camera-lock-bar" className="camera-bar">
                                 <div id="camera-btn-back" onClick={backAction} className="camera-btn">
@@ -219,16 +225,22 @@ function Spaceship() {
                             </div>
                             : null}
                         {(action === "trade") ?
-                            <div id="camera-lock-bar" className="camera-bar">
-                                <div id="camera-btn-back" onClick={backAction} className="camera-btn">
-                                    CANCEL
+                            <>
+                                <div className="camera-info">
+                                    < Trade />
+                                </div>
+                                <div id="camera-lock-bar" className="camera-bar">
+
+                                    <div id="camera-btn-back" onClick={backAction} className="camera-btn">
+                                        CANCEL
                                     </div>
-                            </div>
+                                </div>
+                            </>
                             : null}
                         {(action === "inventory") ?
                             <>
                                 <div className="camera-info">
-                                    < UserHolder inGame = {true} />
+                                    < UserHolder inGame={true} />
                                     < CargoHolder />
                                 </div>
                                 <div id="camera-lock-bar" className="camera-bar">
