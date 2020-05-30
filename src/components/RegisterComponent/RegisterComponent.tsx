@@ -2,26 +2,25 @@ import React, { useState, SyntheticEvent } from 'react';
 import "../../style/login.scss";
 
 import { User } from "../../dtos/user"
-import UserHolder from "../../components/UserHolder/UserHolder"
+import UserHolder from "../UserHolder/UserHolder"
 
 
-export interface ILoginProps {
+export interface IRegisterProps {
     //authUser: User;
     //errorMessage: string;
-    //loginAction: (username: string, password: string) => void;
+    //RegisterAction: (username: string, password: string) => void;
 }
 
-function LoginComponent(props: ILoginProps) {
-    //@ts-ignore
+function RegisterComponent(props: IRegisterProps) {
     //const [authUser, setAuthUser] = useState(props.authUser);
 
-    let mockUser = new User(1, "test", "test", 20, 1000, "Aderaan")
-    const [authUser, setAuthUser] = useState(mockUser);
+    //@ts-ignore
+    const [authUser, setAuthUser] = useState(null as User);
 
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
 
-    const [errorMessage, setErrorMessage] = useState("test error");
+    const [errorMessage, setErrorMessage] = useState("");
 
     let updateUsername = (e: any) => {
         setUsername(e.currentTarget.value);
@@ -31,8 +30,8 @@ function LoginComponent(props: ILoginProps) {
         setPassword(e.currentTarget.value);
     }
 
-    let login = async () => {
-        //props.loginAction(username, password);
+    let Register = async () => {
+        //props.RegisterAction(username, password);
     }
 
 
@@ -53,8 +52,8 @@ function LoginComponent(props: ILoginProps) {
                     id="password" type="password"
                     placeholder="Enter Your Password" />
 
-                <div className="button-container" onClick={login}>
-                    LOGIN
+                <div className="button-container" onClick={Register}>
+                    REGISTER
                     </div>
                 {errorMessage ?
                     <div className="form-error">{errorMessage}</div>
@@ -72,4 +71,4 @@ function LoginComponent(props: ILoginProps) {
 
 }
 
-export default LoginComponent;
+export default RegisterComponent;
