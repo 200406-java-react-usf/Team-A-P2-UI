@@ -1,0 +1,177 @@
+@import "./main.scss";
+.map-wrapper-city {
+    display: inline-block;
+    position: absolute;
+    margin: 10px 50px 0px 50px;
+    width: 200px;
+    height: 550px;
+    background-color: rgba(0, 128, 0, 0.678);
+    overflow: auto;
+}
+
+.city-slot-wrapper {
+    display: inline-block;
+    margin: 10px;
+    margin-top: 20px;
+    width: 180px;
+    height: 30px;
+    background-color: rgba(128, 0, 0, 0.678);
+}
+
+.city-slot-cell-id {
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    background-color: rgb(255, 255, 255);
+    vertical-align: top;
+    margin: 0px 10px 0px 10px;
+    text-align: center;
+    line-height: 30px;
+}
+
+.city-slot-cell {
+    display: inline-block;
+    width: 100px;
+    height: 30px;
+    background-color: rgb(255, 255, 255);
+    vertical-align: top;
+    margin: 0px 10px 0px 10px;
+    text-align: center;
+    line-height: 30px;
+}
+
+.map-wrapper-city-detail {
+    display: inline-block;
+    position: absolute;
+    margin: 10px 50px 0px 900px;
+    width: 250px;
+    height: 550px;
+    background-color: rgba(0, 128, 0, 0.678);
+    overflow: auto;
+}
+
+.SWAPIInfo {
+    display: inline-block;
+    width: 250px;
+    height: 430px;
+    background-color: rgba(128, 0, 0, 0.678);
+}
+
+.SWAPIInfo-img {
+    display: inline-block;
+    width: 160px;
+    height: 160px;
+    margin: 10px 45px 10px 45px;
+    background-color: rgb(218, 109, 109);
+    vertical-align: top;
+}
+
+.SWAPIInfo-name {
+    display: inline-block;
+    width: 210px;
+    height: 50px;
+    background-color: rgb(255, 255, 255);
+    vertical-align: top;
+    margin: 0px 20px 0px 20px;
+    text-align: center;
+    line-height: 50px;
+}
+
+.SWAPIInfo-sub {
+    display: inline-block;
+    width: 200px;
+    height: 50px;
+    background-color: rgb(255, 255, 255);
+    vertical-align: top;
+    margin: 10px 20px 0px 20px;
+    padding-left: 10px;
+    text-align: left;
+    line-height: 50px;
+}
+
+.SWAPIInfo-trvel-btn {
+    width: 210px;
+    height: 50px;
+    background-color: rgb(255, 255, 255);
+    vertical-align: top;
+    margin: 50px 20px 0px 20px;
+    text-align: center;
+    line-height: 50px;
+}
+
+.map {
+    display: inline-block;
+    position: absolute;
+    margin: 10px 50px 0px 275px;
+    width: 600px;
+    height: 550px;
+    background-color: rgba(0, 128, 0, 0.678);
+    overflow: auto;
+}
+
+.map-inner {
+    margin: 10px;
+    width: 580px;
+    height: 530px;
+    background-color: rgba(0, 0, 0, 0.678);
+    overflow: auto;
+}
+
+.city-icon {
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    border: 2px solid white;
+    border-radius: 20px;
+}
+
+.icon-locator {
+    position: absolute;
+    display: inline-block;
+    height: 45px;
+}
+
+.city-title {
+    position: absolute;
+    left: 50px;
+    line-height: 30px;
+    display: inline-block;
+    color: white;
+}
+
+#map-city-1 {
+    top: 100px;
+    left: 200px;
+}
+
+#map-city-2 {
+    top: 150px;
+    left: 300px;
+}
+
+.icon-ani {
+    animation: focus;
+    animation-duration: 0.7s;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: infinite;
+}
+
+@keyframes focus {
+    0% {
+        transform: scale(0);
+        border: 1px solid white;
+        border-radius: 1px;
+    }
+    75% {
+        transform: scale(1.3);
+        border: 2px solid white;
+        opacity: 0.8;
+        border-radius: 50px;
+    }
+    100% {
+        transform: scale(1.1);
+        border: 2px solid white;
+        opacity: 0;
+        border-radius: 50px;
+    }
+}

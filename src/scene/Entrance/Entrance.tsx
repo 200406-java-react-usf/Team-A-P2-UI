@@ -3,14 +3,17 @@ import { Redirect, Link, useHistory } from 'react-router-dom';
 
 import "../../style/entrance.scss"
 
-
+import UserHolder from "../../components/UserHolder/UserHolder"
+import LoginComponent from "../../components/LoginComponent/LoginComponent"
+import RegisterComponent from "../../components/RegisterComponent/RegisterComponent"
+import AdminComponent from "../../components/AdminComponent/AdminComponent"
 
 
 function Entrance() {
 
     const [readyState, setReadyState] = useState(false);
-
     const [action, setAction] = useState("default");
+    let history = useHistory();
 
     let timeout = function (ms: number) {
         return new Promise(resolve => setTimeout(resolve, ms))
@@ -128,6 +131,9 @@ function Entrance() {
         }
         camera.classList.add("hidden");
         cameraLock.classList.remove("hidden");
+        await timeout(500)
+        cameraLock.classList.remove("transparent");
+
         roomReset();
     }
     let backAction = async () => {
@@ -137,7 +143,9 @@ function Entrance() {
 
         camera.classList.remove("hidden");
         cameraLock.classList.add("hidden");
-        //roomReset();
+        cameraLock.classList.add("transparent");
+
+        roomReset();
 
         switch (action) {
             case "login":
@@ -162,7 +170,7 @@ function Entrance() {
                 break;
         }
     }
-    let fwdAction = async() => {
+    let fwdAction = async () => {
         let room = document.getElementById("cube") as HTMLDivElement;
         let cameraLock = document.getElementById("camera-lock") as HTMLDivElement;
         room.classList.remove("cube-login");
@@ -172,13 +180,16 @@ function Entrance() {
         await timeout(1000);
         room.classList.remove("cube-top");
         room.classList.add("cube-top-ani");
-        await timeout(2000);
+        await timeout(4500);
         // redirect here
+        history.push('/spaceship')
+
     }
     return (
         <>
             <div className="wrapper">
                 <div id="viewport" className="viewport">
+                    <div id="mask" className="camera"></div>
                     <div id="camera" className="camera">
                         <div id="camera-bar" className="camera-bar">
                             <div id="camera-btn-load" onMouseEnter={cameraMovement} onClick={displayfocus} className="camera-btn">
@@ -198,48 +209,73 @@ function Entrance() {
                             </div>
                         </div>
                     </div>
-                    <div id="camera-lock" className="camera hidden">
-                        {(action === "login" || action === "addnew") ?
-                            <div id="camera-lock-bar" className="camera-bar">
-                                <div id="camera-btn-back" onClick={backAction} className="camera-btn">
-                                    CANCEL
+                    <div id="camera-lock" className="camera hidden transparent">
+                        {(action === "login") ?
+                            <>
+                                <div className="camera-info">
+                                    < LoginComponent />
+                                </div>
+                                <div id="camera-lock-bar" className="camera-bar">
+                                    <div id="camera-btn-back" onClick={backAction} className="camera-btn">
+                                        CANCEL
                                     </div>
-                                <div id="camera-btn-confirm" onClick={fwdAction} className="camera-btn">
-                                    CONFIRM
-                            </div>
-                            </div>
+                                    <div id="camera-btn-confirm" onClick={fwdAction} className="camera-btn">
+                                        CONFIRM
+                                    </div>
+                                </div>
+                            </>
+                            : null}
+                        {(action === "addnew") ?
+                            <>
+                                <div className="camera-info">
+                                    < RegisterComponent />
+                                </div>
+                                <div id="camera-lock-bar" className="camera-bar">
+                                    <div id="camera-btn-back" onClick={backAction} className="camera-btn">
+                                        CANCEL
+                                    </div>
+                                    <div id="camera-btn-confirm" onClick={fwdAction} className="camera-btn">
+                                        CONFIRM
+                                    </div>
+                                </div>
+                            </>
                             : null}
                         {(action === "exit") ?
                             <div id="camera-lock-bar" className="camera-bar">
                                 <div id="camera-btn-back" onClick={backAction} className="camera-btn">
                                     CANCEL
                                     </div>
-                                <div id="camera-btn-confirm"  className="camera-btn">
+                                <div id="camera-btn-confirm" className="camera-btn">
                                     EXIT
                                 </div>
                             </div>
                             : null}
                         {(action === "setting") ?
-                            <div id="camera-lock-bar" className="camera-bar">
-                                <div id="camera-btn-back" onClick={backAction} className="camera-btn">
-                                    CANCEL
-                                    </div>
-                                <div id="camera-btn-confirm" className="camera-btn">
-                                    SUBMIT
+                            <>
+                                <div className="camera-info">
+                                    < AdminComponent />
                                 </div>
-                            </div>
+                                <div id="camera-lock-bar" className="camera-bar">
+                                    <div id="camera-btn-back" onClick={backAction} className="camera-btn">
+                                        CANCEL
+                                    </div>
+                                </div>
+                            </>
                             : null}
                         {(action === "credit") ?
-                            <div id="camera-lock-bar" className="camera-bar">
-                                <div id="camera-btn-back" onClick={backAction} className="camera-btn">
-                                    CANCEL
+                            <>
+                                <div id="camera-lock-bar" className="camera-bar">
+                                    <div id="camera-btn-back" onClick={backAction} className="camera-btn">
+                                        CANCEL
                                     </div>
-                                <div id="camera-btn-confirm" className="camera-btn">
-                                    DETAILS
+                                    <div id="camera-btn-confirm" className="camera-btn">
+                                        DETAILS
                                 </div>
-                            </div>
+                                </div>
+                            </>
                             : null}
                     </div>
+
                     <div id="cube" className="cube-front">
                         <div id="cube-face-1-a" className="cube-face">
                             1-a
@@ -279,7 +315,7 @@ function Entrance() {
                             3-c
                         </div>
                         <div id="cube-face-3-d" className="cube-face">
-                            <div id="entrance-menu" className="cube-face">
+                            <div id="entrance-menu" className="entrance-menu">
 
                             </div>
                         </div>

@@ -1,0 +1,60 @@
+@import "./main.scss";
+.login-wrapper {
+    display: inline-block;
+    position: absolute;
+    margin: 20px 10px 0px 300px;
+    padding-top: 10px;
+    width: 280px;
+    height: 540px;
+    background-color: rgba(0, 128, 0, 0.678);
+}
+
+.login-wrapper-user {
+    display: inline-block;
+    position: absolute;
+    margin: 10px 10px 0px 600px;
+    padding-top: -20px;
+    width: 280px;
+    height: 540px;
+}
+
+.form-title {
+    top: 30px;
+    margin: 10px 20px 0px 20px;
+    padding-left: 10px;
+    height: 30px;
+    line-height: 30px;
+    text-align: left;
+    background-color: rgba(255, 255, 255);
+}
+
+.form-input {
+    top: 30px;
+    margin: 10px 20px 0px 20px;
+    padding-left: 10px;
+    height: 30px;
+    width: 225px;
+    line-height: 30px;
+    text-align: left;
+    background-color: rgba(255, 255, 255);
+}
+
+.button-container {
+    top: 30px;
+    margin: 30px 20px 0px 140px;
+    height: 50px;
+    width: 120px;
+    line-height: 50px;
+    text-align: center;
+    background-color: rgba(255, 255, 255);
+}
+
+.form-error {
+    top: 30px;
+    margin: 30px 20px 0px 20px;
+    padding-left: 10px;
+    height: 30px;
+    line-height: 30px;
+    text-align: left;
+    background-color: rgba(255, 255, 255);
+}

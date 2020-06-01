@@ -31,9 +31,10 @@
     bottom: 0;
     left: 0;
     right: 0;
-    margin: auto;
-    border: 10px solid rgb(255, 0, 0);
+    margin: -1000px;
+    border: 1000px solid rgb(0, 0, 0);
     z-index: 999;
+    transition: all 0.5s cubic-bezier(.35, .04, .6, .94);
 }
 
 .camera-bar {
@@ -70,14 +71,14 @@
 
 .cube-login {
     position: absolute;
-    top: 935px;
+    top: 0px;
     left: 70px;
     bottom: 0;
     right: 0;
     margin: auto;
     height: 800px;
     width: 1200px;
-    transform: translateZ(495px) rotateY(0deg) rotateX(-90deg) rotateZ(0deg);
+    transform: translateZ(895px) rotateY(0deg) rotateX(-15deg) rotateZ(0deg);
     transform-style: preserve-3d;
     transition: all 1s cubic-bezier(.35, .04, .6, .94);
 }
@@ -119,7 +120,7 @@
     margin: auto;
     height: 800px;
     width: 1200px;
-    transform: translateZ(600px) rotateY(-90deg) rotateX(0deg) rotateZ(0deg);
+    transform: translateZ(350px) rotateY(-90deg) rotateX(0deg) rotateZ(0deg);
     transform-style: preserve-3d;
     transition: all 1s cubic-bezier(.35, .04, .6, .94);
 }
@@ -439,34 +440,45 @@
 
 #cube-face-3-a {
     transform: rotateY(0deg) translateZ(-600px);
-    background-color: rgba(10, 247, 208, 0.39);
+    background-image: url("./img/e-3-a.png");
 }
 
 #cube-face-3-b {
     transform: rotateY(0deg) translateZ(-700px);
-    background-color: rgba(12, 102, 187, 0.308);
+    background-image: url("./img/e-3-b.png");
 }
 
 #cube-face-3-c {
     transform: rotateY(0deg) translateZ(-800px);
-    background-color: rgba(41, 79, 129, 0.301);
+    background-image: url("./img/e-3-c.png");
 }
 
 #cube-face-3-d {
     height: 100px;
     width: 1200px;
-    transform-origin: 50% 50%;
-    transform: rotateX(90deg) rotateZ(0deg) translateY(-650px) translateX(0px) translateZ(-400px);
-    background-color: rgb(255, 184, 234);
+    transform: rotateX(90deg) rotateZ(0deg) translateY(-650px) translateX(0px) translateZ(-350px);
+    transform-style: preserve-3d;
+    background-image: url("./img/e-3-d.png");
 }
 
-#entrance-menu {
+.entrance-menu {
+    position: absolute;
+    left: 500px;
+    height: 80px;
+    width: 180px;
+    margin: 10px;
+    background-image: url("./img/e-3-menu.png");
+    transition: all 1s cubic-bezier(.35, .04, .6, .94);
+}
+
+.cube-login .entrance-menu {
     position: absolute;
     left: 550px;
     height: 80px;
     width: 180px;
     margin: 10px;
-    background-color: rgb(0, 81, 255);
+    transform: rotateX(-75deg) translateY(-30px) translateZ(200px);
+    transition: all 1s cubic-bezier(.35, .04, .6, .94);
 }
 
 #cube-face-3-e {

@@ -3,13 +3,17 @@ import { Redirect, Link, useHistory } from 'react-router-dom';
 
 import "../../style/spaceship.scss"
 
-import UserHolder from "../../components/UserHolder/UserHolder"
+import UserHolder from "../../components/UserHolder/UserHolder";
+import CargoHolder from "../../components/CargoHolder/CargoHolder";
+import Trade from "../../components/TradeComponent/TradeComponent";
+import PlanetInfo from "../../components/PlanetInfo/PlanetInfo";
 
 function Spaceship() {
 
     const [readyState, setReadyState] = useState(false);
 
     const [action, setAction] = useState("default");
+    let history = useHistory();
 
     let timeout = function (ms: number) {
         return new Promise(resolve => setTimeout(resolve, ms))
@@ -119,6 +123,9 @@ function Spaceship() {
         }
         camera.classList.add("hidden");
         cameraLock.classList.remove("hidden");
+        await timeout(500)
+        cameraLock.classList.remove("transparent");
+
         roomReset();
     }
     let backAction = async () => {
@@ -128,6 +135,8 @@ function Spaceship() {
 
         camera.classList.remove("hidden");
         cameraLock.classList.add("hidden");
+        cameraLock.classList.add("transparent");
+
         roomReset();
 
         switch (action) {
@@ -149,6 +158,7 @@ function Spaceship() {
                 break;
         }
     }
+
     let travel = async () => {
         let room = document.getElementById("cube-spaceship") as HTMLDivElement;
         let background = document.getElementById("background") as HTMLDivElement;
@@ -183,20 +193,32 @@ function Spaceship() {
         await timeout(500);
         background.classList.remove("background-below");
         cameraLock.classList.remove("hidden");
-
-        // room.classList.add("cube-spaceship-jump");
     }
+    let [travelAni] = useState(() => { return travel })
+    let startAni = async () => {
+        await timeout(1000);
+        let room = document.getElementById("cube-spaceship") as HTMLDivElement;
+        let camera = document.getElementById("camera") as HTMLDivElement;
+        room.classList.remove("cube-spaceship-default");
+        room.classList.add("cube-spaceship-front");
+        camera.classList.remove("transparent");
+    }
+    let toMainMenu = async () => {
+        history.push('/')
+    }
+    startAni();
     return (
         <>
             <div className="wrapper">
                 <div id="viewport" className="viewport">
-                    <div id="camera" className="camera">
+                    <div id="mask" className="camera"></div>
+                    <div id="camera" className="camera transparent">
                         <div id="camera-bar" className="camera-bar">
-                            <div id="camera-btn-inventory" onMouseEnter={cameraMovement} onClick={displayfocus} className="camera-btn-spaceship">
-                                CURRENT INVENTORY
-                            </div>
                             <div id="camera-btn-map" onMouseEnter={cameraMovement} onClick={displayfocus} className="camera-btn-spaceship">
                                 VIEW GALAXY MAP
+                            </div>
+                            <div id="camera-btn-inventory" onMouseEnter={cameraMovement} onClick={displayfocus} className="camera-btn-spaceship">
+                                CURRENT INVENTORY
                             </div>
                             <div id="camera-btn-trade" onMouseEnter={cameraMovement} onClick={displayfocus} className="camera-btn-spaceship">
                                 TRADE WITH CITY
@@ -206,28 +228,37 @@ function Spaceship() {
                             </div>
                         </div>
                     </div>
-                    <div id="camera-lock" className="camera hidden">
+                    <div id="camera-lock" className="camera hidden transparent">
                         {(action === "map") ?
-                            <div id="camera-lock-bar" className="camera-bar">
-                                <div id="camera-btn-back" onClick={backAction} className="camera-btn">
-                                    CANCEL
-                                    </div>
-                                <div id="camera-btn-confirm" onClick={travel} className="camera-btn">
-                                    TRAVEL
+                            <>
+                                <div className="camera-info">
+                                    < PlanetInfo travelAni={travelAni} />
                                 </div>
-                            </div>
+                                <div id="camera-lock-bar" className="camera-bar">
+                                    <div id="camera-btn-back" onClick={backAction} className="camera-btn">
+                                        CANCEL
+                                    </div>
+                                </div>
+                            </>
                             : null}
                         {(action === "trade") ?
-                            <div id="camera-lock-bar" className="camera-bar">
-                                <div id="camera-btn-back" onClick={backAction} className="camera-btn">
-                                    CANCEL
+                            <>
+                                <div className="camera-info">
+                                    < Trade />
+                                </div>
+                                <div id="camera-lock-bar" className="camera-bar">
+
+                                    <div id="camera-btn-back" onClick={backAction} className="camera-btn">
+                                        CANCEL
                                     </div>
-                            </div>
+                                </div>
+                            </>
                             : null}
                         {(action === "inventory") ?
                             <>
                                 <div className="camera-info">
-                                    <UserHolder />
+                                    < UserHolder inGame={true} />
+                                    < CargoHolder />
                                 </div>
                                 <div id="camera-lock-bar" className="camera-bar">
                                     <div id="camera-btn-back" onClick={backAction} className="camera-btn">
@@ -241,13 +272,13 @@ function Spaceship() {
                                 <div id="camera-btn-back" onClick={backAction} className="camera-btn">
                                     CANCEL
                                     </div>
-                                <div id="camera-btn-confirm" className="camera-btn">
+                                <div id="camera-btn-confirm" onClick={toMainMenu} className="camera-btn">
                                     MAIN MENU
                                 </div>
                             </div>
                             : null}
                     </div>
-                    <div id="cube-spaceship" className="cube-spaceship-front">
+                    <div id="cube-spaceship" className="cube-spaceship-default">
                         <div id="cube-face-spaceship-1-a" className="cube-face-spaceship">
                             1-a
                         </div>
