@@ -194,7 +194,7 @@ function Spaceship() {
         background.classList.remove("background-below");
         cameraLock.classList.remove("hidden");
     }
-    let [travelAni] = useState(()=>{return travel})
+    let [travelAni] = useState(() => { return travel })
     let startAni = async () => {
         await timeout(1000);
         let room = document.getElementById("cube-spaceship") as HTMLDivElement;
@@ -211,6 +211,7 @@ function Spaceship() {
         <>
             <div className="wrapper">
                 <div id="viewport" className="viewport">
+                    <div id="mask" className="camera"></div>
                     <div id="camera" className="camera transparent">
                         <div id="camera-bar" className="camera-bar">
                             <div id="camera-btn-map" onMouseEnter={cameraMovement} onClick={displayfocus} className="camera-btn-spaceship">
@@ -231,7 +232,7 @@ function Spaceship() {
                         {(action === "map") ?
                             <>
                                 <div className="camera-info">
-                                    < PlanetInfo travelAni = {travelAni}/>
+                                    < PlanetInfo travelAni={travelAni} />
                                 </div>
                                 <div id="camera-lock-bar" className="camera-bar">
                                     <div id="camera-btn-back" onClick={backAction} className="camera-btn">
