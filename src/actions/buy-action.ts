@@ -1,6 +1,5 @@
 /*Action would change the state of the cargo and current user currency based on the quantity bought*/
 import { Dispatch } from "redux"
-import { authenticate } from "../remote/auth-service"
 
 export const buyActionTypes = {
     SUCCESSFUL_PURCHASE: 'SUCCESSFUL_PURCHASE',
@@ -9,8 +8,8 @@ export const buyActionTypes = {
 }
 
 /*Would require current userID to know which user to change cargo for, goodID of the purchased good to
-add to cargo and to find the base price, quantity, and planet name to find the planets buy price modifier*/
-export const buyAction = (userID: number, good_id: number, good_quantity: number, planet_name: string) => async (dispatch: Dispatch) => {
+add to cargo, the total cost of the buy action would be done in the front-end, and the planet name to find the planets buy price modifier*/
+export const buyAction = (userID: number, good_id: number, planet_name: string, cost: number) => async (dispatch: Dispatch) => {
 
     try {
 

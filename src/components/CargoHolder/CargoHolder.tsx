@@ -10,7 +10,7 @@ import "../../style/cargoHolder.scss";
 
 export interface ICargoProps {
     // userCargo: Cargo[];
-    //errorMessage: string;
+    // errorMessage: string;
 }
 
 function CargoHolder(props: ICargoProps) {
