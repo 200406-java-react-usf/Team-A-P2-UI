@@ -3,9 +3,10 @@ import { Redirect, Link, useHistory } from 'react-router-dom';
 
 import "../../style/spaceship.scss"
 
-import UserHolder from "../../components/UserHolder/UserHolder"
-import CargoHolder from "../../components/CargoHolder/CargoHolder"
-import Trade from "../../components/TradeComponent/TradeComponent"
+import UserHolder from "../../components/UserHolder/UserHolder";
+import CargoHolder from "../../components/CargoHolder/CargoHolder";
+import Trade from "../../components/TradeComponent/TradeComponent";
+import PlanetInfo from "../../components/PlanetInfo/PlanetInfo";
 
 function Spaceship() {
 
@@ -157,6 +158,7 @@ function Spaceship() {
                 break;
         }
     }
+
     let travel = async () => {
         let room = document.getElementById("cube-spaceship") as HTMLDivElement;
         let background = document.getElementById("background") as HTMLDivElement;
@@ -192,6 +194,7 @@ function Spaceship() {
         background.classList.remove("background-below");
         cameraLock.classList.remove("hidden");
     }
+    let [travelAni] = useState(()=>{return travel})
     let startAni = async () => {
         await timeout(1000);
         let room = document.getElementById("cube-spaceship") as HTMLDivElement;
@@ -226,14 +229,16 @@ function Spaceship() {
                     </div>
                     <div id="camera-lock" className="camera hidden transparent">
                         {(action === "map") ?
-                            <div id="camera-lock-bar" className="camera-bar">
-                                <div id="camera-btn-back" onClick={backAction} className="camera-btn">
-                                    CANCEL
-                                    </div>
-                                <div id="camera-btn-confirm" onClick={travel} className="camera-btn">
-                                    TRAVEL
+                            <>
+                                <div className="camera-info">
+                                    < PlanetInfo travelAni = {travelAni}/>
                                 </div>
-                            </div>
+                                <div id="camera-lock-bar" className="camera-bar">
+                                    <div id="camera-btn-back" onClick={backAction} className="camera-btn">
+                                        CANCEL
+                                    </div>
+                                </div>
+                            </>
                             : null}
                         {(action === "trade") ?
                             <>

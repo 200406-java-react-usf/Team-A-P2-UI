@@ -1,0 +1,29 @@
+@import "./main.scss";
+.user-table {
+    display: inline-block;
+    position: absolute;
+    margin: 10px 10px 0px 40px;
+    width: 680px;
+    height: 550px;
+    background-color: rgba(0, 128, 0, 0.678);
+    overflow: auto;
+}
+
+.admin-user-holder {
+    display: inline-block;
+    margin: 10px;
+    width: 660px;
+    height: 40px;
+    background-color: rgba(128, 0, 0, 0.678);
+}
+
+.admin-user-cell-short {
+    display: inline-block;
+    width: 100px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    background-color: rgb(255, 255, 255);
+    vertical-align: top;
+    margin: 5px;
+}

@@ -21,52 +21,48 @@
         transition: all 2s cubic-bezier(.35, .04, .6, .94);
     }
     
-    .viewport {
-        width: 1200px;
-        height: 750px;
-        background-color: rgba(0, 0, 0, 0);
-        position: absolute;
-        top: 0;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        margin: auto;
-        perspective: calc(var(--scenePerspective) * var(--cameraSpeed) * 1px);
-        perspective-origin: calc(var(--scenePerspectiveOriginX) * 1%) calc(var(--scenePerspectiveOriginY) * 1%);
-        will-change: perspective-origin;
-        transform: translate3d(0, 0, 0);
-    }
-    
-    .camera {
-        width: 1200px;
-        height: 750px;
-        background-color: rgba(0, 0, 0, 0);
-        position: absolute;
-        top: 0;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        margin: auto;
-        border: 10px solid rgb(255, 0, 0);
-        z-index: 999;
-        opacity: 1;
-        transition: all 1s cubic-bezier(.35, .04, .6, .94);
-    }
-    
-    .camera-info {
-        width: 1200px;
-        height: 600px;
-        background-color: rgb(143, 148, 74);
-    }
-    
-    .camera-bar {
-        position: absolute;
-        width: 1200px;
-        height: 100px;
-        top: 600px;
-        background-color: rgba(64, 214, 26, 0.514);
-    }
-    
+    // .viewport {
+    //     width: 1200px;
+    //     height: 750px;
+    //     background-color: rgba(0, 0, 0, 0);
+    //     position: absolute;
+    //     top: 0;
+    //     bottom: 0;
+    //     left: 0;
+    //     right: 0;
+    //     margin: auto;
+    //     perspective: calc(var(--scenePerspective) * var(--cameraSpeed) * 1px);
+    //     perspective-origin: calc(var(--scenePerspectiveOriginX) * 1%) calc(var(--scenePerspectiveOriginY) * 1%);
+    //     will-change: perspective-origin;
+    //     transform: translate3d(0, 0, 0);
+    // }
+    // .camera {
+    //     width: 1200px;
+    //     height: 750px;
+    //     background-color: rgba(0, 0, 0, 0);
+    //     position: absolute;
+    //     top: 0;
+    //     bottom: 0;
+    //     left: 0;
+    //     right: 0;
+    //     margin: auto;
+    //     border: 10px solid rgb(255, 0, 0);
+    //     z-index: 999;
+    //     opacity: 1;
+    //     transition: all 1s cubic-bezier(.35, .04, .6, .94);
+    // }
+    // .camera-info {
+    //     width: 1200px;
+    //     height: 600px;
+    //     background-color: rgb(143, 148, 74);
+    // }
+    // .camera-bar {
+    //     position: absolute;
+    //     width: 1200px;
+    //     height: 100px;
+    //     top: 600px;
+    //     background-color: rgba(64, 214, 26, 0.514);
+    // }
     .camera-btn-spaceship {
         display: inline-block;
         width: 200px;
@@ -114,7 +110,7 @@
         margin: auto;
         height: 800px;
         width: 1200px;
-        transform: translateZ(550px) translateY(75px) translateX(40px) rotateY(0deg) rotateX(-90deg) rotateZ(0deg);
+        transform: translateZ(550px) translateY(40px) translateX(150px) rotateY(0deg) rotateX(-90deg) rotateZ(0deg);
         transform-style: preserve-3d;
         transition: all 1s cubic-bezier(.35, .04, .6, .94);
     }
@@ -689,7 +685,7 @@
     
     .cube-spaceship-map #cube-face-spaceship-6-d #cube-wrap {
         position: absolute;
-        top: 300px;
+        top: 295px;
         bottom: 0px;
         left: 0;
         right: 0px;

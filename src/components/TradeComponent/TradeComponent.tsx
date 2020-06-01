@@ -184,7 +184,7 @@ function Trade(props: ICargoProps) {
             //@ts-ignore
             let cityPrice = parseInt(selectedCityPriceSlot.textContent);
             
-            //sellection(goodID, cityprice)
+            //buyaction(goodID, cityprice)
             console.log("buy")
 
         }
@@ -195,7 +195,7 @@ function Trade(props: ICargoProps) {
             let selectedCityPriceSlot = document.getElementById("city-" + id)?.children[3] as HTMLDivElement;
             //@ts-ignore
             let cityPrice = parseInt(selectedCityPriceSlot.textContent);
-            //sellection(goodID, cityprice)
+            //sellaction(goodID, cityprice)
             console.log("sell")
         }
     }

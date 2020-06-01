@@ -6,6 +6,7 @@ import "../../style/entrance.scss"
 import UserHolder from "../../components/UserHolder/UserHolder"
 import LoginComponent from "../../components/LoginComponent/LoginComponent"
 import RegisterComponent from "../../components/RegisterComponent/RegisterComponent"
+import AdminComponent from "../../components/AdminComponent/AdminComponent"
 
 
 function Entrance() {
@@ -188,6 +189,7 @@ function Entrance() {
         <>
             <div className="wrapper">
                 <div id="viewport" className="viewport">
+                    <div id="mask" className="camera"></div>
                     <div id="camera" className="camera">
                         <div id="camera-bar" className="camera-bar">
                             <div id="camera-btn-load" onMouseEnter={cameraMovement} onClick={displayfocus} className="camera-btn">
@@ -249,26 +251,31 @@ function Entrance() {
                             </div>
                             : null}
                         {(action === "setting") ?
-                            <div id="camera-lock-bar" className="camera-bar">
-                                <div id="camera-btn-back" onClick={backAction} className="camera-btn">
-                                    CANCEL
-                                    </div>
-                                <div id="camera-btn-confirm" className="camera-btn">
-                                    SUBMIT
+                            <>
+                                <div className="camera-info">
+                                    < AdminComponent />
                                 </div>
-                            </div>
+                                <div id="camera-lock-bar" className="camera-bar">
+                                    <div id="camera-btn-back" onClick={backAction} className="camera-btn">
+                                        CANCEL
+                                    </div>
+                                </div>
+                            </>
                             : null}
                         {(action === "credit") ?
-                            <div id="camera-lock-bar" className="camera-bar">
-                                <div id="camera-btn-back" onClick={backAction} className="camera-btn">
-                                    CANCEL
+                            <>
+                                <div id="camera-lock-bar" className="camera-bar">
+                                    <div id="camera-btn-back" onClick={backAction} className="camera-btn">
+                                        CANCEL
                                     </div>
-                                <div id="camera-btn-confirm" className="camera-btn">
-                                    DETAILS
+                                    <div id="camera-btn-confirm" className="camera-btn">
+                                        DETAILS
                                 </div>
-                            </div>
+                                </div>
+                            </>
                             : null}
                     </div>
+
                     <div id="cube" className="cube-front">
                         <div id="cube-face-1-a" className="cube-face">
                             1-a
