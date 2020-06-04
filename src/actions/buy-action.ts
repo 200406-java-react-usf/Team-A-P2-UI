@@ -12,7 +12,7 @@ add to cargo, the total cost of the buy action would be done in the front-end, a
 export const buyAction = (userID: number, good_id: number, planet_name: string, cost: number) => async (dispatch: Dispatch) => {
 
     try {
-
+        
         // let boughtGoods = await buyBackEndFunction(userID, good_id, good_quantity, planet_name);
         dispatch({
             type: buyActionTypes.SUCCESSFUL_PURCHASE,
