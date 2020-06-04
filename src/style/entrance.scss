@@ -106,7 +106,7 @@
     margin: auto;
     height: 800px;
     width: 1200px;
-    transform: translateZ(700px) rotateY(90deg) rotateX(0deg) rotateZ(0deg);
+    transform: translateZ(900px) translateY(50px) translateX(330px) rotateY(90deg) rotateX(0deg) rotateZ(0deg);
     transform-style: preserve-3d;
     transition: all 1s cubic-bezier(.35, .04, .6, .94);
 }
@@ -341,7 +341,7 @@
     margin: auto;
     height: 800px;
     width: 1200px;
-    transform: translateZ(550px) rotateY(180deg) rotateX(90deg) rotateZ(0deg);
+    transform: translateZ(600px) translateX(100px) translateY(50px) rotateY(180deg) rotateX(90deg) rotateZ(0deg);
     transform-style: preserve-3d;
     transition: all 1s cubic-bezier(.35, .04, .6, .94);
 }
@@ -420,22 +420,22 @@
 
 #cube-face-2-a {
     transform: rotateY( -90deg) translateZ(-600px);
-    background-color: rgba(196, 247, 10, 0.363);
+    background-image: url("./img/e-2-a.png");
 }
 
 #cube-face-2-b {
-    transform: rotateY( -90deg) translateZ(-600px);
-    background-color: rgba(189, 241, 0, 0.363);
+    transform: rotateY( -90deg) translateZ(-700px);
+    background-image: url("./img/e-2-b.png");
 }
 
 #cube-face-2-c {
-    transform: rotateY( -90deg) translateZ(-700px);
-    background-color: rgba(90, 114, 2, 0.363);
+    transform: rotateY( -90deg) translateZ(-750px);
+    background-image: url("./img/e-2-c.png");
 }
 
 #cube-face-2-d {
-    transform: rotateY( -90deg) translateZ(-800px);
-    background-color: rgba(19, 24, 0, 0.363);
+    transform: rotateY( -90deg) translateZ(-850px);
+    background-image: url("./img/e-2-d.png");
 }
 
 #cube-face-3-a {
@@ -526,75 +526,61 @@
     position: absolute;
     height: 1200px;
     width: 1200px;
-    border: 1px solid green;
-    border-radius: 3px;
     user-select: none;
     transform: rotateX(90deg) translateZ(600px);
-    background-color: rgba(95, 75, 76, 0.534)
+    background-image: url("./img/e-5-a.png");
 }
 
 #cube-face-5-b {
     position: absolute;
     height: 1200px;
     width: 1200px;
-    border: 1px solid green;
-    border-radius: 3px;
     user-select: none;
     transform: rotateX(90deg) translateZ(700px);
-    background-color: rgba(51, 45, 45, 0.534)
+    background-image: url("./img/e-5-b.png");
 }
 
 #cube-face-5-c {
     position: absolute;
     height: 1200px;
     width: 1200px;
-    border: 1px solid green;
-    border-radius: 3px;
     user-select: none;
     transform: rotateX(90deg) translateZ(800px);
-    background-color: rgba(7, 7, 7, 0.534)
+    background-image: url("./img/e-5-c.png");
 }
 
 #cube-face-5-d {
     position: absolute;
     height: 1200px;
     width: 1200px;
-    border: 1px solid green;
-    border-radius: 3px;
     user-select: none;
     transform: rotateX(90deg) translateZ(900px);
-    background-color: rgba(7, 7, 7, 0.534)
+    background-image: url("./img/e-5-d.png");
 }
 
 #cube-face-5-e {
     position: absolute;
     height: 1200px;
     width: 1200px;
-    border: 1px solid green;
-    border-radius: 3px;
     user-select: none;
     transform: rotateX(90deg) translateZ(1000px);
-    background-color: rgba(7, 7, 7, 0.534)
+    background-image: url("./img/e-5-e.png");
 }
 
 #cube-face-5-f {
     position: absolute;
     height: 1200px;
     width: 1200px;
-    border: 1px solid green;
-    border-radius: 3px;
     user-select: none;
     transform: rotateX(90deg) translateZ(1200px);
-    background-color: rgba(7, 7, 7, 0.534)
+    background-image: url("./img/e-5-f.png");
 }
 
 #cube-face-6-a {
     position: absolute;
     height: 1200px;
     width: 1200px;
-    border: 1px solid green;
-    border-radius: 3px;
     user-select: none;
     transform: rotateX(90deg) rotateZ(180deg) translateZ(-200px);
-    background-color: rgba(255, 0, 179, 0.418);
+    background-image: url("./img/e-6-floor.png");
 }

@@ -340,7 +340,7 @@ function Entrance() {
                         <div id="cube-face-4-d" className="cube-face">
                             4-d
                         </div>
-                        <div id="cube-face-5-a" className="cube-top">
+                        <div id="cube-face-5-a" className="cube-face">
                             5-a
                         </div>
                         <div id="cube-face-5-b" className="cube-face">
@@ -349,7 +349,7 @@ function Entrance() {
                         <div id="cube-face-5-c" className="cube-face">
                             5-c
                         </div>
-                        <div id="cube-face-5-d" className="cube-top">
+                        <div id="cube-face-5-d" className="cube-face">
                             5-d
                         </div>
                         <div id="cube-face-5-e" className="cube-face">
