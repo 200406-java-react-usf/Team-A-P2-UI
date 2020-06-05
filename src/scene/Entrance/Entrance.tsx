@@ -276,7 +276,7 @@ function Entrance() {
                             : null}
                     </div>
 
-                    <div id="cube" className="cube-front">
+                    <div id="cube" className="cube-top">
                         <div id="cube-face-1-a" className="cube-face">
                             1-a
                         </div>

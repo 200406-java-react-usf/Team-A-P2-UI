@@ -11,7 +11,6 @@
         top: 0px;
         width: 1200px;
         height: 2400px;
-        background-color: rgba(0, 0, 0, 0.438);
         z-index: -100;
         transition: all 2s cubic-bezier(.35, .04, .6, .94);
     }
@@ -21,48 +20,6 @@
         transition: all 2s cubic-bezier(.35, .04, .6, .94);
     }
     
-    // .viewport {
-    //     width: 1200px;
-    //     height: 750px;
-    //     background-color: rgba(0, 0, 0, 0);
-    //     position: absolute;
-    //     top: 0;
-    //     bottom: 0;
-    //     left: 0;
-    //     right: 0;
-    //     margin: auto;
-    //     perspective: calc(var(--scenePerspective) * var(--cameraSpeed) * 1px);
-    //     perspective-origin: calc(var(--scenePerspectiveOriginX) * 1%) calc(var(--scenePerspectiveOriginY) * 1%);
-    //     will-change: perspective-origin;
-    //     transform: translate3d(0, 0, 0);
-    // }
-    // .camera {
-    //     width: 1200px;
-    //     height: 750px;
-    //     background-color: rgba(0, 0, 0, 0);
-    //     position: absolute;
-    //     top: 0;
-    //     bottom: 0;
-    //     left: 0;
-    //     right: 0;
-    //     margin: auto;
-    //     border: 10px solid rgb(255, 0, 0);
-    //     z-index: 999;
-    //     opacity: 1;
-    //     transition: all 1s cubic-bezier(.35, .04, .6, .94);
-    // }
-    // .camera-info {
-    //     width: 1200px;
-    //     height: 600px;
-    //     background-color: rgb(143, 148, 74);
-    // }
-    // .camera-bar {
-    //     position: absolute;
-    //     width: 1200px;
-    //     height: 100px;
-    //     top: 600px;
-    //     background-color: rgba(64, 214, 26, 0.514);
-    // }
     .camera-btn-spaceship {
         display: inline-block;
         width: 200px;
@@ -196,11 +153,8 @@
         position: absolute;
         height: 800px;
         width: 1200px;
-        border: 1px solid green;
-        border-radius: 3px;
         user-select: none;
         transform: rotateY(0deg) translateZ(-900px);
-        background-color: rgba(0, 0, 0, 0.24);
         animation-name: jump-spin-1;
         animation-duration: 1s;
         animation-iteration-count: infinite;
@@ -228,11 +182,8 @@
         position: absolute;
         height: 800px;
         width: 1200px;
-        border: 1px solid green;
-        border-radius: 3px;
         user-select: none;
         transform: rotateY(0deg) translateZ(-1000px);
-        background-color: rgba(0, 0, 0, 0.322);
         animation-name: jump-spin-2;
         animation-delay: 500ms;
         animation-duration: 1s;
@@ -261,11 +212,8 @@
         position: absolute;
         height: 800px;
         width: 1200px;
-        border: 1px solid green;
-        border-radius: 3px;
         user-select: none;
         transform: rotateY(0deg) translateZ(-1000px);
-        background-color: rgba(0, 0, 0, 0.322);
         animation-name: jump-spin-3;
         animation-delay: 1000ms;
         animation-duration: 1s;
@@ -378,8 +326,6 @@
         position: absolute;
         height: 800px;
         width: 1200px;
-        border: 1px solid green;
-        border-radius: 3px;
         user-select: none;
     }
     
@@ -424,7 +370,7 @@
     
     #cube-face-spaceship-2-a {
         transform: rotateY( -90deg) translateZ(-600px);
-        background-color: rgba(196, 247, 10, 0.185);
+        background-image: url("./img/s-2-a.png");
     }
     
     #cube-face-spaceship-2-b {
@@ -480,63 +426,92 @@
     
     #cube-face-spaceship-3-a {
         transform: rotateY(0deg) translateZ(-600px);
-        background-color: rgba(10, 247, 208, 0.295);
+        background-image: url("./img/s-3-a.png");
     }
     
     #cube-face-spaceship-3-b {
         transform: rotateY(0deg) translateZ(-700px);
-        background-color: rgba(12, 102, 187, 0.281);
+        background-image: url("./img/s-3-b.png");
     }
     
     #cube-face-spaceship-3-c {
         transform: rotateY(0deg) translateZ(-800px);
-        background-color: rgba(41, 79, 129, 0.281);
+        background-image: url("./img/s-3-c.png");
     }
     
-    #cube-face-spaceship-3-d {
+    .background {
+        position: absolute;
+        top: -1500px;
+        width: 1200px;
+        height: 2400px;
         transform: rotateY(0deg) translateZ(-900px);
-        background-color: rgba(41, 79, 129, 0.342);
+        z-index: -100;
+        transition: all 2s cubic-bezier(.35, .04, .6, .94);
+        background-repeat: no-repeat;
+        background-size: auto;
+    }
+    
+    .background-below {
+        top: 800px;
+        transition: all 2s cubic-bezier(.35, .04, .6, .94);
+    }
+    
+    .background-default {
+        background-image: url("./img/s-3-background-default.png");
+    }
+    
+    .s-3-background-1 {
+        background-image: url("./img/s-3-background-1.png");
+    }
+    
+    // .s-3-background-2 {
+    //     background-image: url("./img/s-3-background-2.png");
+    // }
+    #cube-face-spaceship-3-d {
+        transform: rotateY(0deg) translateZ(-902px);
+        background-image: url("./img/s-3-d.png");
+        background-repeat: no-repeat;
+        background-size: auto;
     }
     
     #cube-face-spaceship-3-e {
-        transform: rotateY(0deg) translateZ(-1000px);
-        background-color: rgba(41, 79, 129, 0.493);
+        transform: rotateY(0deg) translateZ(-903px);
+        background-image: url("./img/s-3-e.png");
+        background-repeat: no-repeat;
+        background-size: auto;
     }
     
     #cube-face-spaceship-3-f {
-        transform: rotateY(0deg) translateZ(-1100px);
-        background-color: rgba(41, 79, 129, 0.466);
+        transform: rotateY(0deg) translateZ(-904px);
+        background-image: url("./img/s-3-f.png");
+        background-repeat: no-repeat;
+        background-size: auto;
     }
     
     #cube-face-spaceship-4-a {
         transform: rotateY(90deg) translateZ(-600px);
-        background-color: rgba(10, 53, 247, 0.021);
+        background-image: url("./img/s-4-a.png");
     }
     
     #cube-face-spaceship-4-b {
         transform: rotateY(90deg) translateZ(-700px);
-        background-color: rgba(10, 53, 247, 0.034);
+        background-image: url("./img/s-4-b.png");
     }
     
     #cube-face-spaceship-4-c {
         transform: rotateY(90deg) translateZ(-800px);
-        background-color: rgba(10, 53, 247, 0.082);
+        background-image: url("./img/s-4-c.png");
     }
     
     #cube-face-spaceship-4-d {
         transform: rotateY(90deg) translateZ(-900px);
-        background-color: rgba(10, 53, 247, 0.068);
     }
     
     #cube-face-spaceship-slot {
         position: absolute;
         height: 600px;
         width: 600px;
-        border: 1px solid green;
-        border-radius: 3px;
-        user-select: none;
-        transform: rotateY(90deg) translateZ(-750px) translateX(370px) translateY(200px);
-        background-color: rgba(77, 247, 10, 0.253);
+        transform: rotateY(90deg) translateZ(-490px) translateX(75px) translateY(180px);
     }
     
     .invent-row {
@@ -548,9 +523,8 @@
         height: 150px;
         display: inline-block;
         position: relative;
-        background: rgba(0, 0, 0, .4);
+        background-image: url("./img/s-4-slot.png");
         transition: all 1s cubic-bezier(.8, 0, .2, 1);
-        background-color: rgba(247, 192, 10, 0.705);
     }
     
     .cube-spaceship-left .cube-invent-slot {
@@ -602,7 +576,6 @@
         border-radius: 3px;
         user-select: none;
         transform: rotateX(90deg) translateZ(600px);
-        background-color: rgba(95, 75, 76, 0.534)
     }
     
     #cube-face-spaceship-5-b {
@@ -613,7 +586,6 @@
         border-radius: 3px;
         user-select: none;
         transform: rotateX(90deg) translateZ(700px);
-        background-color: rgba(51, 45, 45, 0.534)
     }
     
     #cube-face-spaceship-5-c {
@@ -624,40 +596,42 @@
         border-radius: 3px;
         user-select: none;
         transform: rotateX(90deg) translateZ(800px);
-        background-color: rgba(7, 7, 7, 0.534)
     }
     
     #cube-face-spaceship-6-a {
         position: absolute;
         height: 1200px;
         width: 1200px;
-        border: 1px solid green;
-        border-radius: 3px;
+        background-image: url("./img/s-6-a.png");
         user-select: none;
         transform: rotateX(90deg) rotateZ(0deg) translateZ(-200px);
-        background-color: rgba(255, 0, 179, 0.418);
+    }
+    
+    #cube-face-spaceship-6-z {
+        position: absolute;
+        height: 200px;
+        width: 1200px;
+        background-color: rgb(82, 82, 82);
+        user-select: none;
+        transform: rotateX(90deg) rotateZ(0deg) translateZ(-700px) translateY(-700px);
     }
     
     #cube-face-spaceship-6-b {
         position: absolute;
         height: 300px;
         width: 800px;
-        border: 1px solid green;
-        border-radius: 3px;
+        background-image: url("./img/s-6-b.png");
         user-select: none;
         transform: rotateX(90deg) rotateZ(0deg) translateX(200px) translateY(-200px) translateZ(-550px);
-        background-color: rgba(255, 0, 0, 0.192);
     }
     
     #cube-face-spaceship-6-c {
         position: absolute;
         height: 300px;
         width: 600px;
-        border: 1px solid green;
-        border-radius: 3px;
+        background-image: url("./img/s-6-c.png");
         user-select: none;
         transform: rotateX(90deg) rotateZ(0deg) translateX(300px) translateY(-200px) translateZ(-500px);
-        background-color: rgb(128, 128, 128);
     }
     
     .cube-spaceship-map #cube-face-spaceship-6-d {
@@ -665,7 +639,6 @@
         margin: auto;
         height: 100px;
         width: 100px;
-        border-radius: 3px;
         user-select: none;
         transform: translateX(600px) translateY(350px) translateZ(-200px);
     }
@@ -674,10 +647,7 @@
         position: absolute;
         height: 100px;
         width: 100px;
-        border: 1px solid black;
-        border-radius: 3px;
         user-select: none;
-        background-color: rgba(255, 0, 0, 0.363);
         transform-style: preserve-3d;
         transform: rotateX(90deg) rotateY(0deg) translateZ(0px) translateX(-30px) translateY(30px) translateZ(-101px);
         transition: all 1.5s cubic-bezier(.35, .04, .6, .94);
@@ -692,7 +662,6 @@
         margin: auto;
         height: 100px;
         width: 100px;
-        border-radius: 3px;
         user-select: none;
         transform-style: preserve-3d;
         animation: none;
@@ -706,7 +675,6 @@
         margin: auto;
         height: 100px;
         width: 100px;
-        border-radius: 3px;
         user-select: none;
         transform: translateX(600px) translateY(350px) translateZ(-200px);
         transform-style: preserve-3d;
@@ -722,7 +690,6 @@
         margin: auto;
         height: 100px;
         width: 100px;
-        border-radius: 3px;
         user-select: none;
         transform-style: preserve-3d;
         animation: rotate;
@@ -744,10 +711,8 @@
         position: absolute;
         height: 100px;
         width: 100px;
-        border: 1px solid black;
-        border-radius: 3px;
+        background-image: url("./img/s-cube.png");
         user-select: none;
-        background-color: rgba(255, 0, 0, 0.363);
     }
     
     #cube-mini-1 {
