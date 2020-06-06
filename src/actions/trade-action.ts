@@ -1,6 +1,6 @@
 /*Action would change the state of the cargo and current user currency based on the quantity bought*/
 import { Dispatch } from "redux"
-import { getCargoByUserIdAndGoodId, getCargoListbyUserId, updateCargoByUserIdAndGoodId, getUserById, updateUser } from "../remote/player-service";
+import { getCargobyUserIdAndGoodId, getCargoListbyUserId, updateCargobyUserIdAndGoodId, getUserbyId, updateUser } from "../remote/player-service";
 import { cargoListActionTypes } from "../actions/cargo-list-action"
 import { Cargo } from "../dtos/cargo";
 import { User } from "../dtos/user";
@@ -17,7 +17,7 @@ export const tradeAction = (user_id: number, good_id: number, cost: number, amou
 
     try {
         // get the cargo record
-        let originalCargo: Cargo = await getCargoByUserIdAndGoodId(user_id, good_id)
+        let originalCargo: Cargo = await getCargobyUserIdAndGoodId(user_id, good_id)
 
         // update the cargo
         let sum: number = originalCargo.good_quantity * originalCargo.cost_of_goods;
@@ -27,11 +27,11 @@ export const tradeAction = (user_id: number, good_id: number, cost: number, amou
         let newCost: number = newSum / originalCargo.good_quantity;
         originalCargo.cost_of_goods = newCost; 
 
-        await updateCargoByUserIdAndGoodId(user_id, good_id)
+        await updateCargobyUserIdAndGoodId(user_id, good_id)
         let userCargoList:Cargo[] = await getCargoListbyUserId(user_id);
 
         //currency
-        let user: User = await getUserById(user_id);
+        let user: User = await getUserbyId(user_id);
         user.currency -= amount * cost;
         await updateUser(user);
 

@@ -2,7 +2,7 @@
 import { Dispatch } from "redux"
 import { authenticate } from "../remote/auth-service"
 import { User } from "../dtos/user";
-import { getUserById, updateUser } from "../remote/player-service";
+import { getUserbyId, updateUser } from "../remote/player-service";
 
 export const upgrageActionTypes = {
     SUCCESSFUL_UPGRADE: 'SUCCESSFUL_UPGRADE',
@@ -15,7 +15,7 @@ export const upgradeAction = (user_id: number) => async (dispatch: Dispatch) => 
 
     try {
         //upgrade
-        let user: User = await getUserById(user_id);
+        let user: User = await getUserbyId(user_id);
         user.currency -= 1000;
         user.cargo_space += 10;
         await updateUser(user);

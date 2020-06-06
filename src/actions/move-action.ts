@@ -2,7 +2,7 @@
 import { Dispatch } from "redux"
 import { authenticate } from "../remote/auth-service"
 import { User } from "../dtos/user";
-import { getUserById, updateUser } from "../remote/player-service";
+import { getUserbyId, updateUser } from "../remote/player-service";
 
 export const moveActionTypes = {
     SUCCESSFUL_MOVE: 'SUCCESSFUL_MOVE',
@@ -16,7 +16,7 @@ export const moveAction = (user_id: number, planet_id: number) => async (dispatc
 
     try {
         //upgrade
-        let user: User = await getUserById(user_id);
+        let user: User = await getUserbyId(user_id);
         user.location = planet_id;
         await updateUser(user);
         dispatch({
