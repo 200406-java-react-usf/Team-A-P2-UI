@@ -9,8 +9,8 @@ import GoodHolder from "../partials/GoodHolder/GoodHolder";
 import "../../style/cargoHolder.scss";
 
 export interface ICargoProps {
-    //userCargo: Cargo[];
-    //errorMessage: string;
+    // userCargo: Cargo[];
+    // errorMessage: string;
 }
 
 function CargoHolder(props: ICargoProps) {
@@ -69,7 +69,7 @@ function CargoHolder(props: ICargoProps) {
                 for (let cargo of cargoList) {
                     cargoArr.push(
                         <div className="good-wrapper unselect" key={"invent-"+cargo.good_id} id={"invent-"+cargo.good_id} onClick={selectDetail} >
-                            <GoodHolder good_name={cargo.good_name} good_qauntity={cargo.good_quantity} good_avg_price={cargo.good_avg_price} />
+                            <GoodHolder good_name={cargo.good_name} good_qauntity={cargo.good_quantity} cost_of_goods={cargo.cost_of_goods} />
                         </div>
                     )
                 }

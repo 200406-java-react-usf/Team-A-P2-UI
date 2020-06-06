@@ -102,7 +102,7 @@ function Trade(props: ICargoProps) {
                 for (let cargo of userCargoList) {
                     cargoArrUser.push(
                         <div className="good-wrapper unselect" key={"user-" + cargo.good_id} id={"user-" + cargo.good_id} onClick={selectDetail} >
-                            <GoodHolder good_name={cargo.good_name} good_qauntity={cargo.good_quantity} good_avg_price={cargo.good_avg_price} />
+                            <GoodHolder good_name={cargo.good_name} good_qauntity={cargo.good_quantity} cost_of_goods={cargo.cost_of_goods} />
                         </div>
                     )
                 }
@@ -123,7 +123,7 @@ function Trade(props: ICargoProps) {
 
                     cargoArrCity.push(
                         <div className="good-wrapper unselect" key={"city-" + cargo.good_id} id={"city-" + cargo.good_id} onClick={selectDetail} >
-                            <GoodHolder good_name={cargo.good_name} good_qauntity={cargo.good_quantity} good_avg_price={cargo.good_avg_price * priceMod} />
+                            <GoodHolder good_name={cargo.good_name} good_qauntity={cargo.good_quantity} cost_of_goods={cargo.cost_of_goods * priceMod} />
                         </div>
                     )
                 }
