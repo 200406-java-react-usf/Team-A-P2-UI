@@ -22,19 +22,19 @@ export async function getCargoListbyPlanetId(id: number){
 }
 
 //get specific cargo
-export async function getCargoByUserIdAndGoodId (user_id: number, good_id:number){
+export async function getCargobyUserIdAndGoodId (user_id: number, good_id:number){
     let response = await Client.post(``);
     return await response.data;
 }
 
 //update specific cargo
-export async function updateCargoByUserIdAndGoodId (user_id: number, good_id:number){
+export async function updateCargobyUserIdAndGoodId (user_id: number, good_id:number){
     let response = await Client.post(``);
     return await response.data;
 }
 
 //get user by id
-export async function getUserById (user_id: number){
+export async function getUserbyId (user_id: number){
     let response = await Client.post(``);
     return await response.data;
 }

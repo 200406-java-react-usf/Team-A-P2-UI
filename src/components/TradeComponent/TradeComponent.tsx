@@ -3,6 +3,9 @@ import { Redirect, Link, useHistory } from 'react-router-dom';
 
 import { Good } from "../../dtos/good";
 import { Cargo } from "../../dtos/cargo";
+import { PlanetCargo } from "../../dtos/planetCargo";
+
+import { getGoodbyId } from "../../remote/player-service"
 
 import GoodHolder from "../partials/GoodHolder/GoodHolder";
 
@@ -24,8 +27,8 @@ function Trade(props: ICargoProps) {
     let mockCargoList: Cargo[] = [
         new Cargo(1, 1, 1, 100)
     ];
-    let mockCityCargoList: Cargo[] = [
-        new Cargo(1, 1, 1, 100)
+    let mockCityCargoList: PlanetCargo[] = [
+        new PlanetCargo(1, 1, 1.5)
     ];
     let mockGoodList: Good[] = [
         new Good(1, "Precious Metal", 100, "It's valuable because it's shiny."),
@@ -84,7 +87,7 @@ function Trade(props: ICargoProps) {
                     let name = "test"
                     cargoArrUser.push(
                         <div className="good-wrapper unselect" key={"user-" + cargo.good_id} id={"user-" + cargo.good_id} onClick={selectDetail} >
-                            <GoodHolder good_name={name} good_qauntity={cargo.good_quantity} cost_of_goods={cargo.cost_of_goods} />
+                            <GoodHolder good_name={name} good_qauntity={cargo.good_quantity.toString()} cost_of_goods={cargo.cost_of_goods} />
                         </div>
                     )
                 }
@@ -96,17 +99,18 @@ function Trade(props: ICargoProps) {
             //let cityCargo = await getCityCargo();
             //setCityCargoList(cityCargo);
             //let cityPriceMod = await getCityPriceMod();
-            let cityPriceMod = 1.5;
 
             if (cityCargoList) {
-                for (let cargo of cityCargoList) {
-                    //let priceMod = await getCityPriceModByID();
-                    let priceMod = 1.5;
-                    //let name = await getGoodById(cargo.good_id);
-                    let name = "test"
+                for (let planetCargo of cityCargoList) {
+        
+                    //let good = await getGoodbyId(planetCargo.good_id);
+                    let good = new Good(1, "test", 10, "desc");
+                    let name = good.good_name;
+                    let price = good.good_base_price;
+
                     cargoArrCity.push(
-                        <div className="good-wrapper unselect" key={"city-" + cargo.good_id} id={"city-" + cargo.good_id} onClick={selectDetail} >
-                            <GoodHolder good_name={name} good_qauntity={cargo.good_quantity} cost_of_goods={cargo.cost_of_goods * priceMod} />
+                        <div className="good-wrapper unselect" key={"city-" + planetCargo.good_id} id={"city-" + planetCargo.good_id} onClick={selectDetail} >
+                            <GoodHolder good_name={name} good_qauntity={"--"} cost_of_goods={price * planetCargo.price_modifier} />
                         </div>
                     )
                 }

@@ -64,7 +64,7 @@ function CargoHolder(props: ICargoProps) {
 
                     cargoArr.push(
                         <div className="good-wrapper unselect" key={"invent-"+cargo.good_id} id={"invent-"+cargo.good_id} onClick={selectDetail} >
-                            <GoodHolder good_name={name} good_qauntity={cargo.good_quantity} cost_of_goods={cargo.cost_of_goods} />
+                            <GoodHolder good_name={name} good_qauntity={cargo.good_quantity.toString()} cost_of_goods={cargo.cost_of_goods} />
                         </div>
                     )
                 }

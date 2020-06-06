@@ -6,7 +6,7 @@ import "../../../style/goodHolder.scss";
 
 export interface IGoodProps {
     good_name: string;
-    good_qauntity: number;
+    good_qauntity: string;
     cost_of_goods: number;
 }
 

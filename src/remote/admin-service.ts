@@ -7,7 +7,7 @@ export async function getAllUser(){
     return await response.data;
 }
 
-export async function deleteUserByID(user_id: number){
+export async function deleteUserbyID(user_id: number){
     let response = await Client.get(`/users/${user_id}`);
     return await response.data;
 }
