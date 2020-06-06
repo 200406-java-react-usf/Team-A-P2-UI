@@ -22,30 +22,10 @@ function Trade(props: ICargoProps) {
     // const [cargoList, setCurrentCargo] = useState(props.currentCargoSize);
 
     let mockCargoList: Cargo[] = [
-        new Cargo(1, "Precious Metal", 1, 100),
-        new Cargo(2, "Synth Food", 1, 5),
-        new Cargo(3, "Heavy Weaponry", 1, 1000),
-        new Cargo(4, "Stimulants", 1, 500),
-        new Cargo(5, "Harvested Organs", 1, 2000),
-        new Cargo(6, "Yavinnium Gas", 1, 200),
-        new Cargo(7, "Zeyd Fabric", 1, 1500),
-        new Cargo(8, "Memory Plastic", 1, 300),
-        new Cargo(9, "Luxious Fur Pelt", 1, 500),
-        new Cargo(10, "Aldarran Jewlery", 1, 1000),
-        new Cargo(11, "Kyber Crystal", 1, 5000)
+        new Cargo(1, 1, 1, 100)
     ];
     let mockCityCargoList: Cargo[] = [
-        new Cargo(1, "Precious Metal", 100, 100),
-        new Cargo(2, "Synth Food", 100, 5),
-        new Cargo(3, "Heavy Weaponry", 100, 1000),
-        new Cargo(4, "Stimulants", 100, 500),
-        new Cargo(5, "Harvested Organs", 100, 2000),
-        new Cargo(6, "Yavinnium Gas", 100, 200),
-        new Cargo(7, "Zeyd Fabric", 100, 1500),
-        new Cargo(8, "Memory Plastic", 100, 300),
-        new Cargo(9, "Luxious Fur Pelt", 100, 500),
-        new Cargo(10, "Aldarran Jewlery", 100, 1000),
-        new Cargo(11, "Kyber Crystal", 100, 5000)
+        new Cargo(1, 1, 1, 100)
     ];
     let mockGoodList: Good[] = [
         new Good(1, "Precious Metal", 100, "It's valuable because it's shiny."),
@@ -100,9 +80,11 @@ function Trade(props: ICargoProps) {
             //setUserCargoList(userCargo);
             if (userCargoList) {
                 for (let cargo of userCargoList) {
+                    //let name = await getGoodById(cargo.good_id);
+                    let name = "test"
                     cargoArrUser.push(
                         <div className="good-wrapper unselect" key={"user-" + cargo.good_id} id={"user-" + cargo.good_id} onClick={selectDetail} >
-                            <GoodHolder good_name={cargo.good_name} good_qauntity={cargo.good_quantity} cost_of_goods={cargo.cost_of_goods} />
+                            <GoodHolder good_name={name} good_qauntity={cargo.good_quantity} cost_of_goods={cargo.cost_of_goods} />
                         </div>
                     )
                 }
@@ -120,10 +102,11 @@ function Trade(props: ICargoProps) {
                 for (let cargo of cityCargoList) {
                     //let priceMod = await getCityPriceModByID();
                     let priceMod = 1.5;
-
+                    //let name = await getGoodById(cargo.good_id);
+                    let name = "test"
                     cargoArrCity.push(
                         <div className="good-wrapper unselect" key={"city-" + cargo.good_id} id={"city-" + cargo.good_id} onClick={selectDetail} >
-                            <GoodHolder good_name={cargo.good_name} good_qauntity={cargo.good_quantity} cost_of_goods={cargo.cost_of_goods * priceMod} />
+                            <GoodHolder good_name={name} good_qauntity={cargo.good_quantity} cost_of_goods={cargo.cost_of_goods * priceMod} />
                         </div>
                     )
                 }
@@ -183,7 +166,7 @@ function Trade(props: ICargoProps) {
             let selectedCityPriceSlot = document.getElementById("city-" + id)?.children[3] as HTMLDivElement;
             //@ts-ignore
             let cityPrice = parseInt(selectedCityPriceSlot.textContent);
-            
+
             //buyaction(goodID, cityprice)
             console.log("buy")
 

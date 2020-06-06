@@ -1,19 +1,15 @@
 export class Planet{
-
-    good_name: string;
-    buy_price_mod: number;
-    sell_price_mod: number;
-    good_quantity: number;
+    planet_id: number;
+    planet_name: string;
+    price_modifier: number;
 
     constructor (
-        good_name: string,
-        buy_price_mod: number,
-        sell_price_mod: number,
-        good_quantity: number,
+        id: number,
+        planet_name: string,
+        price_mod: number,
     ){
-        this.good_name = good_name;
-        this.buy_price_mod = buy_price_mod;
-        this.sell_price_mod = sell_price_mod;
-        this.good_quantity = good_quantity;
+        this.planet_id = id;
+        this.planet_name = planet_name;
+        this.price_modifier = price_mod;
     }
 }

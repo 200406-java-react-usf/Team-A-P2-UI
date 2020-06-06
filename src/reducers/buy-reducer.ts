@@ -1,1 +1,1 @@
-import { Dispatch } from "redux"
+import { Dispatch } from "redux";

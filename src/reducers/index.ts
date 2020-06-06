@@ -11,7 +11,7 @@ export interface ILoginState {
 export interface ILogoutState {
     errorMessage: string;
 }
-export interface ICityState{
+export interface IPlanetState{
     currentlocation: Planet;
     errorMessage: string;
 }

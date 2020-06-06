@@ -20,7 +20,7 @@ function AdminComponent(props: IAdminProps) {
     //@ts-ignore
     const [usersDisplay, setUsersDisplay] = useState(null as any[]);
 
-    let mockUser = new User(1, "test", "test", 20, 1000, "Aderaan")
+    let mockUser = new User(1, "test", "test", "user", 20, 1000, 1)
 
     useEffect(() => {
         let userArr: any[] = [];
@@ -31,8 +31,8 @@ function AdminComponent(props: IAdminProps) {
             if (result) {
                 for (let user of result) {
                     userArr.push(
-                        <div className="admin-user-holder" key={"user-" + user.user_id} id={"user-" + user.user_id}>
-                            <div className="admin-user-cell-short">{user.user_id}</div>
+                        <div className="admin-user-holder" key={"user-" + user.id} id={"user-" + user.id}>
+                            <div className="admin-user-cell-short">{user.id}</div>
                             <div className="admin-user-cell-short">{user.username}</div>
                             <div className="admin-user-cell-short">{user.currency}</div>
                             <div className="admin-user-cell-short">{user.cargo_space}</div>

@@ -1,6 +1,8 @@
 //Action to change user's current location state and the state of the current city.
 import { Dispatch } from "redux"
 import { authenticate } from "../remote/auth-service"
+import { User } from "../dtos/user";
+import { getUserById, updateUser } from "../remote/player-service";
 
 export const moveActionTypes = {
     SUCCESSFUL_MOVE: 'SUCCESSFUL_MOVE',
@@ -10,11 +12,13 @@ export const moveActionTypes = {
 
 /*Would require current userID to know which user to change the locations for and the planet_name to change to
 back-end would handle changing planet_name to the planet_id to assign to the user */
-export const moveAction = (userID: number, planet_name: string) => async (dispatch: Dispatch) => {
+export const moveAction = (user_id: number, planet_id: number) => async (dispatch: Dispatch) => {
 
     try {
-
-        // let boughtGoods = await buyBackEndFunction(userID, planet_name);
+        //upgrade
+        let user: User = await getUserById(user_id);
+        user.location = planet_id;
+        await updateUser(user);
         dispatch({
             type: moveActionTypes.SUCCESSFUL_MOVE,
             // payload: authUser

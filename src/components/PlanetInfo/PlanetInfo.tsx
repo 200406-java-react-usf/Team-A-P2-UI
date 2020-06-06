@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { Redirect, Link, useHistory } from 'react-router-dom';
-
+import axios from 'axios';
 import { Planet } from "../../dtos/planet";
 
 import GoodHolder from "../partials/GoodHolder/GoodHolder";
@@ -45,7 +45,7 @@ function Trade(props: IMapProps) {
             //setPlanetCargoList(planetCargo);
             //let planetPriceMod = await getPlanetPriceMod();
             let mockPlanetList = [
-                new Planet(1, "Tatooine")
+                new Planet(1, "Tatooine", 1.5)
             ];
 
             if (mockPlanetList) {
@@ -99,42 +99,12 @@ function Trade(props: IMapProps) {
         let name = element.children[1].textContent;
         //@ts-ignore
         let id = parseInt(element.children[0].textContent);
+        let SWAPIURL = `https://swapi.dev/api/planets/?search=${name}`;
+        let SWAPInfo;
+        axios.get(SWAPIURL).then(function(response) {
+            SWAPInfo = response.data;
+        });
 
-        //let SWAPInfo = await getPlanet(name)
-        //https://swapi.dev/api/planets/?search=Tatooine
-        let SWAPInfo = {
-            "name": "Tatooine",
-            "rotation_period": "23",
-            "orbital_period": "304",
-            "diameter": "10465",
-            "climate": "arid",
-            "gravity": "1 standard",
-            "terrain": "desert",
-            "surface_water": "1",
-            "population": "200000",
-            "residents": [
-                "http://swapi.dev/api/people/1/",
-                "http://swapi.dev/api/people/2/",
-                "http://swapi.dev/api/people/4/",
-                "http://swapi.dev/api/people/6/",
-                "http://swapi.dev/api/people/7/",
-                "http://swapi.dev/api/people/8/",
-                "http://swapi.dev/api/people/9/",
-                "http://swapi.dev/api/people/11/",
-                "http://swapi.dev/api/people/43/",
-                "http://swapi.dev/api/people/62/"
-            ],
-            "films": [
-                "http://swapi.dev/api/films/1/",
-                "http://swapi.dev/api/films/3/",
-                "http://swapi.dev/api/films/4/",
-                "http://swapi.dev/api/films/5/",
-                "http://swapi.dev/api/films/6/"
-            ],
-            "created": "2014-12-09T13:50:49.641000Z",
-            "edited": "2014-12-20T20:58:18.411000Z",
-            "url": "http://swapi.dev/api/planets/1/"
-        }
         let iconList = document.getElementsByClassName("icon-ani");
         for (let i = 0; i < iconList.length; i++) {
             const icon = iconList[i] as HTMLElement;

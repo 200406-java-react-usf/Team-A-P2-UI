@@ -1,6 +1,8 @@
 //Action would change the state of the cargo and current user currency based on the upgrade bought
 import { Dispatch } from "redux"
 import { authenticate } from "../remote/auth-service"
+import { User } from "../dtos/user";
+import { getUserById, updateUser } from "../remote/player-service";
 
 export const upgrageActionTypes = {
     SUCCESSFUL_UPGRADE: 'SUCCESSFUL_UPGRADE',
@@ -9,11 +11,14 @@ export const upgrageActionTypes = {
 }
 
 /*Would require current userID to know which user to change cargo for and the cost of the upgrade*/
-export const upgradeAction = (userID: number, cost: number ) => async (dispatch: Dispatch) => {
+export const upgradeAction = (user_id: number) => async (dispatch: Dispatch) => {
 
     try {
-
-        // let soldGoods = await buyBackEndFunction(userID, good_id, good_quantity, planet_name);
+        //upgrade
+        let user: User = await getUserById(user_id);
+        user.currency -= 1000;
+        user.cargo_space += 10;
+        await updateUser(user);
         dispatch({
             type: upgrageActionTypes.SUCCESSFUL_UPGRADE,
             // payload: authUser

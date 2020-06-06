@@ -31,17 +31,7 @@ function UserHolder(props: IUserProps) {
 
 
     let mockCargoList: Cargo[] = [
-        new Cargo(1, "Precious Metal", 1, 100),
-        new Cargo(2, "Synth Food", 1, 5),
-        new Cargo(3, "Heavy Weaponry", 1, 1000),
-        new Cargo(4, "Stimulants", 1, 500),
-        new Cargo(5, "Harvested Organs", 1, 2000),
-        new Cargo(6, "Yavinnium Gas", 1, 200),
-        new Cargo(7, "Zeyd Fabric", 1, 1500),
-        new Cargo(8, "Memory Plastic", 1, 300),
-        new Cargo(9, "Luxious Fur Pelt", 1, 500),
-        new Cargo(10, "Aldarran Jewlery", 1, 1000),
-        new Cargo(11, "Kyber Crystal", 1, 5000)
+        new Cargo(1, 1, 1, 100),
     ];
 
     let mockGoodList: Good[] = [
@@ -58,10 +48,6 @@ function UserHolder(props: IUserProps) {
         new Good(11, "Kyber Crystal", 5000, "Perfect for creating a positive Feng Shui or light saber")
     ];
     
-    let timeout = function (ms: number) {
-        return new Promise(resolve => setTimeout(resolve, ms))
-    }
-
     useEffect(() => {
         let getCurrentCargo = async () => {
             //let result: Cargo[] = await getAllUserCargo();

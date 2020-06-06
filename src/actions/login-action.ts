@@ -1,6 +1,7 @@
 // Action to change user logged in state with the corresponding logged in user.
 import { Dispatch } from "redux"
 import { authenticate } from "../remote/auth-service"
+import { User } from "../dtos/user";
 
 export const loginActionTypes = {
     SUCCESSFUL_LOGIN: 'SUCCESSFUL_LOGIN',
@@ -13,7 +14,7 @@ export const loginAction = (username: string, password: string) => async (dispat
 
     try {
 
-        let authUser = await authenticate(username, password);
+        let authUser:User = await authenticate(username, password);
         dispatch({
             type: loginActionTypes.SUCCESSFUL_LOGIN,
             payload: authUser
