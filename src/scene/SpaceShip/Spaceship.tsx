@@ -159,7 +159,7 @@ function Spaceship() {
         }
     }
 
-    let travel = async () => {
+    let travel = async (id: string) => {
         let room = document.getElementById("cube-spaceship") as HTMLDivElement;
         let background = document.getElementById("background") as HTMLDivElement;
         let cameraLock = document.getElementById("camera-lock") as HTMLDivElement;
@@ -179,6 +179,7 @@ function Spaceship() {
         await timeout(2000);
         room.classList.remove("cube-spaceship-launch");
         room.classList.add("cube-spaceship-jumpPrep");
+        background.className = "background background-below"
         await timeout(100);
         room.classList.remove("cube-spaceship-jumpPrep");
         room.classList.add("cube-spaceship-jump");
@@ -186,12 +187,11 @@ function Spaceship() {
         room.classList.remove("cube-spaceship-jump");
         room.classList.add("cube-spaceship-jumpPrep");
         background.classList.remove("background-below");
-
+        background.classList.add(`s-3-background-${id}`)
         await timeout(2000);
         room.classList.remove("cube-spaceship-jumpPrep");
         room.classList.add("cube-spaceship-map");
         await timeout(500);
-        background.classList.remove("background-below");
         cameraLock.classList.remove("hidden");
     }
     let [travelAni] = useState(() => { return travel })
@@ -313,6 +313,7 @@ function Spaceship() {
                         <div id="cube-face-spaceship-3-c" className="cube-face-spaceship">
                             3-c
                         </div>
+                        <div id="background" className="background background-default" ></div>
                         <div id="cube-face-spaceship-3-d" className="cube-face-spaceship">
                             3-d
                         </div>
@@ -327,12 +328,6 @@ function Spaceship() {
                         </div>
                         <div id="cube-face-spaceship-4-b" className="cube-face-spaceship">
                             4-b
-                        </div>
-                        <div id="cube-face-spaceship-4-c" className="cube-face-spaceship">
-                            4-c
-                        </div>
-                        <div id="cube-face-spaceship-4-d" className="cube-face-spaceship">
-                            4-d
                         </div>
                         <div id="cube-face-spaceship-slot">
                             <div className="invent-row">
@@ -351,6 +346,13 @@ function Spaceship() {
                                 <div id="cube-invent-slot-9" className="cube-invent-slot"></div>
                             </div>
                         </div>
+                        <div id="cube-face-spaceship-4-c" className="cube-face-spaceship">
+                            4-c
+                        </div>
+                        <div id="cube-face-spaceship-4-d" className="cube-face-spaceship">
+                            4-d
+                        </div>
+
                         <div id="cube-face-spaceship-5-a" className="cube-top-spaceship">
                             5-a
                         </div>
@@ -362,6 +364,9 @@ function Spaceship() {
                         </div>
                         <div id="cube-face-spaceship-6-a" className="cube-bot-spaceship">
                             FLOOR
+                        </div>
+                        <div id="cube-face-spaceship-6-z" className="cube-bot-spaceship">
+                            FLOOR2
                         </div>
                         <div id="cube-face-spaceship-6-b" className="cube-bot-spaceship">
 
@@ -380,7 +385,7 @@ function Spaceship() {
                             </div>
                         </div>
                     </div>
-                    <div id="background" className="background" ></div>
+                    
                 </div>
             </div>
         </>

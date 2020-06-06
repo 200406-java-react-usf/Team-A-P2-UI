@@ -77,6 +77,7 @@ function Trade(props: IMapProps) {
                 setPlanetDetail(detail);
             }
         }
+        
         let getCurrentLoc = async () => {
             let iconList = document.getElementsByClassName("icon-ani");
             for (let i = 0; i < iconList.length; i++) {
@@ -98,8 +99,6 @@ function Trade(props: IMapProps) {
         let name = element.children[1].textContent;
         //@ts-ignore
         let id = parseInt(element.children[0].textContent);
-
-        console.log(name);
 
         //let SWAPInfo = await getPlanet(name)
         //https://swapi.dev/api/planets/?search=Tatooine
@@ -141,7 +140,6 @@ function Trade(props: IMapProps) {
             const icon = iconList[i] as HTMLElement;
             icon.classList.remove("icon-ani")
         }
-        console.log(id);
 
         let icon = document.getElementById("map-city-" + id) as HTMLDivElement;
         console.log(icon);
@@ -153,7 +151,7 @@ function Trade(props: IMapProps) {
         //await travel action
         //const [currentLoc, setCurrentLoc] = useState(props.autherUser.location);
         setCurrentLoc(2);
-        props.travelAni()
+        props.travelAni(1)
     }
     return (
         <>
