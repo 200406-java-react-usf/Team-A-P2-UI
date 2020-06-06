@@ -2,7 +2,10 @@ import { User } from "../dtos/user";
 import { combineReducers } from "redux";
 import { loginReducer } from "./login-reducer";
 import { logoutReducer } from "./logout-reducer";
-import { Planet } from "../dtos/planet";
+import { Cargo } from "../dtos/cargo";
+import { tradeReducer } from "./trade-reducer";
+import { moveReducer } from "./move-reducer";
+import { upgradeReducer } from "./upgrade-reducer";
 
 export interface ILoginState {
     authUser: User;
@@ -11,16 +14,32 @@ export interface ILoginState {
 export interface ILogoutState {
     errorMessage: string;
 }
-export interface IPlanetState{
-    currentlocation: Planet;
+export interface ITradeState{
+    userCargoList: Cargo[];
+    errorMessage: string;
+}
+export interface IMoveState{
+    userLocation: number;
+    errorMessage: string;
+}
+export interface IUpgradeState{
+    userLocation: number;
     errorMessage: string;
 }
 export interface IState {
     login: ILoginState;
     logout: ILogoutState;
+    trade: ITradeState;
+    move: IMoveState;
+    upgrade:IUpgradeState;
 }
+
+
 
 export const state = combineReducers<IState>({
     login: loginReducer,
-    logout: logoutReducer
+    logout: logoutReducer,
+    trade: tradeReducer,
+    move: moveReducer,
+    upgrade: upgradeReducer
 });

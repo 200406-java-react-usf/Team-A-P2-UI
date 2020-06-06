@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { Redirect, Link, useHistory } from 'react-router-dom';
 
+import { User } from "../../dtos/user";
 import { Good } from "../../dtos/good";
 import { Cargo } from "../../dtos/cargo";
 
@@ -11,14 +11,12 @@ import GoodHolder from "../partials/GoodHolder/GoodHolder";
 import "../../style/cargoHolder.scss";
 
 export interface ICargoProps {
-    // userCargo: Cargo[];
-    // errorMessage: string;
+    authUser: User;
+    userCargo: Cargo[];
+    errorMessage: string;
 }
 
 function CargoHolder(props: ICargoProps) {
-
-    const [readyState, setReadyState] = useState(false);
-
 
     let mockCargoList: Cargo[] = [
         new Cargo(1, 1, 1, 100),

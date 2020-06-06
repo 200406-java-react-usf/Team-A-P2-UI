@@ -21,7 +21,7 @@ export const upgradeAction = (user_id: number) => async (dispatch: Dispatch) => 
         await updateUser(user);
         dispatch({
             type: upgrageActionTypes.SUCCESSFUL_UPGRADE,
-            // payload: authUser
+            payload: user
         });
 
     } catch (e) {

@@ -4,7 +4,7 @@ import { Redirect, Link, useHistory } from 'react-router-dom';
 import "../../style/spaceship.scss"
 
 import UserHolder from "../../components/UserHolder/UserHolderContainer";
-import CargoHolder from "../../components/CargoHolder/CargoHolder";
+import CargoHolder from "../../components/CargoHolder/CargoHolderContainer";
 import Trade from "../../components/TradeComponent/TradeComponent";
 import PlanetInfo from "../../components/PlanetInfo/PlanetInfo";
 

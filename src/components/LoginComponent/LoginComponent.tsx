@@ -6,9 +6,9 @@ import UserHolder from "../../components/UserHolder/UserHolder"
 
 
 export interface ILoginProps {
-    //authUser: User;
-    //errorMessage: string;
-    //loginAction: (username: string, password: string) => void;
+    authUser: User;
+    errorMessage: string;
+    loginAction: (username: string, password: string) => void;
 }
 
 function LoginComponent(props: ILoginProps) {

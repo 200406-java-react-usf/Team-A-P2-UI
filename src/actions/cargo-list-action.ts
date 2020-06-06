@@ -9,14 +9,14 @@ export const cargoListActionTypes = {
     INTERNAL_SERVER_ERROR: 'INTERNAL_SERVER_ERROR'
 }
 
-export const cargoListAction = (id: number) => async (dispatch: Dispatch) => {
+export const cargoListAction = (user_id: number) => async (dispatch: Dispatch) => {
 
     try {
 
-        let UserCargo:Cargo[] = await getCargoListbyUserId(id);
+        let userCargoList:Cargo[] = await getCargoListbyUserId(user_id);
         dispatch({
             type: cargoListActionTypes.SUCCESSFUL_GETLIST,
-            payload: UserCargo
+            payload: userCargoList
         });
 
     } catch (e) {

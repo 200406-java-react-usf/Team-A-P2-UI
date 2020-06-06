@@ -3,10 +3,9 @@ import { Redirect, Link, useHistory } from 'react-router-dom';
 
 import "../../style/entrance.scss"
 
-import UserHolder from "../../components/UserHolder/UserHolder"
-import LoginComponent from "../../components/LoginComponent/LoginComponent"
-import RegisterComponent from "../../components/RegisterComponent/RegisterComponent"
-import AdminComponent from "../../components/AdminComponent/AdminComponent"
+import LoginComponent from "../../components/LoginComponent/LoginComponentContainer"
+import RegisterComponent from "../../components/RegisterComponent/RegisterComponentContainer"
+import AdminComponent from "../../components/AdminComponent/AdminComponentContainer"
 
 
 function Entrance() {

@@ -21,7 +21,7 @@ export const moveAction = (user_id: number, planet_id: number) => async (dispatc
         await updateUser(user);
         dispatch({
             type: moveActionTypes.SUCCESSFUL_MOVE,
-            // payload: authUser
+            payload: user
         });
 
     } catch (e) {

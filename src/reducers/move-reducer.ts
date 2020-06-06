@@ -1,26 +1,26 @@
 /*Changes state of authUser's location and the then changes the state of the currentCity to the appropiate city*/
-/*Changes authUser state when upgrade action is called.*/
-import { IUpgradeState } from ".";
+/*Changes authUser state when move action is called.*/
+import { IMoveState } from ".";
 import { User } from "../dtos/user";
 import { AnyAction } from "redux";
-import { upgrageActionTypes } from "../actions/upgrade-action";
-const initialState: IUpgradeState = {
+import { moveActionTypes } from "../actions/move-action";
+const initialState: IMoveState = {
     // @ts-ignore
     authUser: (null as User),
     errorMessage: ''
 }
 
-export const upgradeReducer = (state: IUpgradeState = initialState, action: AnyAction) => {
+export const moveReducer = (state: IMoveState = initialState, action: AnyAction) => {
 
     switch (action.type) {
 
-        case upgrageActionTypes.SUCCESSFUL_UPGRADE:
+        case moveActionTypes.SUCCESSFUL_MOVE:
             return {
                 ...state,
                 authUser: action.payload
             }
-        case upgrageActionTypes.BAD_REQUEST:
-        case upgrageActionTypes.INTERNAL_SERVER_ERROR:
+        case moveActionTypes.BAD_REQUEST:
+        case moveActionTypes.INTERNAL_SERVER_ERROR:
             return {
                 ...state,
                 errorMessage: action.payload
