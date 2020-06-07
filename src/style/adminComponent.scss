@@ -4,8 +4,9 @@
     position: absolute;
     margin: 10px 10px 0px 40px;
     width: 680px;
-    height: 550px;
-    background-color: rgba(0, 128, 0, 0.678);
+    height: 540px;
+    background-color: $grey;
+    border: 5px solid $blue;
     overflow: auto;
 }
 
@@ -14,7 +15,7 @@
     margin: 10px;
     width: 660px;
     height: 40px;
-    background-color: rgba(128, 0, 0, 0.678);
+    background-color: whitesmoke;
 }
 
 .admin-user-cell-short {
@@ -23,7 +24,8 @@
     height: 30px;
     line-height: 30px;
     text-align: center;
-    background-color: rgb(255, 255, 255);
+    background-color: $grey;
+    color: whitesmoke;
     vertical-align: top;
     margin: 5px;
 }
