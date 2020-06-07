@@ -5,7 +5,7 @@
     margin: 10px 10px 0px 710px;
     width: 480px;
     height: 550px;
-    background-color: rgba(0, 128, 0, 0.678);
+    background-image: url("./img/cargo-wrapper.png");
     overflow: auto;
 }
 
@@ -15,7 +15,8 @@
     margin: 10px 10px 0px 10px;
     width: 480px;
     height: 480px;
-    background-color: rgba(0, 128, 0, 0.678);
+    background-size: 100% 100%;
+    background-image: url("./img/cargo-wrapper.png");
     overflow: auto;
 }
 
@@ -23,10 +24,10 @@
     display: inline-block;
     position: absolute;
     left: 490px;
-    margin: 10px 10px 0px 10px;
+    margin: 15px 10px 0px 10px;
     width: 200px;
     height: 550px;
-    background-color: rgba(233, 24, 24, 0.678);
+    background-image: url("./img/trade-interface.png");
 }
 
 .good-img-slot-trade {
@@ -40,21 +41,25 @@
 
 .good-name-slot-trade {
     display: inline-block;
-    width: 160px;
-    height: 50px;
-    background-color: rgb(255, 255, 255);
+    width: 150px;
+    height: 40px;
+    background-color: whitesmoke;
+    border: solid 5px $blue;
+    line-height: 40px;
+    color: $grey;
     vertical-align: top;
     margin: 0px 20px 0px 20px;
     text-align: center;
-    line-height: 50px;
 }
 
 .good-desc-slot-trade {
     display: inline-block;
     padding: 5px;
-    width: 150px;
-    height: 90px;
-    background-color: rgb(255, 255, 255);
+    width: 140px;
+    height: 80px;
+    background-color: whitesmoke;
+    border: solid 5px $blue;
+    color: $grey;
     vertical-align: top;
     margin: 20px 20px 0px 20px;
     text-align: left;
@@ -66,7 +71,7 @@
     display: inline-block;
     width: 160px;
     height: 50px;
-    background-color: rgb(255, 255, 255);
+    background-color: $grey;
     vertical-align: top;
     margin: 20px 20px 0px 20px;
     text-align: center;
@@ -78,9 +83,15 @@
     float: left;
     width: 50px;
     height: 50px;
-    background-color: rgb(119, 226, 160);
+    background-color: $blue;
+    color: whitesmoke;
     text-align: center;
     line-height: 50px;
+}
+
+.good-btn-slot-trade-buy:hover {
+    background-color: whitesmoke;
+    color: $grey;
 }
 
 .good-btn-slot-trade-sell {
@@ -88,7 +99,28 @@
     float: right;
     width: 50px;
     height: 50px;
-    background-color: rgb(119, 226, 160);
+    background-color: $blue;
+    color: whitesmoke;
     text-align: center;
     line-height: 50px;
+}
+
+.good-btn-slot-trade-sell:hover {
+    background-color: whitesmoke;
+    color: $grey;
+}
+
+#trade-user-currency {
+    display: inline-block;
+    position: absolute;
+    top: 490px;
+    padding-right: 30px;
+    width: 430px;
+    height: 40px;
+    margin: 10px 15px 0px 15px;
+    color: whitesmoke;
+    border: solid 5px $blue;
+    line-height: 40px;
+    background-color: $grey;
+    text-align: right;
 }

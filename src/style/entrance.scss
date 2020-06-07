@@ -8,7 +8,7 @@
 
 .viewport {
     width: 1200px;
-    height: 800px;
+    height: 750px;
     background-color: rgba(0, 0, 0, 0);
     position: absolute;
     top: 0;
@@ -54,6 +54,11 @@
     margin: 25px 45px 25px 45px;
     background-image: url("./img/150btn.png");
     color: whitesmoke;
+}
+
+.camera-btn:hover {
+    color: $grey;
+    background-image: url("./img/150btn-select.png");
 }
 
 .cube-front {

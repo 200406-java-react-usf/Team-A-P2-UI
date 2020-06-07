@@ -10,18 +10,18 @@ import { getGoodbyId } from "../../remote/player-service"
 import GoodHolder from "../partials/GoodHolder/GoodHolder";
 
 import "../../style/tradeComponent.scss";
+import { User } from '../../dtos/user';
+import { Planet } from '../../dtos/planet';
 
 export interface ICargoProps {
-    //authUser: User;
-    //location: Planet;
-    //currentCargoSize: number;
-    //errorMessage: string;
+    authUser: User;
+    errorMessage: string;
 }
 
 function Trade(props: ICargoProps) {
 
-    const [readyState, setReadyState] = useState(false);
-
+    //const [user, setUser] = useState(props.authUser);
+    const [user, setUser] = useState(new User(1, "test", "test", "user", 20, 1000, 1));
     // const [cargoList, setCurrentCargo] = useState(props.currentCargoSize);
 
     let mockCargoList: Cargo[] = [
@@ -102,7 +102,7 @@ function Trade(props: ICargoProps) {
 
             if (cityCargoList) {
                 for (let planetCargo of cityCargoList) {
-        
+
                     //let good = await getGoodbyId(planetCargo.good_id);
                     let good = new Good(1, "test", 10, "desc");
                     let name = good.good_name;
@@ -183,7 +183,6 @@ function Trade(props: ICargoProps) {
             //@ts-ignore
             let cityPrice = parseInt(selectedCityPriceSlot.textContent);
             //sellaction(goodID, cityprice)
-            console.log("sell")
         }
     }
     return (
@@ -196,6 +195,9 @@ function Trade(props: ICargoProps) {
                     <div className="good-price-slot-header unselect">PRICE</div>
                 </div>
                 {cargoListDisplay}
+            </div>
+            <div id="trade-user-currency">
+                {user.currency} CREDITS
             </div>
             <div id="trade-interface" className="trade-interface">
                 {/* <div className="good-img-slot-detail" style ={ { backgroundImage: "" } } ></div> */}

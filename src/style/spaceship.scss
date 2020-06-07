@@ -13,7 +13,13 @@
         line-height: 50px;
         text-align: center;
         margin: 25px 50px 25px 50px;
-        background-color: rgba(161, 69, 69, 0.514);
+        background-image: url("./img/200btn.png");
+        color: whitesmoke;
+    }
+    
+    .camera-btn-spaceship:hover {
+        color: $grey;
+        background-image: url("./img/200btn-select.png");
     }
     
     .cube-spaceship-default {

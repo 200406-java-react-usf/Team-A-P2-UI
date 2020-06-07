@@ -53,8 +53,8 @@ function Trade(props: IMapProps) {
                     //let priceMod = await getPlanetPriceModByID();
                     planetDisplayList.push(
                         <div className="city-slot-wrapper" key={"planet-" + planet.planet_id} id={"planet-" + planet.planet_id} onClick={selectDetail}>
-                            <div className="city-slot-cell-id">{planet.planet_id}</div>
-                            <div className="city-slot-cell">{planet.planet_name}</div>
+                            <div className="city-slot-cell-id unselect">{planet.planet_id}</div>
+                            <div className="city-slot-cell unselect">{planet.planet_name}</div>
                         </div>
                     )
                 }
@@ -68,10 +68,10 @@ function Trade(props: IMapProps) {
                     <>
                         <div className="SWAPIInfo" key={SWAPIPlanet.name}>
                             <div className="SWAPIInfo-img"></div>
-                            <div className="SWAPIInfo-name">{SWAPIPlanet.name}</div>
-                            <div className="SWAPIInfo-sub">CLIMATE: {SWAPIPlanet.climate}</div>
-                            <div className="SWAPIInfo-sub">TERRAIN: {SWAPIPlanet.terrain}</div>
-                            <div className="SWAPIInfo-sub">POPULATION: {SWAPIPlanet.population}</div>
+                            <div className="SWAPIInfo-name unselect">{SWAPIPlanet.name}</div>
+                            <div className="SWAPIInfo-sub unselect">CLIMATE: {SWAPIPlanet.climate}</div>
+                            <div className="SWAPIInfo-sub unselect">TERRAIN: {SWAPIPlanet.terrain}</div>
+                            <div className="SWAPIInfo-sub unselect">POPULATION: {SWAPIPlanet.population}</div>
                         </div>
                     </>
                 setPlanetDetail(detail);
@@ -102,7 +102,8 @@ function Trade(props: IMapProps) {
         let SWAPIURL = `https://swapi.dev/api/planets/?search=${name}`;
         let SWAPInfo;
         axios.get(SWAPIURL).then(function(response) {
-            SWAPInfo = response.data;
+            SWAPInfo = response.data.results[0];
+            setSWAPIPlanet(SWAPInfo);
         });
 
         let iconList = document.getElementsByClassName("icon-ani");
@@ -112,9 +113,8 @@ function Trade(props: IMapProps) {
         }
 
         let icon = document.getElementById("map-city-" + id) as HTMLDivElement;
-        console.log(icon);
         icon.children[0].classList.add("icon-ani");
-        setSWAPIPlanet(SWAPInfo);
+
         setDestination(id);
     }
     let travel = async (e: any) => {

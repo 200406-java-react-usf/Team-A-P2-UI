@@ -5,8 +5,8 @@ import "../../style/spaceship.scss"
 
 import UserHolder from "../../components/UserHolder/UserHolderContainer";
 import CargoHolder from "../../components/CargoHolder/CargoHolderContainer";
-import Trade from "../../components/TradeComponent/TradeComponent";
-import PlanetInfo from "../../components/PlanetInfo/PlanetInfo";
+import TradeComponent from "../../components/TradeComponent/TradeComponentContainer";
+import PlanetInfo from "../../components/PlanetInfo/PlanetInfoContainer";
 
 function Spaceship() {
 
@@ -214,16 +214,16 @@ function Spaceship() {
                     <div id="mask" className="camera"></div>
                     <div id="camera" className="camera transparent">
                         <div id="camera-bar" className="camera-bar">
-                            <div id="camera-btn-map" onMouseEnter={cameraMovement} onClick={displayfocus} className="camera-btn-spaceship">
+                            <div id="camera-btn-map" onMouseEnter={cameraMovement} onClick={displayfocus} className="camera-btn-spaceship unselect">
                                 VIEW GALAXY MAP
                             </div>
-                            <div id="camera-btn-inventory" onMouseEnter={cameraMovement} onClick={displayfocus} className="camera-btn-spaceship">
+                            <div id="camera-btn-inventory" onMouseEnter={cameraMovement} onClick={displayfocus} className="camera-btn-spaceship unselect">
                                 CURRENT INVENTORY
                             </div>
-                            <div id="camera-btn-trade" onMouseEnter={cameraMovement} onClick={displayfocus} className="camera-btn-spaceship">
+                            <div id="camera-btn-trade" onMouseEnter={cameraMovement} onClick={displayfocus} className="camera-btn-spaceship unselect">
                                 TRADE WITH CITY
                             </div>
-                            <div id="camera-btn-menu" onMouseEnter={cameraMovement} onClick={displayfocus} className="camera-btn-spaceship">
+                            <div id="camera-btn-menu" onMouseEnter={cameraMovement} onClick={displayfocus} className="camera-btn-spaceship unselect">
                                 BACK TO MENU
                             </div>
                         </div>
@@ -235,7 +235,7 @@ function Spaceship() {
                                     < PlanetInfo travelAni={travelAni} />
                                 </div>
                                 <div id="camera-lock-bar" className="camera-bar">
-                                    <div id="camera-btn-back" onClick={backAction} className="camera-btn">
+                                    <div id="camera-btn-back" onClick={backAction} className="camera-btn unselect">
                                         CANCEL
                                     </div>
                                 </div>
@@ -244,11 +244,11 @@ function Spaceship() {
                         {(action === "trade") ?
                             <>
                                 <div className="camera-info">
-                                    < Trade />
+                                    < TradeComponent />
                                 </div>
                                 <div id="camera-lock-bar" className="camera-bar">
 
-                                    <div id="camera-btn-back" onClick={backAction} className="camera-btn">
+                                    <div id="camera-btn-back" onClick={backAction} className="camera-btn unselect">
                                         CANCEL
                                     </div>
                                 </div>
@@ -261,7 +261,7 @@ function Spaceship() {
                                     < CargoHolder />
                                 </div>
                                 <div id="camera-lock-bar" className="camera-bar">
-                                    <div id="camera-btn-back" onClick={backAction} className="camera-btn">
+                                    <div id="camera-btn-back" onClick={backAction} className="camera-btn unselect">
                                         CANCEL
                                     </div>
                                 </div>
@@ -269,10 +269,10 @@ function Spaceship() {
                             : null}
                         {(action === "menu") ?
                             <div id="camera-lock-bar" className="camera-bar">
-                                <div id="camera-btn-back" onClick={backAction} className="camera-btn">
+                                <div id="camera-btn-back" onClick={backAction} className="camera-btn unselect">
                                     CANCEL
                                     </div>
-                                <div id="camera-btn-confirm" onClick={toMainMenu} className="camera-btn">
+                                <div id="camera-btn-confirm" onClick={toMainMenu} className="camera-btn unselect">
                                     MAIN MENU
                                 </div>
                             </div>
@@ -280,54 +280,37 @@ function Spaceship() {
                     </div>
                     <div id="cube-spaceship" className="cube-spaceship-default">
                         <div id="cube-face-spaceship-1-a" className="cube-face-spaceship">
-                            1-a
                         </div>
                         <div id="cube-face-spaceship-1-b" className="cube-face-spaceship">
-                            1-b
                         </div>
                         <div id="cube-face-spaceship-1-c" className="cube-face-spaceship">
-                            1-c
                         </div>
                         <div id="cube-face-spaceship-2-a" className="cube-face-spaceship">
-                            2-a
                         </div>
                         <div id="cube-face-spaceship-2-b" className="cube-face-spaceship">
-                            2-b
                         </div>
                         <div id="cube-face-spaceship-2-b-door" className="cube-face-spaceship">
-                            door
                         </div>
                         <div id="cube-face-spaceship-2-c" className="cube-face-spaceship">
-                            2-c
                         </div>
                         <div id="cube-face-spaceship-2-d" className="cube-face-spaceship">
-                            2-d
                         </div>
-
                         <div id="cube-face-spaceship-3-a" className="cube-face-spaceship">
-                            3-a
                         </div>
                         <div id="cube-face-spaceship-3-b" className="cube-face-spaceship">
-                            3-b
                         </div>
                         <div id="cube-face-spaceship-3-c" className="cube-face-spaceship">
-                            3-c
                         </div>
                         <div id="background" className="background background-default" ></div>
                         <div id="cube-face-spaceship-3-d" className="cube-face-spaceship">
-                            3-d
                         </div>
                         <div id="cube-face-spaceship-3-e" className="cube-face-spaceship">
-                            3-e
                         </div>
                         <div id="cube-face-spaceship-3-f" className="cube-face-spaceship">
-                            3-f
                         </div>
                         <div id="cube-face-spaceship-4-a" className="cube-face-spaceship">
-                            4-a
                         </div>
                         <div id="cube-face-spaceship-4-b" className="cube-face-spaceship">
-                            4-b
                         </div>
                         <div id="cube-face-spaceship-slot">
                             <div className="invent-row">
@@ -347,32 +330,22 @@ function Spaceship() {
                             </div>
                         </div>
                         <div id="cube-face-spaceship-4-c" className="cube-face-spaceship">
-                            4-c
                         </div>
                         <div id="cube-face-spaceship-4-d" className="cube-face-spaceship">
-                            4-d
                         </div>
-
                         <div id="cube-face-spaceship-5-a" className="cube-top-spaceship">
-                            5-a
                         </div>
                         <div id="cube-face-spaceship-5-b" className="cube-face-spaceship">
-                            5-b
                         </div>
                         <div id="cube-face-spaceship-5-c" className="cube-face-spaceship">
-                            5-c
                         </div>
                         <div id="cube-face-spaceship-6-a" className="cube-bot-spaceship">
-                            FLOOR
                         </div>
                         <div id="cube-face-spaceship-6-z" className="cube-bot-spaceship">
-                            FLOOR2
                         </div>
                         <div id="cube-face-spaceship-6-b" className="cube-bot-spaceship">
-
                         </div>
                         <div id="cube-face-spaceship-6-c" className="cube-bot-spaceship">
-                            table top
                         </div>
                         <div id="cube-face-spaceship-6-d" className="cube-bot-spaceship">
                             <div id="cube-wrap">

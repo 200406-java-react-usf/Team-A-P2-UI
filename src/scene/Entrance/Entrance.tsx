@@ -195,19 +195,19 @@ function Entrance() {
                     <div id="mask" className="camera"></div>
                     <div id="camera" className="camera">
                         <div id="camera-bar" className="camera-bar">
-                            <div id="camera-btn-load" onMouseEnter={cameraMovement} onClick={displayfocus} className="camera-btn">
+                            <div id="camera-btn-load" onMouseEnter={cameraMovement} onClick={displayfocus} className="camera-btn unselect">
                                 LOAD GAME
                             </div>
-                            <div id="camera-btn-addnew" onMouseEnter={cameraMovement} onClick={displayfocus} className="camera-btn">
+                            <div id="camera-btn-addnew" onMouseEnter={cameraMovement} onClick={displayfocus} className="camera-btn unselect">
                                 NEW GAME
                             </div>
-                            <div id="camera-btn-credit" onMouseEnter={cameraMovement} onClick={displayfocus} className="camera-btn">
+                            <div id="camera-btn-credit" onMouseEnter={cameraMovement} onClick={displayfocus} className="camera-btn unselect">
                                 CREDIT
                             </div>
-                            <div id="camera-btn-setting" onMouseEnter={cameraMovement} onClick={displayfocus} className="camera-btn">
+                            <div id="camera-btn-setting" onMouseEnter={cameraMovement} onClick={displayfocus} className="camera-btn unselect">
                                 SETTING
                             </div>
-                            <div id="camera-btn-exit" onMouseEnter={cameraMovement} onClick={displayfocus} className="camera-btn">
+                            <div id="camera-btn-exit" onMouseEnter={cameraMovement} onClick={displayfocus} className="camera-btn unselect">
                                 EXIT
                             </div>
                         </div>
@@ -219,10 +219,10 @@ function Entrance() {
                                     < LoginComponent />
                                 </div>
                                 <div id="camera-lock-bar" className="camera-bar">
-                                    <div id="camera-btn-back" onClick={backAction} className="camera-btn">
+                                    <div id="camera-btn-back" onClick={backAction} className="camera-btn unselect">
                                         CANCEL
                                     </div>
-                                    <div id="camera-btn-confirm" onClick={fwdAction} className="camera-btn">
+                                    <div id="camera-btn-confirm" onClick={fwdAction} className="camera-btn unselect">
                                         CONFIRM
                                     </div>
                                 </div>
@@ -234,10 +234,10 @@ function Entrance() {
                                     < RegisterComponent />
                                 </div>
                                 <div id="camera-lock-bar" className="camera-bar">
-                                    <div id="camera-btn-back" onClick={backAction} className="camera-btn">
+                                    <div id="camera-btn-back" onClick={backAction} className="camera-btn unselect">
                                         CANCEL
                                     </div>
-                                    <div id="camera-btn-confirm" onClick={fwdAction} className="camera-btn">
+                                    <div id="camera-btn-confirm" onClick={fwdAction} className="camera-btn unselect">
                                         CONFIRM
                                     </div>
                                 </div>
@@ -245,10 +245,10 @@ function Entrance() {
                             : null}
                         {(action === "exit") ?
                             <div id="camera-lock-bar" className="camera-bar">
-                                <div id="camera-btn-back" onClick={backAction} className="camera-btn">
+                                <div id="camera-btn-back" onClick={backAction} className="camera-btn unselect">
                                     CANCEL
                                     </div>
-                                <div id="camera-btn-confirm" className="camera-btn">
+                                <div id="camera-btn-confirm" className="camera-btn unselect">
                                     EXIT
                                 </div>
                             </div>
@@ -259,7 +259,7 @@ function Entrance() {
                                     < AdminComponent />
                                 </div>
                                 <div id="camera-lock-bar" className="camera-bar">
-                                    <div id="camera-btn-back" onClick={backAction} className="camera-btn">
+                                    <div id="camera-btn-back" onClick={backAction} className="camera-btn unselect">
                                         CANCEL
                                     </div>
                                 </div>
@@ -268,10 +268,10 @@ function Entrance() {
                         {(action === "credit") ?
                             <>
                                 <div id="camera-lock-bar" className="camera-bar">
-                                    <div id="camera-btn-back" onClick={backAction} className="camera-btn">
+                                    <div id="camera-btn-back" onClick={backAction} className="camera-btn unselect">
                                         CANCEL
                                     </div>
-                                    <div id="camera-btn-confirm" className="camera-btn">
+                                    <div id="camera-btn-confirm" className="camera-btn unselect">
                                         DETAILS
                                 </div>
                                 </div>
@@ -281,88 +281,60 @@ function Entrance() {
 
                     <div id="cube" className="cube-front">
                         <div id="cube-face-1-a" className="cube-face">
-                            1-a
                         </div>
                         <div id="cube-face-1-b" className="cube-face">
-                            1-b
                         </div>
                         <div id="cube-face-1-c" className="cube-face">
-                            1-c
                         </div>
                         <div id="cube-face-1-d" className="cube-face-door">
-                            1-d
                         </div>
                         <div id="cube-face-1-e" className="cube-face-door">
-                            1-e
                         </div>
                         <div id="cube-face-2-a" className="cube-face">
-                            2-a
                         </div>
                         <div id="cube-face-2-b" className="cube-face">
-                            2-b
                         </div>
                         <div id="cube-face-2-c" className="cube-face">
-                            2-c
                         </div>
                         <div id="cube-face-2-d" className="cube-face">
-                            2-d
                         </div>
-
                         <div id="cube-face-3-a" className="cube-face">
-                            3-a
                         </div>
                         <div id="cube-face-3-b" className="cube-face">
-                            3-b
                         </div>
                         <div id="cube-face-3-c" className="cube-face">
-                            3-c
                         </div>
                         <div id="cube-face-3-d" className="cube-face">
                             <div id="entrance-menu" className="entrance-menu">
-
                             </div>
                         </div>
                         <div id="cube-face-3-f" className="cube-face">
-                            seat top
                         </div>
                         <div id="cube-face-3-e" className="cube-face">
-                            seat back
                         </div>
                         <div id="cube-face-3-g" className="cube-face">
-                            seat side
                         </div>
                         <div id="cube-face-4-a" className="cube-face">
-                            4
                         </div>
                         <div id="cube-face-4-b" className="cube-face">
-                            4-b
                         </div>
                         <div id="cube-face-4-c" className="cube-face">
-                            4-c
                         </div>
                         <div id="cube-face-4-d" className="cube-face">
-                            4-d
                         </div>
                         <div id="cube-face-5-a" className="cube-face">
-                            5-a
                         </div>
                         <div id="cube-face-5-b" className="cube-face">
-                            5-b
                         </div>
                         <div id="cube-face-5-c" className="cube-face">
-                            5-c
                         </div>
                         <div id="cube-face-5-d" className="cube-face">
-                            5-d
                         </div>
                         <div id="cube-face-5-e" className="cube-face">
-                            5-e
                         </div>
                         <div id="cube-face-5-f" className="cube-face">
-                            5-f
                         </div>
                         <div id="cube-face-6-a" className="cube-bot">
-                            FLOOR
                         </div>
                     </div>
                 </div>
