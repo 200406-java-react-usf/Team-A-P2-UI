@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { Redirect, Link, useHistory } from 'react-router-dom';
+import { User } from "../../dtos/user"
 
 import "../../style/entrance.scss"
 
@@ -7,7 +8,10 @@ import LoginComponent from "../../components/LoginComponent/LoginComponentContai
 import RegisterComponent from "../../components/RegisterComponent/RegisterComponentContainer"
 import AdminComponent from "../../components/AdminComponent/AdminComponentContainer"
 
-
+export interface ILoginProps {
+    authUser: User;
+    errorMessage: string;
+}
 function Entrance() {
 
     const [readyState, setReadyState] = useState(false);

@@ -42,7 +42,7 @@
     width: 1200px;
     height: 100px;
     top: 600px;
-    background-color: rgba(64, 214, 26, 0.514);
+    background-image: url("./img/camera-bar.png");
 }
 
 .camera-btn {
@@ -52,7 +52,8 @@
     line-height: 50px;
     text-align: center;
     margin: 25px 45px 25px 45px;
-    background-color: rgba(161, 69, 69, 0.514);
+    background-image: url("./img/150btn.png");
+    color: whitesmoke;
 }
 
 .cube-front {
@@ -464,21 +465,21 @@
     height: 200px;
     width: 600px;
     transform: rotateY(0deg) translateY(600px) translateX(400px) translateZ(-450px);
-    background-color: rgba(24, 117, 5, 0.692);
+    background-image: url("./img/e-3-e.png");
 }
 
 #cube-face-3-f {
     height: 100px;
     width: 600px;
     transform: rotateX(-90deg) translateY(500px) translateX(400px) translateZ(550px);
-    background-color: rgb(184, 80, 32);
+    background-image: url("./img/e-3-f.png");
 }
 
 #cube-face-3-g {
     height: 200px;
     width: 100px;
     transform: rotateY(90deg) translateY(600px) translateX(500px) translateZ(350px);
-    background-color: rgb(255, 72, 0);
+    background-image: url("./img/e-3-g.png");
 }
 
 #cube-face-4-a {

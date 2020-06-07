@@ -8,13 +8,10 @@ import {
 import { Provider } from 'react-redux';
 import { store } from './Store';
 
-import Entrance from './scene/Entrance/Entrance';
+import Entrance from './scene/Entrance/EntranceContainer';
 import Spaceship from './scene/SpaceShip/Spaceship';
 
 function App() {
-
-  //@ts-ignore
-  const [authUser, setAuthUser] = useState(null as User);
   return (
     <>
     <Provider store={store}>
