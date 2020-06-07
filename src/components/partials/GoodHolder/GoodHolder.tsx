@@ -6,8 +6,8 @@ import "../../../style/goodHolder.scss";
 
 export interface IGoodProps {
     good_name: string;
-    good_qauntity: number;
-    good_avg_price: number;
+    good_qauntity: string;
+    cost_of_goods: number;
 }
 
 function GoodHolder(props: IGoodProps) {
@@ -16,7 +16,7 @@ function GoodHolder(props: IGoodProps) {
 
     const [goodName, setGoodName] = useState(props.good_name);
     const [goodQauntity, setGoodQauntity] = useState(props.good_qauntity);
-    const [goodAvgPrice, setGoodAvgPrice] = useState(props.good_avg_price);
+    const [goodCosts, setCostOfGoods] = useState(props.cost_of_goods);
 
     return (
         <>
@@ -25,7 +25,7 @@ function GoodHolder(props: IGoodProps) {
                 <div className="good-img-slot"> </div>
                 <div className="good-name-slot">{goodName}</div>
                 <div className="good-quantity-slot">{goodQauntity}</div>
-                <div className="good-price-slot">{goodAvgPrice}</div>
+                <div className="good-price-slot">{goodCosts}</div>
         </>
     );
 

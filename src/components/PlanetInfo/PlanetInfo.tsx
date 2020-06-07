@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { Redirect, Link, useHistory } from 'react-router-dom';
-
+import axios from 'axios';
 import { Planet } from "../../dtos/planet";
 
 import GoodHolder from "../partials/GoodHolder/GoodHolder";
@@ -15,9 +15,7 @@ export interface IMapProps {
     travelAni: any;
 }
 
-function Trade(props: IMapProps) {
-
-    const [readyState, setReadyState] = useState(false);
+function PlanetInfo(props: IMapProps) {
 
     //@ts-ignore
     const [planetList, setPlanetList] = useState(null as Planet[]);
@@ -34,10 +32,6 @@ function Trade(props: IMapProps) {
     //const [currentLoc, setCurrentLoc] = useState(props.autherUser.location);
     const [currentLoc, setCurrentLoc] = useState(1);
 
-    let timeout = function (ms: number) {
-        return new Promise(resolve => setTimeout(resolve, ms))
-    }
-
     useEffect(() => {
         let planetDisplayList: any[] = [];
         let fetchPlanetData = async () => {
@@ -45,7 +39,7 @@ function Trade(props: IMapProps) {
             //setPlanetCargoList(planetCargo);
             //let planetPriceMod = await getPlanetPriceMod();
             let mockPlanetList = [
-                new Planet(1, "Tatooine")
+                new Planet(1, "Tatooine", 1.5)
             ];
 
             if (mockPlanetList) {
@@ -53,8 +47,8 @@ function Trade(props: IMapProps) {
                     //let priceMod = await getPlanetPriceModByID();
                     planetDisplayList.push(
                         <div className="city-slot-wrapper" key={"planet-" + planet.planet_id} id={"planet-" + planet.planet_id} onClick={selectDetail}>
-                            <div className="city-slot-cell-id">{planet.planet_id}</div>
-                            <div className="city-slot-cell">{planet.planet_name}</div>
+                            <div className="city-slot-cell-id unselect">{planet.planet_id}</div>
+                            <div className="city-slot-cell unselect">{planet.planet_name}</div>
                         </div>
                     )
                 }
@@ -68,10 +62,10 @@ function Trade(props: IMapProps) {
                     <>
                         <div className="SWAPIInfo" key={SWAPIPlanet.name}>
                             <div className="SWAPIInfo-img"></div>
-                            <div className="SWAPIInfo-name">{SWAPIPlanet.name}</div>
-                            <div className="SWAPIInfo-sub">CLIMATE: {SWAPIPlanet.climate}</div>
-                            <div className="SWAPIInfo-sub">TERRAIN: {SWAPIPlanet.terrain}</div>
-                            <div className="SWAPIInfo-sub">POPULATION: {SWAPIPlanet.population}</div>
+                            <div className="SWAPIInfo-name unselect">{SWAPIPlanet.name}</div>
+                            <div className="SWAPIInfo-sub unselect">CLIMATE: {SWAPIPlanet.climate}</div>
+                            <div className="SWAPIInfo-sub unselect">TERRAIN: {SWAPIPlanet.terrain}</div>
+                            <div className="SWAPIInfo-sub unselect">POPULATION: {SWAPIPlanet.population}</div>
                         </div>
                     </>
                 setPlanetDetail(detail);
@@ -99,42 +93,13 @@ function Trade(props: IMapProps) {
         let name = element.children[1].textContent;
         //@ts-ignore
         let id = parseInt(element.children[0].textContent);
+        let SWAPIURL = `https://swapi.dev/api/planets/?search=${name}`;
+        let SWAPInfo;
+        axios.get(SWAPIURL).then(function(response) {
+            SWAPInfo = response.data.results[0];
+            setSWAPIPlanet(SWAPInfo);
+        });
 
-        //let SWAPInfo = await getPlanet(name)
-        //https://swapi.dev/api/planets/?search=Tatooine
-        let SWAPInfo = {
-            "name": "Tatooine",
-            "rotation_period": "23",
-            "orbital_period": "304",
-            "diameter": "10465",
-            "climate": "arid",
-            "gravity": "1 standard",
-            "terrain": "desert",
-            "surface_water": "1",
-            "population": "200000",
-            "residents": [
-                "http://swapi.dev/api/people/1/",
-                "http://swapi.dev/api/people/2/",
-                "http://swapi.dev/api/people/4/",
-                "http://swapi.dev/api/people/6/",
-                "http://swapi.dev/api/people/7/",
-                "http://swapi.dev/api/people/8/",
-                "http://swapi.dev/api/people/9/",
-                "http://swapi.dev/api/people/11/",
-                "http://swapi.dev/api/people/43/",
-                "http://swapi.dev/api/people/62/"
-            ],
-            "films": [
-                "http://swapi.dev/api/films/1/",
-                "http://swapi.dev/api/films/3/",
-                "http://swapi.dev/api/films/4/",
-                "http://swapi.dev/api/films/5/",
-                "http://swapi.dev/api/films/6/"
-            ],
-            "created": "2014-12-09T13:50:49.641000Z",
-            "edited": "2014-12-20T20:58:18.411000Z",
-            "url": "http://swapi.dev/api/planets/1/"
-        }
         let iconList = document.getElementsByClassName("icon-ani");
         for (let i = 0; i < iconList.length; i++) {
             const icon = iconList[i] as HTMLElement;
@@ -142,9 +107,8 @@ function Trade(props: IMapProps) {
         }
 
         let icon = document.getElementById("map-city-" + id) as HTMLDivElement;
-        console.log(icon);
         icon.children[0].classList.add("icon-ani");
-        setSWAPIPlanet(SWAPInfo);
+
         setDestination(id);
     }
     let travel = async (e: any) => {
@@ -184,4 +148,4 @@ function Trade(props: IMapProps) {
 
 }
 
-export default Trade;
+export default PlanetInfo;

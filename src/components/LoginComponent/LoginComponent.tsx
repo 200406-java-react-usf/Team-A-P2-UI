@@ -6,17 +6,17 @@ import UserHolder from "../../components/UserHolder/UserHolder"
 
 
 export interface ILoginProps {
-    //authUser: User;
-    //errorMessage: string;
-    //loginAction: (username: string, password: string) => void;
+    authUser: User;
+    errorMessage: string;
+    loginAction: (username: string, password: string) => void;
 }
 
 function LoginComponent(props: ILoginProps) {
     //@ts-ignore
-    //const [authUser, setAuthUser] = useState(props.authUser);
+    const [authUser, setAuthUser] = useState(props.authUser);
 
-    let mockUser = new User(1, "test", "test", 20, 1000, "Aderaan")
-    const [authUser, setAuthUser] = useState(mockUser);
+    // let mockUser = new User(1, "test", "test", 20, 1000, "Aderaan")
+    // const [authUser, setAuthUser] = useState(mockUser);
 
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
@@ -32,7 +32,7 @@ function LoginComponent(props: ILoginProps) {
     }
 
     let login = async () => {
-        //props.loginAction(username, password);
+        props.loginAction(username, password);
     }
 
 

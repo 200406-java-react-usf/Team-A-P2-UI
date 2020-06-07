@@ -1,29 +1,29 @@
-// temp, subject to change based on api and db
-
 export class User {
 
-    user_id: number;
+    id: number;
     username: string;
     password: string;
+    user_role: string;
     cargo_space: number;
     currency: number;
-    location: string;
-
+    location: number;
 
     constructor(
         id: number,
         un: string,
         pw: string,
+        user_role: string,
         cargo_space: number,
         currency: number,
-        loc: string
+        location: number
     ) {
-        this.user_id = id;
+        this.id = id;
         this.username = un;
         this.password = pw;
+        this.user_role= user_role;
         this.cargo_space = cargo_space;
         this.currency = currency;
-        this.location = loc;
+        this.location = location;
     }
 
 }

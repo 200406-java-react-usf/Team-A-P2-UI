@@ -3,49 +3,32 @@ import { Redirect, Link, useHistory } from 'react-router-dom';
 
 import { Good } from "../../dtos/good";
 import { Cargo } from "../../dtos/cargo";
+import { PlanetCargo } from "../../dtos/planetCargo";
+
+import { getGoodbyId } from "../../remote/player-service"
 
 import GoodHolder from "../partials/GoodHolder/GoodHolder";
 
 import "../../style/tradeComponent.scss";
+import { User } from '../../dtos/user';
+import { Planet } from '../../dtos/planet';
 
 export interface ICargoProps {
-    //authUser: User;
-    //location: Planet;
-    //currentCargoSize: number;
-    //errorMessage: string;
+    authUser: User;
+    errorMessage: string;
 }
 
-function Trade(props: ICargoProps) {
+function TradeComponent(props: ICargoProps) {
 
-    const [readyState, setReadyState] = useState(false);
-
+    //const [user, setUser] = useState(props.authUser);
+    const [user, setUser] = useState(new User(1, "test", "test", "user", 20, 1000, 1));
     // const [cargoList, setCurrentCargo] = useState(props.currentCargoSize);
 
     let mockCargoList: Cargo[] = [
-        new Cargo(1, "Precious Metal", 1, 100),
-        new Cargo(2, "Synth Food", 1, 5),
-        new Cargo(3, "Heavy Weaponry", 1, 1000),
-        new Cargo(4, "Stimulants", 1, 500),
-        new Cargo(5, "Harvested Organs", 1, 2000),
-        new Cargo(6, "Yavinnium Gas", 1, 200),
-        new Cargo(7, "Zeyd Fabric", 1, 1500),
-        new Cargo(8, "Memory Plastic", 1, 300),
-        new Cargo(9, "Luxious Fur Pelt", 1, 500),
-        new Cargo(10, "Aldarran Jewlery", 1, 1000),
-        new Cargo(11, "Kyber Crystal", 1, 5000)
+        new Cargo(1, 1, 1, 100)
     ];
-    let mockCityCargoList: Cargo[] = [
-        new Cargo(1, "Precious Metal", 100, 100),
-        new Cargo(2, "Synth Food", 100, 5),
-        new Cargo(3, "Heavy Weaponry", 100, 1000),
-        new Cargo(4, "Stimulants", 100, 500),
-        new Cargo(5, "Harvested Organs", 100, 2000),
-        new Cargo(6, "Yavinnium Gas", 100, 200),
-        new Cargo(7, "Zeyd Fabric", 100, 1500),
-        new Cargo(8, "Memory Plastic", 100, 300),
-        new Cargo(9, "Luxious Fur Pelt", 100, 500),
-        new Cargo(10, "Aldarran Jewlery", 100, 1000),
-        new Cargo(11, "Kyber Crystal", 100, 5000)
+    let mockCityCargoList: PlanetCargo[] = [
+        new PlanetCargo(1, 1, 1.5)
     ];
     let mockGoodList: Good[] = [
         new Good(1, "Precious Metal", 100, "It's valuable because it's shiny."),
@@ -100,9 +83,11 @@ function Trade(props: ICargoProps) {
             //setUserCargoList(userCargo);
             if (userCargoList) {
                 for (let cargo of userCargoList) {
+                    //let name = await getGoodById(cargo.good_id);
+                    let name = "test"
                     cargoArrUser.push(
                         <div className="good-wrapper unselect" key={"user-" + cargo.good_id} id={"user-" + cargo.good_id} onClick={selectDetail} >
-                            <GoodHolder good_name={cargo.good_name} good_qauntity={cargo.good_quantity} good_avg_price={cargo.good_avg_price} />
+                            <GoodHolder good_name={name} good_qauntity={cargo.good_quantity.toString()} cost_of_goods={cargo.cost_of_goods} />
                         </div>
                     )
                 }
@@ -114,16 +99,18 @@ function Trade(props: ICargoProps) {
             //let cityCargo = await getCityCargo();
             //setCityCargoList(cityCargo);
             //let cityPriceMod = await getCityPriceMod();
-            let cityPriceMod = 1.5;
 
             if (cityCargoList) {
-                for (let cargo of cityCargoList) {
-                    //let priceMod = await getCityPriceModByID();
-                    let priceMod = 1.5;
+                for (let planetCargo of cityCargoList) {
+
+                    //let good = await getGoodbyId(planetCargo.good_id);
+                    let good = new Good(1, "test", 10, "desc");
+                    let name = good.good_name;
+                    let price = good.good_base_price;
 
                     cargoArrCity.push(
-                        <div className="good-wrapper unselect" key={"city-" + cargo.good_id} id={"city-" + cargo.good_id} onClick={selectDetail} >
-                            <GoodHolder good_name={cargo.good_name} good_qauntity={cargo.good_quantity} good_avg_price={cargo.good_avg_price * priceMod} />
+                        <div className="good-wrapper unselect" key={"city-" + planetCargo.good_id} id={"city-" + planetCargo.good_id} onClick={selectDetail} >
+                            <GoodHolder good_name={name} good_qauntity={"--"} cost_of_goods={price * planetCargo.price_modifier} />
                         </div>
                     )
                 }
@@ -183,7 +170,7 @@ function Trade(props: ICargoProps) {
             let selectedCityPriceSlot = document.getElementById("city-" + id)?.children[3] as HTMLDivElement;
             //@ts-ignore
             let cityPrice = parseInt(selectedCityPriceSlot.textContent);
-            
+
             //buyaction(goodID, cityprice)
             console.log("buy")
 
@@ -196,7 +183,6 @@ function Trade(props: ICargoProps) {
             //@ts-ignore
             let cityPrice = parseInt(selectedCityPriceSlot.textContent);
             //sellaction(goodID, cityprice)
-            console.log("sell")
         }
     }
     return (
@@ -209,6 +195,9 @@ function Trade(props: ICargoProps) {
                     <div className="good-price-slot-header unselect">PRICE</div>
                 </div>
                 {cargoListDisplay}
+            </div>
+            <div id="trade-user-currency">
+                {user.currency} CREDITS
             </div>
             <div id="trade-interface" className="trade-interface">
                 {/* <div className="good-img-slot-detail" style ={ { backgroundImage: "" } } ></div> */}
@@ -238,4 +227,4 @@ function Trade(props: ICargoProps) {
 
 }
 
-export default Trade;
+export default TradeComponent;

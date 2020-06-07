@@ -5,39 +5,43 @@
     margin: 10px 50px 0px 50px;
     width: 200px;
     height: 550px;
-    background-color: rgba(0, 128, 0, 0.678);
+    background-image: url("./img/wrapper-city.png");
     overflow: auto;
 }
 
 .city-slot-wrapper {
     display: inline-block;
     margin: 10px;
-    margin-top: 20px;
+    margin-top: 30px;
     width: 180px;
     height: 30px;
-    background-color: rgba(128, 0, 0, 0.678);
+    background-image: url("./img/city-slot-wrapper.png");
 }
 
 .city-slot-cell-id {
     display: inline-block;
-    width: 30px;
-    height: 30px;
-    background-color: rgb(255, 255, 255);
+    width: 20px;
+    height: 20px;
+    background-color: $grey;
+    border: solid 5px $blue;
+    color: whitesmoke;
     vertical-align: top;
     margin: 0px 10px 0px 10px;
     text-align: center;
-    line-height: 30px;
+    line-height: 20px;
 }
 
 .city-slot-cell {
     display: inline-block;
     width: 100px;
-    height: 30px;
-    background-color: rgb(255, 255, 255);
+    height: 20px;
+    background-color: $grey;
+    border: solid 5px $blue;
+    color: whitesmoke;
     vertical-align: top;
     margin: 0px 10px 0px 10px;
     text-align: center;
-    line-height: 30px;
+    line-height: 20px;
 }
 
 .map-wrapper-city-detail {
@@ -46,7 +50,7 @@
     margin: 10px 50px 0px 900px;
     width: 250px;
     height: 550px;
-    background-color: rgba(0, 128, 0, 0.678);
+    background-image: url("./img/city-detail.png");
     overflow: auto;
 }
 
@@ -54,49 +58,62 @@
     display: inline-block;
     width: 250px;
     height: 430px;
-    background-color: rgba(128, 0, 0, 0.678);
+    background-color: rgba(0, 0, 0, 0);
 }
 
 .SWAPIInfo-img {
     display: inline-block;
-    width: 160px;
-    height: 160px;
+    width: 150px;
+    height: 150px;
     margin: 10px 45px 10px 45px;
-    background-color: rgb(218, 109, 109);
+    border: solid 5px $blue;
+    color: whitesmoke;
     vertical-align: top;
 }
 
 .SWAPIInfo-name {
     display: inline-block;
-    width: 210px;
-    height: 50px;
-    background-color: rgb(255, 255, 255);
+    width: 200px;
+    height: 40px;
+    background-color: $grey;
+    border: solid 5px $blue;
+    color: whitesmoke;
     vertical-align: top;
     margin: 0px 20px 0px 20px;
     text-align: center;
-    line-height: 50px;
+    line-height: 40px;
 }
 
 .SWAPIInfo-sub {
     display: inline-block;
-    width: 200px;
-    height: 50px;
-    background-color: rgb(255, 255, 255);
+    width: 190px;
+    height: 40px;
+    background-color: $grey;
+    border: solid 5px $blue;
+    color: whitesmoke;
     vertical-align: top;
     margin: 10px 20px 0px 20px;
     padding-left: 10px;
     text-align: left;
-    line-height: 50px;
+    line-height: 40px;
 }
 
 .SWAPIInfo-trvel-btn {
-    width: 210px;
+    width: 200px;
     height: 50px;
     background-color: rgb(255, 255, 255);
     vertical-align: top;
-    margin: 50px 20px 0px 20px;
+    margin: auto;
+    margin-top: 50px;
     text-align: center;
     line-height: 50px;
+    background-image: url("./img/200btn.png");
+    color: whitesmoke;
+}
+
+.SWAPIInfo-trvel-btn:hover {
+    background-image: url("./img/200btn-select.png");
+    color: $grey;
 }
 
 .map {
@@ -105,7 +122,7 @@
     margin: 10px 50px 0px 275px;
     width: 600px;
     height: 550px;
-    background-color: rgba(0, 128, 0, 0.678);
+    background-image: url("./img/map.png");
     overflow: auto;
 }
 
@@ -113,7 +130,6 @@
     margin: 10px;
     width: 580px;
     height: 530px;
-    background-color: rgba(0, 0, 0, 0.678);
     overflow: auto;
 }
 

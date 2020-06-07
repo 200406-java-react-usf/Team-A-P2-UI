@@ -1,35 +1,25 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { Redirect, Link, useHistory } from 'react-router-dom';
 
+import { User } from "../../dtos/user";
 import { Good } from "../../dtos/good";
 import { Cargo } from "../../dtos/cargo";
+
+import { getGoodbyId } from "../../remote/player-service"
 
 import GoodHolder from "../partials/GoodHolder/GoodHolder";
 
 import "../../style/cargoHolder.scss";
 
 export interface ICargoProps {
-    //userCargo: Cargo[];
-    //errorMessage: string;
+    authUser: User;
+    userCargo: Cargo[];
+    errorMessage: string;
 }
 
 function CargoHolder(props: ICargoProps) {
 
-    const [readyState, setReadyState] = useState(false);
-
-
     let mockCargoList: Cargo[] = [
-        new Cargo(1, "Precious Metal", 1, 100),
-        new Cargo(2, "Synth Food", 1, 5),
-        new Cargo(3, "Heavy Weaponry", 1, 1000),
-        new Cargo(4, "Stimulants", 1, 500),
-        new Cargo(5, "Harvested Organs", 1, 2000),
-        new Cargo(6, "Yavinnium Gas", 1, 200),
-        new Cargo(7, "Zeyd Fabric", 1, 1500),
-        new Cargo(8, "Memory Plastic", 1, 300),
-        new Cargo(9, "Luxious Fur Pelt", 1, 500),
-        new Cargo(10, "Aldarran Jewlery", 1, 1000),
-        new Cargo(11, "Kyber Crystal", 1, 5000)
+        new Cargo(1, 1, 1, 100),
     ];
 
     let mockGoodList: Good[] = [
@@ -67,9 +57,14 @@ function CargoHolder(props: ICargoProps) {
         let fetchData = async () => {
             if (cargoList) {
                 for (let cargo of cargoList) {
+                    //let result = await getGoodById(cargo.good_id);
+                    //let name = result.good_name;
+
+                    let name = "test"
+
                     cargoArr.push(
                         <div className="good-wrapper unselect" key={"invent-"+cargo.good_id} id={"invent-"+cargo.good_id} onClick={selectDetail} >
-                            <GoodHolder good_name={cargo.good_name} good_qauntity={cargo.good_quantity} good_avg_price={cargo.good_avg_price} />
+                            <GoodHolder good_name={name} good_qauntity={cargo.good_quantity.toString()} cost_of_goods={cargo.cost_of_goods} />
                         </div>
                     )
                 }
