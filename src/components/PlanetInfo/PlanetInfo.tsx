@@ -15,9 +15,7 @@ export interface IMapProps {
     travelAni: any;
 }
 
-function Trade(props: IMapProps) {
-
-    const [readyState, setReadyState] = useState(false);
+function PlanetInfo(props: IMapProps) {
 
     //@ts-ignore
     const [planetList, setPlanetList] = useState(null as Planet[]);
@@ -33,10 +31,6 @@ function Trade(props: IMapProps) {
 
     //const [currentLoc, setCurrentLoc] = useState(props.autherUser.location);
     const [currentLoc, setCurrentLoc] = useState(1);
-
-    let timeout = function (ms: number) {
-        return new Promise(resolve => setTimeout(resolve, ms))
-    }
 
     useEffect(() => {
         let planetDisplayList: any[] = [];
@@ -154,4 +148,4 @@ function Trade(props: IMapProps) {
 
 }
 
-export default Trade;
+export default PlanetInfo;

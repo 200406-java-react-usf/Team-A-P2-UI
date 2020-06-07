@@ -18,7 +18,7 @@ export interface ICargoProps {
     errorMessage: string;
 }
 
-function Trade(props: ICargoProps) {
+function TradeComponent(props: ICargoProps) {
 
     //const [user, setUser] = useState(props.authUser);
     const [user, setUser] = useState(new User(1, "test", "test", "user", 20, 1000, 1));
@@ -227,4 +227,4 @@ function Trade(props: ICargoProps) {
 
 }
 
-export default Trade;
+export default TradeComponent;

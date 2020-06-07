@@ -7,8 +7,8 @@ import { Cargo } from "../../dtos/cargo";
 import "../../style/adminComponent.scss";
 
 export interface IAdminProps {
-    //authUser: User;
-    //errorMessage: string;
+    authUser: User;
+    errorMessage: string;
 }
 
 function AdminComponent(props: IAdminProps) {

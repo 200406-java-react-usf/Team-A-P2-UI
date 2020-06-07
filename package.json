@@ -21,6 +21,13 @@
         "sass": "^1.26.5",
         "typescript": "^3.7.5"
     },
+    "jest": {
+        "collectCoverageFrom": [
+            "src/**/*.{ts, tsx}",
+            "!src/scene/",
+            "!src/dtos/"
+        ]
+    },
     "scripts": {
         "start": "react-scripts start",
         "build": "react-scripts build",

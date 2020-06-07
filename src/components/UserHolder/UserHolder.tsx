@@ -5,12 +5,11 @@ import { Redirect, Link, useHistory } from 'react-router-dom';
 import "../../style/userHolder.scss"
 import { Cargo } from '../../dtos/cargo';
 import { Good } from '../../dtos/good';
+import { User } from '../../dtos/user';
 
 export interface IUserProps {
-    //authUser: User;
-    //location: Planet;
-
-    //errorMessage: string;
+    authUser: User;
+    errorMessage: string;
     inGame: boolean;
 }
 

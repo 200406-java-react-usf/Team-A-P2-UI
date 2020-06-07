@@ -32,7 +32,7 @@ function LoginComponent(props: ILoginProps) {
     }
 
     let login = async () => {
-        //props.loginAction(username, password);
+        props.loginAction(username, password);
     }
 
 
