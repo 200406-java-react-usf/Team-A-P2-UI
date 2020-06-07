@@ -307,9 +307,10 @@ function Entrance(props: ILoginProps) {
                         {(action === "setting") ?
                             <>
                                 <div className="camera-info">
-                                    {(props.authUser.user_role === "admin") ?
+                                    {((props.authUser) && (props.authUser.user_role === "admin")) ?
                                         < AdminComponent />
-                                        : null}
+                                        : null
+                                    }
                                 </div>
                                 <div id="camera-lock-bar" className="camera-bar">
                                     <div id="camera-btn-back" onClick={backAction} className="camera-btn unselect">
