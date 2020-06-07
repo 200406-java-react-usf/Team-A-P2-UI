@@ -34,8 +34,6 @@ export interface IState {
     upgrade:IUpgradeState;
 }
 
-
-
 export const state = combineReducers<IState>({
     login: loginReducer,
     logout: logoutReducer,

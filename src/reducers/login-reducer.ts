@@ -1,4 +1,3 @@
-/*Changes authUser state when login action is called.*/
 import { ILoginState } from ".";
 import { User } from "../dtos/user";
 import { AnyAction, combineReducers } from "redux";
