@@ -26,7 +26,7 @@ function UserHolder(props: IUserProps) {
 
     const [username, setusername] = useState(props.authUser.username);
     const [currency, setcurrency] = useState(props.authUser.currency);
-    const [maxCargo, setMaxCargo] = useState(props.authUser.cargo_space);
+    const [maxCargo, setMaxCargo] = useState(props.authUser.cargoSpace);
     const [currentCargo, setCurrentCargo] = useState(0);
 
 

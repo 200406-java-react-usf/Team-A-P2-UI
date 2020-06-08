@@ -3,7 +3,7 @@ import { Redirect, Link, useHistory } from 'react-router-dom';
 import axios from 'axios';
 import { Planet } from "../../dtos/planet";
 
-import GoodHolder from "../partials/GoodHolder/GoodHolder";
+import { getAllPlanets } from "../../remote/player-service"
 
 import "../../style/planetInfo.scss";
 import { User } from '../../dtos/user';
@@ -34,20 +34,20 @@ function PlanetInfo(props: IMapProps) {
     useEffect(() => {
         let planetDisplayList: any[] = [];
         let fetchPlanetData = async () => {
-            //let planet = await getAllPlanet();
+            let planets = await getAllPlanets();
             //setPlanetCargoList(planetCargo);
             //let planetPriceMod = await getPlanetPriceMod();
             let mockPlanetList = [
                 new Planet(1, "Tatooine", 1.5)
             ];
 
-            if (mockPlanetList) {
-                for (let planet of mockPlanetList) {
+            if (planets) {
+                for (let planet of planets) {
                     //let priceMod = await getPlanetPriceModByID();
                     planetDisplayList.push(
-                        <div className="city-slot-wrapper" key={"planet-" + planet.planet_id} id={"planet-" + planet.planet_id} onClick={selectDetail}>
-                            <div className="city-slot-cell-id unselect">{planet.planet_id}</div>
-                            <div className="city-slot-cell unselect">{planet.planet_name}</div>
+                        <div className="city-slot-wrapper" key={"planet-" + planet.id} id={"planet-" + planet.id} onClick={selectDetail}>
+                            <div className="city-slot-cell-id unselect">{planet.id}</div>
+                            <div className="city-slot-cell unselect">{planet.name}</div>
                         </div>
                     )
                 }

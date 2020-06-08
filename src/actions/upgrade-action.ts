@@ -17,7 +17,7 @@ export const upgradeAction = (user_id: number) => async (dispatch: Dispatch) => 
         //upgrade
         let user: User = await getUserbyId(user_id);
         user.currency -= 1000;
-        user.cargo_space += 10;
+        user.cargoSpace += 10;
         await updateUser(user);
         dispatch({
             type: upgrageActionTypes.SUCCESSFUL_UPGRADE,
