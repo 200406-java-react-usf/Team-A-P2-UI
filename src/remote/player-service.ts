@@ -51,29 +51,29 @@ export async function getGoodbyId(id: number) {
 
 //get cargo list by user id
 export async function getCargoListbyUserId(id: number) {
-    // let response = await Client.get(`/cargos/user/${id}`); 
-    // return await response.data;
-    return mockCargoList;
+    let response = await Client.get(`/cargos/user/${id}`); 
+    return await response.data;
+    // return mockCargoList;
 }
 
 //get cargo list by planet id
 export async function getCargoListbyPlanetId(id: number) {
-    // let response = await Client.get(`/cargos/planet/${id}`); 
-    // return await response.data;
-    return mockPlanetGoods;
+    let response = await Client.get(`/cargos/planet/${id}`); 
+    return await response.data;
+    // return mockPlanetGoods;
 }
 
 //get specific cargo
 export async function getCargobyUserIdAndGoodId(user_id: number, good_id: number) {
-    // let response = await Client.get(`/user/${user_id}/good/${good_id}`);
-    // return await response.data;
-    return mockCargoList[good_id];
+    let response = await Client.get(`/user/${user_id}/good/${good_id}`);
+    return await response.data;
+    // return mockCargoList[good_id];
 }
 
 //update specific cargo
-export async function updateCargobyUserIdAndGoodId(user_id: number, good_id: number) {
-    // let response = await Client.post(``); not implemented yet
-    // return await response.data;
+export async function updateCargobyUserIdAndGoodId(user_id: number, good_id: number, cost: number, quantity: number) {
+    let response = await Client.put(`/${user_id}/${good_id}/${cost}/${quantity}`); 
+    return await response.data;
 }
 
 //get user by id
