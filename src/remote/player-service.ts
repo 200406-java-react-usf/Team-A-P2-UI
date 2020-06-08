@@ -51,28 +51,28 @@ export async function getGoodbyId(id: number) {
 
 //get cargo list by user id
 export async function getCargoListbyUserId(id: number) {
-    // let response = await Client.post(``);
+    // let response = await Client.post(``); not implemented yet
     // return await response.data;
     return mockCargoList;
 }
 
 //get cargo list by planet id
 export async function getCargoListbyPlanetId(id: number) {
-    // let response = await Client.post(``);
+    // let response = await Client.post(``); not implemented yet
     // return await response.data;
     return mockPlanetGoods;
 }
 
 //get specific cargo
 export async function getCargobyUserIdAndGoodId(user_id: number, good_id: number) {
-    // let response = await Client.post(``);
+    // let response = await Client.post(``); not implemented yet
     // return await response.data;
     return mockCargoList[good_id];
 }
 
 //update specific cargo
 export async function updateCargobyUserIdAndGoodId(user_id: number, good_id: number) {
-    // let response = await Client.post(``);
+    // let response = await Client.post(``); not implemented yet
     // return await response.data;
 }
 
@@ -92,14 +92,14 @@ export async function newUser(user: User) {
 
 //update user
 export async function updateUser(user: User) {
-    // let response = await Client.post(``);
+    // let response = await Client.put(`/user`);
     // return await response.data;
     return user;
 }
 
 //get all planets
 export async function getAllPlanets() {
-    // let response = await Client.get(``);
+    // let response = await Client.get(`/planets`);
     // return await response.data;
     return mockPlanetList;
 }
