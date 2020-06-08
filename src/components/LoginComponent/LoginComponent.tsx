@@ -1,4 +1,4 @@
-import React, { useState, SyntheticEvent } from 'react';
+import React, { useState, SyntheticEvent, useEffect } from 'react';
 import "../../style/login.scss";
 
 import { User } from "../../dtos/user"
@@ -12,17 +12,26 @@ export interface ILoginProps {
 }
 
 function LoginComponent(props: ILoginProps) {
-    //@ts-ignore
     const [authUser, setAuthUser] = useState(props.authUser);
-
-    // let mockUser = new User(1, "test", "test", 20, 1000, "Aderaan")
-    // const [authUser, setAuthUser] = useState(mockUser);
 
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
-
-    const [errorMessage, setErrorMessage] = useState("test error");
-
+    //@ts-ignore
+    const [userDisplay, setUserdisplay] = useState(null as any)
+    const [errorMessage, setErrorMessage] = useState(props.errorMessage);
+    useEffect(() => {
+        const displayUser = () => {
+            let userDetail: any;
+            if (authUser) {
+                userDetail =
+                    <div className="login-wrapper-user">
+                        <UserHolder inGame={false} />
+                    </div>;
+                setUserdisplay(userDetail);
+            }
+        }
+        displayUser();
+    }, [authUser, errorMessage])
     let updateUsername = (e: any) => {
         setUsername(e.currentTarget.value);
     }
@@ -33,27 +42,29 @@ function LoginComponent(props: ILoginProps) {
 
     let login = async () => {
         props.loginAction(username, password);
+        setAuthUser(props.authUser);
+        setErrorMessage(props.errorMessage);
     }
 
 
     return (
         <>
             <form className="login-wrapper">
-                <div className="form-title">USERNAME</div>
+                <div className="form-title unselect">USERNAME</div>
                 <input className="form-input"
                     onChange={updateUsername}
                     value={username}
                     id="username" type="text"
                     placeholder="Enter Your Username" />
 
-                <div className="form-title">PASSWORD</div>
+                <div className="form-title unselect">PASSWORD</div>
                 <input className="form-input"
                     onChange={updatePassword}
                     value={password}
                     id="password" type="password"
                     placeholder="Enter Your Password" />
 
-                <div className="button-container" onClick={login}>
+                <div className="button-container unselect" onClick={login}>
                     LOGIN
                     </div>
                 {errorMessage ?
@@ -61,12 +72,7 @@ function LoginComponent(props: ILoginProps) {
                     : null
                 }
             </form>
-            {authUser ?
-                <div className="login-wrapper-user">
-                    <UserHolder inGame={false} />
-                </div>
-                : null
-            }
+            {userDisplay}
         </>
     );
 

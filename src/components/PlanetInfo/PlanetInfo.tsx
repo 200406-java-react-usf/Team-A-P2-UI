@@ -6,11 +6,10 @@ import { Planet } from "../../dtos/planet";
 import GoodHolder from "../partials/GoodHolder/GoodHolder";
 
 import "../../style/planetInfo.scss";
+import { User } from '../../dtos/user';
 
 export interface IMapProps {
-    //authUser: User;
-    //location: Planet;
-
+    authUser: User;
     //this animation is passed from spaceship.tsx, no redux required
     travelAni: any;
 }
@@ -140,6 +139,10 @@ function PlanetInfo(props: IMapProps) {
                     <div id="map-city-4" className="icon-locator">
                         <div className="city-icon"></div>
                         <div className="city-title">Hoth</div>
+                    </div>
+                    <div id="map-city-5" className="icon-locator">
+                        <div className="city-icon"></div>
+                        <div className="city-title">Dagobah</div>
                     </div>
                 </div>
             </div>
