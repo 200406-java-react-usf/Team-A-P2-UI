@@ -236,7 +236,7 @@
     height: 100%;
     top: 0%;
     left: 0%;
-    background: radial-gradient(circle farthest-corner at 33% 33%, rgba(240, 240, 220, 0.85) 0%, rgba(30, 30, 40, 0.85) 80%), radial-gradient(circle farthest-corner at 45% 45%, rgba(0, 0, 0, 0) 50%, #000000 80%);
+    background: radial-gradient(circle farthest-corner at 33% 33%, rgba(240, 240, 220, 0.171) 0%, rgba(52, 52, 173, 0.85) 80%), radial-gradient(circle farthest-corner at 45% 45%, rgba(0, 0, 0, 0) 50%, #000000 80%);
     border-radius: 50%;
     transform: translateZ(2px);
 }
@@ -260,7 +260,7 @@
     position: absolute;
     width: 40px;
     height: 40px;
-    background: radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.1) 48%, #ff0000 49%, #ff0000 50%, rgba(0, 0, 0, 0) 51%);
+    background: radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.1) 48%, $blue 49%, $blue 50%, rgba(0, 0, 0, 0) 51%);
     transform-style: preserve-3d;
     transform-origin: 50% 0;
     top: 50%;
@@ -280,8 +280,8 @@
     height: 50%;
     top: 25%;
     left: 25%;
-    border: 2px solid #333;
-    background: rgba(255, 255, 255, 0.3);
+    border: 2px solid rgb(6, 75, 165);
+    background: rgba(255, 255, 255, 0.027);
     transform: translateZ(1.6px);
 }
 

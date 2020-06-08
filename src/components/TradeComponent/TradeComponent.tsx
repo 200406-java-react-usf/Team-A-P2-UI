@@ -144,6 +144,10 @@ function TradeComponent(props: ICargoProps) {
         selectedUserCargo.classList.add("good-wrapper-selected");
         let selectedCityCargo = document.getElementById("city-" + id) as HTMLDivElement;
         selectedCityCargo.classList.add("good-wrapper-selected");
+
+        let imgSlot = document.getElementById("good-img-slot-trade") as HTMLDivElement;
+        imgSlot.className = "";
+        imgSlot.classList.add(`good-img-${result.id}`)
     }
     let buyGood = async (e: any) => {
         if (selectedGood) {
@@ -153,9 +157,7 @@ function TradeComponent(props: ICargoProps) {
             let cityPrice = parseInt(selectedCityPriceSlot.textContent);
             console.log(props.authUser.id, id, cityPrice, 1);
             props.tradeAction(props.authUser.id, id, cityPrice, 1);
-            cargoListAction(props.authUser.id);
-            setUserCargoList(props.userCargoList);
-            //updateCargobyUserIdAndGoodId(props.authUser.id, id, cityPrice, 1);
+            loadData();
         }
     }
     let sellGood = async (e: any) => {
@@ -165,8 +167,7 @@ function TradeComponent(props: ICargoProps) {
             //@ts-ignore
             let cityPrice = parseInt(selectedCityPriceSlot.textContent);
             props.tradeAction(props.authUser.id, id, cityPrice, -1);
-            cargoListAction(props.authUser.id);
-            setUserCargoList(props.userCargoList);
+            loadData();
         }
     }
     let loadData = async () => {
@@ -189,8 +190,8 @@ function TradeComponent(props: ICargoProps) {
             <div id="trade-user-currency">
                 {currency} CREDITS
             </div>
-            <div id="trade-interface" className="trade-interface">
-                <div className="good-img-slot-trade"  onClick ={loadData}> </div>
+            <div id="trade-interface" className="trade-interface" onClick={loadData}>
+                <div id="good-img-slot-trade" > </div>
                 <div className="good-name-slot-trade unselect">{goodName}</div>
                 <div className="good-desc-slot-trade unselect">{goodDesc}</div>
                 <div className="good-btnBar-slot-trade unselect">

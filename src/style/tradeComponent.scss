@@ -30,11 +30,11 @@
     background-image: url("./img/trade-interface.png");
 }
 
-.good-img-slot-trade {
+#good-img-slot-trade {
     display: inline-block;
     width: 160px;
     height: 160px;
-    background-color: rgb(255, 255, 255);
+    background-size: 100% 100%;
     vertical-align: top;
     margin: 20px;
 }
