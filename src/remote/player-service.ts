@@ -84,8 +84,8 @@ export async function getUserbyId(user_id: number) {
 }
 
 //new user
-export async function newUser(user: User) {
-    let response = await Client.post(`/users`);
+export async function register(username: string, password: string) {
+    let response = await Client.post(`/users`, {username, password});
     return await response.data;
     //return user;
 }

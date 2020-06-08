@@ -1,7 +1,7 @@
 import { IState } from "../../reducers";
 import { connect } from "react-redux";
 import RegisterComponent from "./RegisterComponent";
-import { loginAction } from "../../actions/login-action";
+import { registerAction } from "../../actions/register-action";
 
 const mapStateToProps = (state: IState) => {
     return {
@@ -10,7 +10,7 @@ const mapStateToProps = (state: IState) => {
     }
 }
 const mapDispatchToProps = {
-    loginAction
+    registerAction
 }
 
 

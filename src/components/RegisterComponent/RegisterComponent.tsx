@@ -8,6 +8,8 @@ import UserHolder from "../UserHolder/UserHolderContainer"
 export interface IRegisterProps {
     authUser: User;
     errorMessage: string;
+    registerAction: (username: string, password: string) => void;
+    
 }
 
 function RegisterComponent(props: IRegisterProps) {
@@ -27,7 +29,7 @@ function RegisterComponent(props: IRegisterProps) {
     }
 
     let Register = async () => {
-       // props.RegisterAction(username, password);
+       props.registerAction(username, password);
     }
 
 
