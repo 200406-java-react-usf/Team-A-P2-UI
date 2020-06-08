@@ -19,7 +19,7 @@ export interface ICargoProps {
     authUser: User;
     userCargoList: Cargo[];
     errorMessage: string;
-    tradeAction: (user_id: number, good_id: number, cost: number, amount: number)  => void;
+    tradeAction: (user_id: number, good_id: number, cost: number, amount: number) => void;
 }
 
 function TradeComponent(props: ICargoProps) {
@@ -35,7 +35,7 @@ function TradeComponent(props: ICargoProps) {
     const [goodName, setGoodName] = useState("");
     const [goodDesc, setGoodDesc] = useState("");
 
-    const [loaded, setLoaded] = useState(false);
+    const [ready, setReady] = useState(false);
 
 
     const [currency, setcurrency] = useState(props.authUser.currency);
@@ -64,10 +64,11 @@ function TradeComponent(props: ICargoProps) {
     useEffect(() => {
         let cargoArrUser: any[] = [];
         let fetchUserData = async () => {
+            setUserCargoList(props.userCargoList);
             if (userCargoList) {
                 for (let cargo of userCargoList) {
                     //let result = await getGoodbyId(cargo.id);
-                    let result = mockGoodList[cargo.id-1];
+                    let result = mockGoodList[cargo.id - 1];
                     let name = result.name;
                     cargoArrUser.push(
                         <div className="good-wrapper unselect" key={"user-" + cargo.id} id={"user-" + cargo.id} onClick={selectDetail} >
@@ -83,7 +84,7 @@ function TradeComponent(props: ICargoProps) {
             if (cityCargoList) {
                 for (let planetCargo of cityCargoList) {
                     //let result = await getGoodbyId(planetCargo.goodId);
-                    let result = mockGoodList[planetCargo.goodId-1]
+                    let result = mockGoodList[planetCargo.goodId - 1]
                     let price = result.price;
                     let name = result.name;
 
@@ -116,13 +117,13 @@ function TradeComponent(props: ICargoProps) {
         readDetail();
         fetchUserData();
         fetchCityData();
-    }, [cityCargoList, userCargoList, selectedGood]);
+    }, [cityCargoList, userCargoList, selectedGood, ready]);
 
     useEffect(() => {
         return () => {
-          console.log("cleaned up");
+            console.log("cleaned up");
         };
-      }, []);
+    }, []);
 
     let selectDetail = async (e: any) => {
         let id = e.currentTarget.id.split("-")[1];
@@ -171,10 +172,12 @@ function TradeComponent(props: ICargoProps) {
         }
     }
     let loadData = async () => {
+        console.log("load")
         let userCargo = await getCargoListbyUserId(props.authUser.id);
         let cityCargo = await getCargoListbyPlanetId(props.authUser.location);
         setUserCargoList(userCargo);
         setCityCargoList(cityCargo);
+        setReady(true);
     }
     return (
         <>
@@ -188,7 +191,7 @@ function TradeComponent(props: ICargoProps) {
                 {cargoListDisplay}
             </div>
             <div id="trade-user-currency">
-                {currency} CREDITS
+                {props.authUser.currency} CREDITS
             </div>
             <div id="trade-interface" className="trade-interface" onClick={loadData}>
                 <div id="good-img-slot-trade" > </div>
