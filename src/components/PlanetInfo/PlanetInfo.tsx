@@ -3,14 +3,13 @@ import { Redirect, Link, useHistory } from 'react-router-dom';
 import axios from 'axios';
 import { Planet } from "../../dtos/planet";
 
-import GoodHolder from "../partials/GoodHolder/GoodHolder";
+import { getAllPlanets } from "../../remote/player-service"
 
 import "../../style/planetInfo.scss";
+import { User } from '../../dtos/user';
 
 export interface IMapProps {
-    //authUser: User;
-    //location: Planet;
-
+    authUser: User;
     //this animation is passed from spaceship.tsx, no redux required
     travelAni: any;
 }
@@ -35,20 +34,20 @@ function PlanetInfo(props: IMapProps) {
     useEffect(() => {
         let planetDisplayList: any[] = [];
         let fetchPlanetData = async () => {
-            //let planet = await getAllPlanet();
+            let planets = await getAllPlanets();
             //setPlanetCargoList(planetCargo);
             //let planetPriceMod = await getPlanetPriceMod();
             let mockPlanetList = [
                 new Planet(1, "Tatooine", 1.5)
             ];
 
-            if (mockPlanetList) {
-                for (let planet of mockPlanetList) {
+            if (planets) {
+                for (let planet of planets) {
                     //let priceMod = await getPlanetPriceModByID();
                     planetDisplayList.push(
-                        <div className="city-slot-wrapper" key={"planet-" + planet.planet_id} id={"planet-" + planet.planet_id} onClick={selectDetail}>
-                            <div className="city-slot-cell-id unselect">{planet.planet_id}</div>
-                            <div className="city-slot-cell unselect">{planet.planet_name}</div>
+                        <div className="city-slot-wrapper" key={"planet-" + planet.id} id={"planet-" + planet.id} onClick={selectDetail}>
+                            <div className="city-slot-cell-id unselect">{planet.id}</div>
+                            <div className="city-slot-cell unselect">{planet.name}</div>
                         </div>
                     )
                 }
@@ -132,6 +131,18 @@ function PlanetInfo(props: IMapProps) {
                     <div id="map-city-2" className="icon-locator">
                         <div className="city-icon"></div>
                         <div className="city-title">Alderaan</div>
+                    </div>
+                    <div id="map-city-3" className="icon-locator">
+                        <div className="city-icon"></div>
+                        <div className="city-title">Yavin IV</div>
+                    </div>
+                    <div id="map-city-4" className="icon-locator">
+                        <div className="city-icon"></div>
+                        <div className="city-title">Hoth</div>
+                    </div>
+                    <div id="map-city-5" className="icon-locator">
+                        <div className="city-icon"></div>
+                        <div className="city-title">Dagobah</div>
                     </div>
                 </div>
             </div>

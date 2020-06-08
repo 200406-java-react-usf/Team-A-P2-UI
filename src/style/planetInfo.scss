@@ -151,6 +151,7 @@
     position: absolute;
     left: 50px;
     line-height: 30px;
+    width: 100px;
     display: inline-block;
     color: white;
 }
@@ -163,6 +164,21 @@
 #map-city-2 {
     top: 150px;
     left: 300px;
+}
+
+#map-city-3 {
+    top: 370px;
+    left: 155px;
+}
+
+#map-city-4 {
+    top: 340px;
+    left: 380px;
+}
+
+#map-city-5 {
+    top: 210px;
+    left: 400px;
 }
 
 .icon-ani {

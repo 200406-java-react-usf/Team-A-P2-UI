@@ -2,20 +2,16 @@ import React, { useState, SyntheticEvent } from 'react';
 import "../../style/login.scss";
 
 import { User } from "../../dtos/user"
-import UserHolder from "../UserHolder/UserHolder"
+import UserHolder from "../UserHolder/UserHolderContainer"
 
 
 export interface IRegisterProps {
-    //authUser: User;
-    //errorMessage: string;
-    //RegisterAction: (username: string, password: string) => void;
+    authUser: User;
+    errorMessage: string;
 }
 
 function RegisterComponent(props: IRegisterProps) {
-    //const [authUser, setAuthUser] = useState(props.authUser);
-
-    //@ts-ignore
-    const [authUser, setAuthUser] = useState(null as User);
+    const [authUser, setAuthUser] = useState(props.authUser);
 
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
@@ -31,7 +27,7 @@ function RegisterComponent(props: IRegisterProps) {
     }
 
     let Register = async () => {
-        //props.RegisterAction(username, password);
+       // props.RegisterAction(username, password);
     }
 
 

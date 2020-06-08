@@ -35,7 +35,7 @@ function AdminComponent(props: IAdminProps) {
                             <div className="admin-user-cell-short">{user.id}</div>
                             <div className="admin-user-cell-short">{user.username}</div>
                             <div className="admin-user-cell-short">{user.currency}</div>
-                            <div className="admin-user-cell-short">{user.cargo_space}</div>
+                            <div className="admin-user-cell-short">{user.cargoSpace}</div>
                             <div className="admin-user-cell-short" onClick={deleteUser}>DELETE</div>
                             {/* <div className="admin-user-cell-short" onClick={deleteUser}>UPDATE</div> */}
                         </div>

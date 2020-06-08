@@ -4,7 +4,7 @@ export class User {
     username: string;
     password: string;
     user_role: string;
-    cargo_space: number;
+    cargoSpace: number;
     currency: number;
     location: number;
 
@@ -21,7 +21,7 @@ export class User {
         this.username = un;
         this.password = pw;
         this.user_role= user_role;
-        this.cargo_space = cargo_space;
+        this.cargoSpace = cargo_space;
         this.currency = currency;
         this.location = location;
     }
