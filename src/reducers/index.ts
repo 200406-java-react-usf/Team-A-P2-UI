@@ -6,12 +6,17 @@ import { Cargo } from "../dtos/cargo";
 import { tradeReducer } from "./trade-reducer";
 import { moveReducer } from "./move-reducer";
 import { upgradeReducer } from "./upgrade-reducer";
+import { registerReducer } from "./register-reducer";
 
 export interface ILoginState {
     authUser: User;
     errorMessage: string;
 }
 export interface ILogoutState {
+    errorMessage: string;
+}
+export interface IRegisterState {
+    authUser: User;
     errorMessage: string;
 }
 export interface ITradeState{
@@ -32,6 +37,7 @@ export interface IState {
     trade: ITradeState;
     move: IMoveState;
     upgrade:IUpgradeState;
+    register: IRegisterState
 }
 
 export const state = combineReducers<IState>({
@@ -39,5 +45,6 @@ export const state = combineReducers<IState>({
     logout: logoutReducer,
     trade: tradeReducer,
     move: moveReducer,
-    upgrade: upgradeReducer
+    upgrade: upgradeReducer,
+    register: registerReducer
 });
