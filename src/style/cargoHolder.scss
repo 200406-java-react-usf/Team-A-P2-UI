@@ -1,0 +1,108 @@
+@import "./main.scss";
+.cargo-wrapper {
+    display: inline-block;
+    position: absolute;
+    margin: 10px 10px 0px 40px;
+    width: 480px;
+    height: 550px;
+    background-image: url("./img/cargo-wrapper.png");
+    overflow: auto;
+}
+
+.good-wrapper-header {
+    display: inline-block;
+    margin: 10px;
+    margin-top: 20px;
+    width: 460px;
+    height: 60px;
+    background-image: url("./img/good-wrapper-header.png");
+}
+
+.good-img-slot-header {
+    display: inline-block;
+    width: 50px;
+    height: 40px;
+    vertical-align: top;
+    margin: 10px;
+}
+
+.good-name-slot-header {
+    display: inline-block;
+    width: 190px;
+    height: 40px;
+    background-color: $grey;
+    color: whitesmoke;
+    margin: 10px;
+    text-align: center;
+    line-height: 40px;
+}
+
+.good-quantity-slot-header {
+    display: inline-block;
+    width: 65px;
+    height: 40px;
+    background-color: $grey;
+    color: whitesmoke;
+    margin: 10px;
+    text-align: center;
+    line-height: 40px;
+}
+
+.good-price-slot-header {
+    display: inline-block;
+    width: 65px;
+    height: 40px;
+    background-color: $grey;
+    color: whitesmoke;
+    margin: 10px;
+    text-align: center;
+    line-height: 40px;
+}
+
+.detail-wrapper {
+    display: inline-block;
+    position: absolute;
+    left: 880px;
+    margin: 10px 10px 0px 10px;
+    width: 290px;
+    height: 550px;
+    background-image: url("./img/detail-wrapper.png");
+}
+
+#good-img-slot-detail {
+    display: inline-block;
+    width: 180px;
+    height: 180px;
+    background-size: 100% 100%;
+    border: solid 5px $blue;
+    color: $grey;
+    vertical-align: top;
+    margin: 20px 50px 20px 50px;
+}
+
+.good-name-slot-detail {
+    display: inline-block;
+    width: 240px;
+    height: 40px;
+    background-color: whitesmoke;
+    border: solid 5px $blue;
+    vertical-align: top;
+    margin: 0px 20px 0px 20px;
+    text-align: center;
+    line-height: 40px;
+}
+
+.good-desc-slot-detail {
+    display: inline-block;
+    width: 220px;
+    height: 200px;
+    padding: 10px;
+    background-color: whitesmoke;
+    border: solid 5px $blue;
+    vertical-align: top;
+    margin: 20px 20px 0px 20px;
+    text-align: center;
+    text-align: left;
+    font-size: 20px;
+    line-height: 25px;
+}

@@ -1,0 +1,61 @@
+@import "./main.scss";
+.user-wrapper {
+    display: inline-block;
+    margin: 10px 10px 0px 10px;
+    width: 290px;
+    height: 550px;
+    background-image: url("./img/detail-wrapper.png");
+}
+
+.username-row {
+    top: 30px;
+    margin: 20px 20px 20px 20px;
+    height: 90px;
+    line-height: 90px;
+    text-align: center;
+    background-color: whitesmoke;
+    border: solid 5px $blue;
+}
+
+.info-row {
+    margin: 20px;
+    margin-top: 30px;
+    height: 40px;
+    line-height: 40px;
+    background-color: whitesmoke;
+    border: solid 5px $blue;
+    text-align: center;
+    background-color: rgba(255, 255, 255);
+}
+
+.info-filler {
+    margin: 20px;
+    height: 150px;
+    text-align: center;
+    background-color: rgba(0, 0, 0, 0);
+}
+
+.info-upgrade {
+    margin: auto;
+    height: 50px;
+    width: 200px;
+    text-align: center;
+    line-height: 50px;
+    color: whitesmoke;
+    background-image: url(./img/200btn.png);
+}
+
+.info-upgrade:hover {
+    color: $grey;
+    background-image: url("./img/200btn-select.png");
+}
+
+.info-upgrade:hover>div {
+    text-align: center;
+    line-height: 50px;
+    display: none
+}
+
+.info-upgrade:hover:before {
+    content: "-1000 CREDIT"
+}

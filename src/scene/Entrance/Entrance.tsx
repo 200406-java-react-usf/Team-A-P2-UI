@@ -1,15 +1,25 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { Redirect, Link, useHistory } from 'react-router-dom';
+import { User } from "../../dtos/user"
 
 import "../../style/entrance.scss"
 
+import LoginComponent from "../../components/LoginComponent/LoginComponentContainer"
+import RegisterComponent from "../../components/RegisterComponent/RegisterComponentContainer"
+import AdminComponent from "../../components/AdminComponent/AdminComponentContainer"
 
-
-function Entrance() {
+export interface ILoginProps {
+    authUser: User;
+    errorMessage: string;
+}
+function Entrance(props: ILoginProps) {
 
     const [readyState, setReadyState] = useState(false);
-
     const [action, setAction] = useState("default");
+
+    const [creditState, setCreditState] = useState(0);
+
+    let history = useHistory();
 
     let timeout = function (ms: number) {
         return new Promise(resolve => setTimeout(resolve, ms))
@@ -39,16 +49,41 @@ function Entrance() {
     }, [setReadyState])
 
     useEffect(() => {
-        let camera = document.getElementById("camera") as HTMLDivElement;
-        // for some reason, it still create multiple instances on remove listener
-        if (!readyState) {
-            camera.addEventListener("mousemove", moveCameraXY)
-        } else {
-            camera.removeEventListener("mousemove", moveCameraXY)
-        }
+        let cameraFunction = () => {
+            let camera = document.getElementById("camera") as HTMLDivElement;
+            // for some reason, it still create multiple instances on remove listener
+            if (!readyState) {
+                camera.addEventListener("mousemove", moveCameraXY)
+            } else {
+                camera.removeEventListener("mousemove", moveCameraXY)
+            }
 
-        return () => camera.removeEventListener("mousemove", moveCameraXY)
-    }, [readyState]);
+            return () => camera.removeEventListener("mousemove", moveCameraXY)
+        }
+        cameraFunction()
+        let nextCreditAni = async () => {
+            let room = document.getElementById("cube") as HTMLDivElement;
+            switch (creditState) {
+                case 1:
+                    room.classList.remove("cube-credit-4");
+                    room.classList.add("cube-credit-1");
+                    break;
+                case 2:
+                    room.classList.remove("cube-credit-1");
+                    room.classList.add("cube-credit-2");
+                    break;
+                case 3:
+                    room.classList.remove("cube-credit-2");
+                    room.classList.add("cube-credit-3");
+                    break;
+                case 4:
+                    room.classList.remove("cube-credit-3");
+                    room.classList.add("cube-credit-4");
+                    break;
+            }
+        }
+        nextCreditAni()
+    }, [readyState, creditState]);
 
 
     const perspectiveOrigin = {
@@ -76,6 +111,10 @@ function Entrance() {
         room.classList.remove("cube-right");
         room.classList.remove("cube-back");
         room.classList.remove("cube-floor");
+        room.classList.remove("cube-credit-1");
+        room.classList.remove("cube-credit-2");
+        room.classList.remove("cube-credit-3");
+        room.classList.remove("cube-credit-4");
     }
     let cameraMovement = async (e: any) => {
         let room = document.getElementById("cube") as HTMLDivElement;
@@ -127,6 +166,9 @@ function Entrance() {
         }
         camera.classList.add("hidden");
         cameraLock.classList.remove("hidden");
+        await timeout(500)
+        cameraLock.classList.remove("transparent");
+
         roomReset();
     }
     let backAction = async () => {
@@ -136,7 +178,9 @@ function Entrance() {
 
         camera.classList.remove("hidden");
         cameraLock.classList.add("hidden");
-        //roomReset();
+        cameraLock.classList.add("transparent");
+        setCreditState(0);
+        roomReset();
 
         switch (action) {
             case "login":
@@ -161,7 +205,7 @@ function Entrance() {
                 break;
         }
     }
-    let fwdAction = async() => {
+    let fwdAction = async () => {
         let room = document.getElementById("cube") as HTMLDivElement;
         let cameraLock = document.getElementById("camera-lock") as HTMLDivElement;
         room.classList.remove("cube-login");
@@ -171,158 +215,227 @@ function Entrance() {
         await timeout(1000);
         room.classList.remove("cube-top");
         room.classList.add("cube-top-ani");
-        await timeout(2000);
+        await timeout(4500);
         // redirect here
+        history.push('/spaceship')
+
+    }
+
+    let nextCreditAni = async () => {
+        let stage = creditState + 1;
+        if (stage > 4) {
+            stage = 1;
+        }
+        setCreditState(stage);
+    }
+
+    let startCredit = async () => {
+        let room = document.getElementById("cube") as HTMLDivElement;
+        let stage1 = document.getElementById("cube-face-4-a-1") as HTMLDivElement;
+        setCreditState(1);
+        room.classList.add("cube-credit-1");
     }
     return (
         <>
             <div className="wrapper">
                 <div id="viewport" className="viewport">
+                    <div id="mask" className="camera"></div>
                     <div id="camera" className="camera">
                         <div id="camera-bar" className="camera-bar">
-                            <div id="camera-btn-load" onMouseEnter={cameraMovement} onClick={displayfocus} className="camera-btn">
+                            <div id="camera-btn-load" onMouseEnter={cameraMovement} onClick={displayfocus} className="camera-btn unselect">
                                 LOAD GAME
                             </div>
-                            <div id="camera-btn-addnew" onMouseEnter={cameraMovement} onClick={displayfocus} className="camera-btn">
+                            <div id="camera-btn-addnew" onMouseEnter={cameraMovement} onClick={displayfocus} className="camera-btn unselect">
                                 NEW GAME
                             </div>
-                            <div id="camera-btn-credit" onMouseEnter={cameraMovement} onClick={displayfocus} className="camera-btn">
+                            <div id="camera-btn-credit" onMouseEnter={cameraMovement} onClick={displayfocus} className="camera-btn unselect">
                                 CREDIT
                             </div>
-                            <div id="camera-btn-setting" onMouseEnter={cameraMovement} onClick={displayfocus} className="camera-btn">
+                            <div id="camera-btn-setting" onMouseEnter={cameraMovement} onClick={displayfocus} className="camera-btn unselect">
                                 SETTING
                             </div>
-                            <div id="camera-btn-exit" onMouseEnter={cameraMovement} onClick={displayfocus} className="camera-btn">
+                            <div id="camera-btn-exit" onMouseEnter={cameraMovement} onClick={displayfocus} className="camera-btn unselect">
                                 EXIT
                             </div>
                         </div>
                     </div>
-                    <div id="camera-lock" className="camera hidden">
-                        {(action === "login" || action === "addnew") ?
-                            <div id="camera-lock-bar" className="camera-bar">
-                                <div id="camera-btn-back" onClick={backAction} className="camera-btn">
-                                    CANCEL
+                    <div id="camera-lock" className="camera hidden transparent">
+                        {(action === "login") ?
+                            <>
+                                <div className="camera-info">
+                                    < LoginComponent />
+                                </div>
+                                <div id="camera-lock-bar" className="camera-bar">
+                                    <div id="camera-btn-back" onClick={backAction} className="camera-btn unselect">
+                                        CANCEL
                                     </div>
-                                <div id="camera-btn-confirm" onClick={fwdAction} className="camera-btn">
-                                    CONFIRM
-                            </div>
-                            </div>
+                                    {(props.authUser) ?
+                                        <div id="camera-btn-confirm" onClick={fwdAction} className="camera-btn unselect">
+                                            CONFIRM
+                                        </div>
+                                        : null}
+                                </div>
+                            </>
+                            : null}
+                        {(action === "addnew") ?
+                            <>
+                                <div className="camera-info">
+                                    < RegisterComponent />
+                                </div>
+                                <div id="camera-lock-bar" className="camera-bar">
+                                    <div id="camera-btn-back" onClick={backAction} className="camera-btn unselect">
+                                        CANCEL
+                                    </div>
+                                    {(props.authUser) ?
+                                        <div id="camera-btn-confirm" onClick={fwdAction} className="camera-btn unselect">
+                                            CONFIRM
+                                        </div>
+                                        : null}
+                                </div>
+                            </>
                             : null}
                         {(action === "exit") ?
                             <div id="camera-lock-bar" className="camera-bar">
-                                <div id="camera-btn-back" onClick={backAction} className="camera-btn">
+                                <div id="camera-btn-back" onClick={backAction} className="camera-btn unselect">
                                     CANCEL
                                     </div>
-                                <div id="camera-btn-confirm"  className="camera-btn">
+                                <div id="camera-btn-confirm" className="camera-btn unselect">
                                     EXIT
                                 </div>
                             </div>
                             : null}
                         {(action === "setting") ?
-                            <div id="camera-lock-bar" className="camera-bar">
-                                <div id="camera-btn-back" onClick={backAction} className="camera-btn">
-                                    CANCEL
-                                    </div>
-                                <div id="camera-btn-confirm" className="camera-btn">
-                                    SUBMIT
+                            <>
+                                <div className="camera-info">
+                                    {((props.authUser) && (props.authUser.role === "ADMIN")) ?
+                                        < AdminComponent />
+                                        : null
+                                    }
                                 </div>
-                            </div>
+                                <div id="camera-lock-bar" className="camera-bar">
+                                    <div id="camera-btn-back" onClick={backAction} className="camera-btn unselect">
+                                        CANCEL
+                                    </div>
+                                </div>
+                            </>
                             : null}
                         {(action === "credit") ?
-                            <div id="camera-lock-bar" className="camera-bar">
-                                <div id="camera-btn-back" onClick={backAction} className="camera-btn">
-                                    CANCEL
+                            <>
+                                <div id="camera-lock-bar" className="camera-bar">
+                                    <div id="camera-btn-back" onClick={backAction} className="camera-btn unselect">
+                                        CANCEL
                                     </div>
-                                <div id="camera-btn-confirm" className="camera-btn">
-                                    DETAILS
+                                    {(creditState === 0) ?
+                                        <div id="camera-btn-confirm" onClick={startCredit} className="camera-btn unselect">
+                                            DETAILS
+                                    </div> : null
+                                    }
+                                    {(creditState != 0) ?
+                                        <div id="camera-btn-confirm" onClick={nextCreditAni} className="camera-btn unselect">
+                                            NEXT
+                                    </div> : null
+                                    }
                                 </div>
-                            </div>
+                            </>
                             : null}
                     </div>
+
                     <div id="cube" className="cube-front">
                         <div id="cube-face-1-a" className="cube-face">
-                            1-a
                         </div>
                         <div id="cube-face-1-b" className="cube-face">
-                            1-b
                         </div>
                         <div id="cube-face-1-c" className="cube-face">
-                            1-c
                         </div>
                         <div id="cube-face-1-d" className="cube-face-door">
-                            1-d
                         </div>
                         <div id="cube-face-1-e" className="cube-face-door">
-                            1-e
                         </div>
                         <div id="cube-face-2-a" className="cube-face">
-                            2-a
                         </div>
                         <div id="cube-face-2-b" className="cube-face">
-                            2-b
                         </div>
                         <div id="cube-face-2-c" className="cube-face">
-                            2-c
                         </div>
                         <div id="cube-face-2-d" className="cube-face">
-                            2-d
                         </div>
-
                         <div id="cube-face-3-a" className="cube-face">
-                            3-a
                         </div>
                         <div id="cube-face-3-b" className="cube-face">
-                            3-b
                         </div>
                         <div id="cube-face-3-c" className="cube-face">
-                            3-c
                         </div>
                         <div id="cube-face-3-d" className="cube-face">
-                            <div id="entrance-menu" className="cube-face">
-
+                            <div id="entrance-menu" className="entrance-menu">
                             </div>
                         </div>
                         <div id="cube-face-3-f" className="cube-face">
-                            seat top
                         </div>
                         <div id="cube-face-3-e" className="cube-face">
-                            seat back
                         </div>
                         <div id="cube-face-3-g" className="cube-face">
-                            seat side
                         </div>
                         <div id="cube-face-4-a" className="cube-face">
-                            4
+                            <div id="credit-1" className="credit">
+                                <div className="credit-title">Hao Allen Tran</div>
+                                <div className="credit-subtitle">Project Lead</div>
+                                <ul>
+                                    <li>UI/UX</li>
+                                    <li>Illustration</li>
+                                    <li>API</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div id="cube-face-4-a-1" className="cube-face-4-a-1 cube-face">
                         </div>
                         <div id="cube-face-4-b" className="cube-face">
-                            4-b
+                            <div id="credit-2" className="credit">
+                                <div className="credit-title">Thomas Hoang</div>
+                                <div className="credit-subtitle">Database</div>
+                                <ul>
+                                    <li>Database</li>
+                                    <li>API</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div id="cube-face-4-b-1" className="cube-face-4-b-1 cube-face">
                         </div>
                         <div id="cube-face-4-c" className="cube-face">
-                            4-c
+                            <div id="credit-3" className="credit">
+                                <div className="credit-title">Scotty Thoms</div>
+                                <div className="credit-subtitle">DevOps Engineer</div>
+                                <ul>
+                                    <li>AWS Pipeline</li>
+                                    <li>API</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div id="cube-face-4-c-1" className="cube-face-4-c-1 cube-face">
                         </div>
                         <div id="cube-face-4-d" className="cube-face">
-                            4-d
+                            <div id="credit-4" className="credit">
+                                <div className="credit-title">Drew Peters</div>
+                                <div className="credit-subtitle">API Server</div>
+                                <ul>
+                                    <li>API</li>
+                                </ul>
+                            </div>
                         </div>
-                        <div id="cube-face-5-a" className="cube-top">
-                            5-a
+                        <div id="cube-face-4-d-1" className="cube-face-4-d-1 cube-face">
+                        </div>
+                        <div id="cube-face-5-a" className="cube-face">
                         </div>
                         <div id="cube-face-5-b" className="cube-face">
-                            5-b
                         </div>
                         <div id="cube-face-5-c" className="cube-face">
-                            5-c
                         </div>
-                        <div id="cube-face-5-d" className="cube-top">
-                            5-d
+                        <div id="cube-face-5-d" className="cube-face">
                         </div>
                         <div id="cube-face-5-e" className="cube-face">
-                            5-e
                         </div>
                         <div id="cube-face-5-f" className="cube-face">
-                            5-f
                         </div>
                         <div id="cube-face-6-a" className="cube-bot">
-                            FLOOR
                         </div>
                     </div>
                 </div>

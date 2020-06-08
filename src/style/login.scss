@@ -1,0 +1,76 @@
+@import "./main.scss";
+.login-wrapper {
+    display: inline-block;
+    position: absolute;
+    margin: 20px 10px 0px 300px;
+    padding-top: 10px;
+    width: 280px;
+    height: 540px;
+    background-image: url("./img/login-wrapper.png");
+}
+
+.login-wrapper-user {
+    display: inline-block;
+    position: absolute;
+    margin: 10px 10px 0px 600px;
+    padding-top: -20px;
+    width: 280px;
+    height: 540px;
+}
+
+.form-title {
+    top: 30px;
+    margin: 10px 20px 0px 20px;
+    padding-left: 10px;
+    height: 30px;
+    line-height: 30px;
+    text-align: left;
+    background-color: rgba(0, 0, 0, 0);
+    color: whitesmoke;
+}
+
+.form-input {
+    top: 30px;
+    margin: 10px 20px 0px 20px;
+    padding-left: 10px;
+    height: 30px;
+    width: 225px;
+    line-height: 30px;
+    text-align: left;
+    background-color: rgb(26, 26, 26);
+    color: whitesmoke;
+}
+
+.button-container {
+    top: 30px;
+    margin: 30px 20px 0px 110px;
+    height: 50px;
+    width: 150px;
+    line-height: 50px;
+    text-align: center;
+    background-image: url("./img/150btn.png");
+    color: whitesmoke;
+}
+
+.button-container:hover {
+    top: 30px;
+    margin: 30px 20px 0px 110px;
+    height: 50px;
+    width: 150px;
+    line-height: 50px;
+    text-align: center;
+    background-image: url("./img/150btn-select.png");
+    color: $grey;
+}
+
+.form-error {
+    top: 30px;
+    margin: 30px 20px 0px 20px;
+    padding-left: 10px;
+    height: 40px;
+    line-height: 40px;
+    border: 5px rgb(80, 29, 29) solid;
+    text-align: left;
+    color: whitesmoke;
+    background-color: rgb(26, 26, 26);
+}
