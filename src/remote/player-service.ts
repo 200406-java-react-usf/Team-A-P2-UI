@@ -78,7 +78,7 @@ export async function updateCargobyUserIdAndGoodId(user_id: number, good_id: num
 
 //get user by id
 export async function getUserbyId(user_id: number) {
-    let response = await Client.post(`/users/${user_id}`);
+    let response = await Client.get(`/users/${user_id}`);
     return await response.data;
     //return mockUserList[user_id-1];
 }
@@ -92,7 +92,7 @@ export async function register(username: string, password: string) {
 
 //update user
 export async function updateUser(user: User) {
-    let response = await Client.put(`/users`);
+    let response = await Client.put(`/users`, {user});
     return await response.data;
     //return user;
 }
