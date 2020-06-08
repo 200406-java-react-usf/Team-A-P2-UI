@@ -12,16 +12,19 @@ import GoodHolder from "../partials/GoodHolder/GoodHolder";
 import "../../style/tradeComponent.scss";
 import { User } from '../../dtos/user';
 import { Planet } from '../../dtos/planet';
-import { tradeAction } from '../../actions/trade-action'
+
+import { cargoListAction } from "../../actions/cargo-list-action"
 
 export interface ICargoProps {
     authUser: User;
+    userCargoList: Cargo[];
     errorMessage: string;
+    tradeAction: (user_id: number, good_id: number, cost: number, amount: number)  => void;
 }
 
 function TradeComponent(props: ICargoProps) {
-    //@ts-ignore
-    const [cargoListDisplay, setCargoListDisplay] = useState(null as any[]);
+
+    const [cargoListDisplay, setCargoListDisplay] = useState(props.userCargoList);
     //@ts-ignore
     const [cityCargoDisplay, setCityCargoDisplay] = useState(null as any[]);
 
@@ -77,8 +80,6 @@ function TradeComponent(props: ICargoProps) {
         };
         let cargoArrCity: any[] = [];
         let fetchCityData = async () => {
-
-
             if (cityCargoList) {
                 for (let planetCargo of cityCargoList) {
                     //let result = await getGoodbyId(planetCargo.goodId);
@@ -126,7 +127,6 @@ function TradeComponent(props: ICargoProps) {
     let selectDetail = async (e: any) => {
         let id = e.currentTarget.id.split("-")[1];
         let result = await getGoodbyId(id)
-        //let result = mockGoodList[id-1];
         setSelectedGood(result);
 
         let userlist = document.getElementById("cargo-wrapper-user") as HTMLDivElement;
@@ -151,7 +151,10 @@ function TradeComponent(props: ICargoProps) {
             let selectedCityPriceSlot = document.getElementById("city-" + id)?.children[3] as HTMLDivElement;
             //@ts-ignore
             let cityPrice = parseInt(selectedCityPriceSlot.textContent);
-            tradeAction(props.authUser.id, id, cityPrice, 1);
+            console.log(props.authUser.id, id, cityPrice, 1);
+            props.tradeAction(props.authUser.id, id, cityPrice, 1);
+            cargoListAction(props.authUser.id);
+            setUserCargoList(props.userCargoList);
             //updateCargobyUserIdAndGoodId(props.authUser.id, id, cityPrice, 1);
         }
     }
@@ -161,7 +164,9 @@ function TradeComponent(props: ICargoProps) {
             let selectedCityPriceSlot = document.getElementById("city-" + id)?.children[3] as HTMLDivElement;
             //@ts-ignore
             let cityPrice = parseInt(selectedCityPriceSlot.textContent);
-            tradeAction(props.authUser.id, id, cityPrice, -1)
+            props.tradeAction(props.authUser.id, id, cityPrice, -1);
+            cargoListAction(props.authUser.id);
+            setUserCargoList(props.userCargoList);
         }
     }
     let loadData = async () => {

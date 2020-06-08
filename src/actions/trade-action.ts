@@ -14,7 +14,6 @@ export const tradeActionTypes = {
 /*Would require current userID to know which user to change cargo for, goodID of the purchased good to
 add to cargo, the total cost of the trade action would be done in the front-end, and the planet name to find the planets trade price modifier*/
 export const tradeAction = (user_id: number, good_id: number, cost: number, amount: number) => async (dispatch: Dispatch) => {
-
     try {
         // // get the cargo record
         // let originalCargo: Cargo = await getCargobyUserIdAndGoodId(user_id, good_id)
@@ -25,23 +24,23 @@ export const tradeAction = (user_id: number, good_id: number, cost: number, amou
         // originalCargo.quantity += amount;
         // //update avg cost
         // let newCost: number = newSum / originalCargo.quantity;
-
-        await updateCargobyUserIdAndGoodId(user_id, good_id, amount, cost)
-        let userCargoList:Cargo[] = await getCargoListbyUserId(user_id);
-
+        console.log(user_id, good_id, cost, amount);
+        await updateCargobyUserIdAndGoodId(user_id, good_id, cost*amount, amount)
+        let userCargoList: Cargo[] = await getCargoListbyUserId(user_id);
         //currency
         let user: User = await getUserbyId(user_id);
         user.currency -= amount * cost;
-        await updateUser(user);
 
-        dispatch({
-            type: cargoListActionTypes.SUCCESSFUL_GETLIST,
-            payload: userCargoList
-        });
-        dispatch({
-            type: tradeActionTypes.SUCCESSFUL_PURCHASE,
-            payload: user
-        });
+        //        await updateUser(user);
+
+        // dispatch({
+        //     type: cargoListActionTypes.SUCCESSFUL_GETLIST,
+        //     payload: userCargoList
+        // });
+        // dispatch({
+        //     type: tradeActionTypes.SUCCESSFUL_PURCHASE,
+        //     payload: user
+        // });
     } catch (e) {
 
         let status = e.response.status;
