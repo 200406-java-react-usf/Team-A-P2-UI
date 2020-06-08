@@ -5,6 +5,7 @@ import { User } from "../../dtos/user";
 import { Cargo } from "../../dtos/cargo";
 
 import "../../style/adminComponent.scss";
+import { getAllUser, deleteUserbyID } from '../../remote/admin-service';
 
 export interface IAdminProps {
     authUser: User;
@@ -20,14 +21,12 @@ function AdminComponent(props: IAdminProps) {
     //@ts-ignore
     const [usersDisplay, setUsersDisplay] = useState(null as any[]);
 
-    let mockUser = new User(1, "test", "test", "user", 20, 1000, 1)
 
     useEffect(() => {
         let userArr: any[] = [];
         let fetchUserData = async () => {
-            //let result = await getAllUser()
-            //setUserList(result);
-            let result = [mockUser];
+            let result = await getAllUser()
+            setUserList(result);
             if (result) {
                 for (let user of result) {
                     userArr.push(
@@ -49,8 +48,8 @@ function AdminComponent(props: IAdminProps) {
 
     let deleteUser = async (e: any) => {
         let id = e.currentTarget.parentElement.id.split("-")[1];
-        // await deleteAction(id);
-        // await getAllUser()
+        await deleteUserbyID(id);
+        await getAllUser()
     }
 
 
