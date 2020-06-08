@@ -60,7 +60,37 @@ function PlanetInfo(props: IMapProps) {
                 let detail =
                     <>
                         <div className="SWAPIInfo" key={SWAPIPlanet.name}>
-                            <div className="SWAPIInfo-img"></div>
+                            <div className="SWAPIInfo-img">
+                                <div className="scene">
+                                    <div className="sphere">
+                                        <div className="hemisphere">
+                                            <div className="face"></div>
+                                            <div className="face"></div>
+                                            <div className="face"></div>
+                                            <div className="face"></div>
+                                            <div className="face"></div>
+                                            <div className="face"></div>
+                                            <div className="face"></div>
+                                            <div className="face"></div>
+                                            <div className="face"></div>
+                                            <div className="face"></div>
+                                        </div>
+                                        <div className="hemisphere">
+                                            <div className="face"></div>
+                                            <div className="face"></div>
+                                            <div className="face"></div>
+                                            <div className="face"></div>
+                                            <div className="face"></div>
+                                            <div className="face"></div>
+                                            <div className="face"></div>
+                                            <div className="face"></div>
+                                            <div className="face"></div>
+                                            <div className="face"></div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
                             <div className="SWAPIInfo-name unselect">{SWAPIPlanet.name}</div>
                             <div className="SWAPIInfo-sub unselect">CLIMATE: {SWAPIPlanet.climate}</div>
                             <div className="SWAPIInfo-sub unselect">TERRAIN: {SWAPIPlanet.terrain}</div>
@@ -70,7 +100,7 @@ function PlanetInfo(props: IMapProps) {
                 setPlanetDetail(detail);
             }
         }
-        
+
         // let getCurrentLoc = async () => {
         //     let iconList = document.getElementsByClassName("icon-ani");
         //     for (let i = 0; i < iconList.length; i++) {
@@ -94,7 +124,7 @@ function PlanetInfo(props: IMapProps) {
         let id = parseInt(element.children[0].textContent);
         let SWAPIURL = `https://swapi.dev/api/planets/?search=${name}`;
         let SWAPInfo;
-        axios.get(SWAPIURL).then(function(response) {
+        axios.get(SWAPIURL).then(function (response) {
             SWAPInfo = response.data.results[0];
             setSWAPIPlanet(SWAPInfo);
         });
@@ -148,11 +178,11 @@ function PlanetInfo(props: IMapProps) {
             </div>
             <div className="map-wrapper-city-detail">
                 {planetDetail}
-                {planetDetail?               
-                 <div className="SWAPIInfo-trvel-btn" onClick={travel}>
-                    TRAVEL
+                {planetDetail ?
+                    <div className="SWAPIInfo-trvel-btn" onClick={travel}>
+                        TRAVEL
                 </div>
-                :null}
+                    : null}
             </div>
         </>
     );
