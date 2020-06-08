@@ -2,7 +2,7 @@ import React, { useState, SyntheticEvent } from 'react';
 import "../../style/login.scss";
 
 import { User } from "../../dtos/user"
-import UserHolder from "../../components/UserHolder/UserHolder"
+import UserHolder from "../../components/UserHolder/UserHolderContainer"
 
 
 export interface ILoginProps {

@@ -133,6 +133,14 @@ function PlanetInfo(props: IMapProps) {
                         <div className="city-icon"></div>
                         <div className="city-title">Alderaan</div>
                     </div>
+                    <div id="map-city-3" className="icon-locator">
+                        <div className="city-icon"></div>
+                        <div className="city-title">Yavin IV</div>
+                    </div>
+                    <div id="map-city-4" className="icon-locator">
+                        <div className="city-icon"></div>
+                        <div className="city-title">Hoth</div>
+                    </div>
                 </div>
             </div>
             <div className="map-wrapper-city-detail">

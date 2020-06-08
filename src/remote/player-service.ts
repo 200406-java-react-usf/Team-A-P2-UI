@@ -5,7 +5,7 @@ import { User } from '../dtos/user';
 
 //get good by id
 export async function getGoodbyId(id: number){
-    let response = await Client.get(``);
+    let response = await Client.get(`/goods/${id}`);
     return await response.data;
 }
 
@@ -35,17 +35,24 @@ export async function updateCargobyUserIdAndGoodId (user_id: number, good_id:num
 
 //get user by id
 export async function getUserbyId (user_id: number){
-    let response = await Client.post(``);
+    let response = await Client.post(`/users/${user_id}`);
     return await response.data;
 }
 
 //new user
 export async function newUser (user: User){
-    let response = await Client.post(``);
+    let response = await Client.post(`/users`);
     return await response.data;
 }
+
 //update user
 export async function updateUser (user:User){
     let response = await Client.post(``);
+    return await response.data;
+}
+
+//get all planets
+export async function getAllPlanets (){
+    let response = await Client.get(``);
     return await response.data;
 }
