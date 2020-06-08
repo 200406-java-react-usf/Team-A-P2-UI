@@ -44,9 +44,9 @@ let mockUserList: User[] = [
 ]
 //get good by id
 export async function getGoodbyId(id: number) {
-    // let response = await Client.get(`/goods/${id}`);
-    // return await response.data;
-    return mockGoodList[id];
+    let response = await Client.get(`/goods/${id}`);
+    return await response.data;
+    //return mockGoodList[id];
 }
 
 //get cargo list by user id
@@ -78,28 +78,28 @@ export async function updateCargobyUserIdAndGoodId(user_id: number, good_id: num
 
 //get user by id
 export async function getUserbyId(user_id: number) {
-    // let response = await Client.post(`/users/${user_id}`);
-    // return await response.data;
-    return mockUserList[user_id-1];
+    let response = await Client.post(`/users/${user_id}`);
+    return await response.data;
+    //return mockUserList[user_id-1];
 }
 
 //new user
 export async function newUser(user: User) {
-    // let response = await Client.post(`/users`);
-    // return await response.data;
-    return user;
+    let response = await Client.post(`/users`);
+    return await response.data;
+    //return user;
 }
 
 //update user
 export async function updateUser(user: User) {
-    // let response = await Client.put(`/user`);
-    // return await response.data;
-    return user;
+    let response = await Client.put(`/user`);
+    return await response.data;
+    //return user;
 }
 
 //get all planets
 export async function getAllPlanets() {
-    // let response = await Client.get(`/planets`);
-    // return await response.data;
-    return mockPlanetList;
+    let response = await Client.get(`/planets`);
+    return await response.data;
+    //return mockPlanetList;
 }

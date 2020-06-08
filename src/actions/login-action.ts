@@ -15,6 +15,7 @@ export const loginAction = (username: string, password: string) => async (dispat
     try {
 
         let authUser:User = await authenticate(username, password);
+        console.log(authUser);
         dispatch({
             type: loginActionTypes.SUCCESSFUL_LOGIN,
             payload: authUser

@@ -16,22 +16,24 @@ function LoginComponent(props: ILoginProps) {
 
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+
+
+    const [ready, setReady] = useState(false);
+
     //@ts-ignore
     const [userDisplay, setUserdisplay] = useState(null as any)
     const [errorMessage, setErrorMessage] = useState(props.errorMessage);
+
     useEffect(() => {
-        const displayUser = () => {
-            let userDetail: any;
+        setErrorMessage(props.errorMessage);
+        setAuthUser(props.authUser);
+        const removeError = () => {
             if (authUser) {
-                userDetail =
-                    <div className="login-wrapper-user">
-                        <UserHolder inGame={false} />
-                    </div>;
-                setUserdisplay(userDetail);
+                setErrorMessage("");
             }
         }
-        displayUser();
-    }, [authUser, errorMessage])
+        removeError();
+    }, [authUser, errorMessage, ready])
     let updateUsername = (e: any) => {
         setUsername(e.currentTarget.value);
     }
@@ -41,9 +43,10 @@ function LoginComponent(props: ILoginProps) {
     }
 
     let login = async () => {
-        props.loginAction(username, password);
+        await props.loginAction(username, password);
         setAuthUser(props.authUser);
-        setErrorMessage(props.errorMessage);
+
+        setReady(true);
     }
 
 
@@ -72,7 +75,12 @@ function LoginComponent(props: ILoginProps) {
                     : null
                 }
             </form>
-            {userDisplay}
+            {(authUser) ?
+                <div className="login-wrapper-user">
+                    <UserHolder inGame={false} />
+                </div>
+                : null
+            }
         </>
     );
 

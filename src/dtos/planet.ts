@@ -1,14 +1,14 @@
 export class Planet{
-    planet_id: number;
-    planet_name: string;
+    id: number;
+    name: string;
     priceModifier: number;
     constructor (
         id: number,
-        planet_name: string,
+        name: string,
         price_mod: number,
     ){
-        this.planet_id = id;
-        this.planet_name = planet_name;
+        this.id = id;
+        this.name = name;
         this.priceModifier= price_mod;
     }
 }
