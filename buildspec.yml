@@ -12,6 +12,6 @@ phases:
   build: 
     commands:
       - npm run build
-  post-build:
+  post_build:
     commands:
       - aws s3 sync ./build s3://team-a-p2
