@@ -71,7 +71,7 @@ export async function getCargobyUserIdAndGoodId(user_id: number, good_id: number
 }
 
 //update specific cargo
-export async function updateCargobyUserIdAndGoodId(user_id: number, good_id: number) {
+export async function updateCargobyUserIdAndGoodId(user_id: number, good_id: number, amount: number, price: number) {
     // let response = await Client.post(``); not implemented yet
     // return await response.data;
 }
