@@ -9,7 +9,7 @@ import { Provider } from 'react-redux';
 import { store } from './Store';
 
 import Entrance from './scene/Entrance/EntranceContainer';
-import Spaceship from './scene/SpaceShip/Spaceship';
+import Spaceship from './scene/SpaceShip/SpaceshipContainer';
 
 function App() {
   return (

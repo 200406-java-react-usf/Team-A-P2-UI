@@ -71,17 +71,17 @@ function PlanetInfo(props: IMapProps) {
             }
         }
         
-        let getCurrentLoc = async () => {
-            let iconList = document.getElementsByClassName("icon-ani");
-            for (let i = 0; i < iconList.length; i++) {
-                const icon = iconList[i] as HTMLElement;
-                icon.classList.remove("icon-ani")
-            }
-            if (destination) {
-                let icon = document.getElementById("map-city-" + destination) as HTMLDivElement;
-                icon?.classList.add("icon-ani");
-            }
-        }
+        // let getCurrentLoc = async () => {
+        //     let iconList = document.getElementsByClassName("icon-ani");
+        //     for (let i = 0; i < iconList.length; i++) {
+        //         const icon = iconList[i] as HTMLElement;
+        //         icon.classList.remove("icon-ani")
+        //     }
+        //     if (destination) {
+        //         let icon = document.getElementById("map-city-" + destination) as HTMLDivElement;
+        //         icon?.classList.add("icon-ani");
+        //     }
+        // }
         readDetail();
         fetchPlanetData();
     }, [planetList, SWAPIPlanet]);
@@ -114,7 +114,7 @@ function PlanetInfo(props: IMapProps) {
         //await travel action
         //const [currentLoc, setCurrentLoc] = useState(props.autherUser.location);
         setCurrentLoc(2);
-        props.travelAni(1)
+        props.travelAni(2)
     }
     return (
         <>

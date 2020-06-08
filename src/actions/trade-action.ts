@@ -25,9 +25,8 @@ export const tradeAction = (user_id: number, good_id: number, cost: number, amou
         originalCargo.good_quantity += amount;
         //update avg cost
         let newCost: number = newSum / originalCargo.good_quantity;
-        originalCargo.cost_of_goods = newCost; 
 
-        await updateCargobyUserIdAndGoodId(user_id, good_id)
+        await updateCargobyUserIdAndGoodId(user_id, good_id, amount, newCost)
         let userCargoList:Cargo[] = await getCargoListbyUserId(user_id);
 
         //currency
