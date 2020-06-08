@@ -51,23 +51,20 @@ export async function getGoodbyId(id: number) {
 
 //get cargo list by user id
 export async function getCargoListbyUserId(id: number) {
-    // let response = await Client.get(`/cargos/user/${id}`); 
-    // return await response.data;
-    return mockCargoList;
+    let response = await Client.get(`/cargos/user/${id}`); 
+    return await response.data;
 }
 
 //get cargo list by planet id
 export async function getCargoListbyPlanetId(id: number) {
-    // let response = await Client.get(`/cargos/planet/${id}`); 
-    // return await response.data;
-    return mockPlanetGoods;
+    let response = await Client.get(`/cargos/planet/${id}`); 
+    return await response.data;
 }
 
 //get specific cargo
 export async function getCargobyUserIdAndGoodId(user_id: number, good_id: number) {
-    // let response = await Client.get(`/user/${user_id}/good/${good_id}`);
-    // return await response.data;
-    return mockCargoList[good_id];
+    let response = await Client.get(`/user/${user_id}/good/${good_id}`);
+    return await response.data;
 }
 
 //update specific cargo

@@ -1,9 +1,9 @@
 export class Good {
 
-    good_id: number;
-    good_name: string;
-    good_description: string;
-    good_base_price: number;
+    id: number;
+    name: string;
+    description: string;
+    price: number;
 
 
     constructor(
@@ -13,10 +13,10 @@ export class Good {
         desc: string,
 
     ) {
-        this.good_id = id;
-        this.good_name = name;
-        this.good_description = desc;
-        this.good_base_price = price;
+        this.id = id;
+        this.name = name;
+        this.description = desc;
+        this.price = price;
     }
 
 }
