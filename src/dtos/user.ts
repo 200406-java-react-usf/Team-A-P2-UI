@@ -3,7 +3,7 @@ export class User {
     id: number;
     username: string;
     password: string;
-    user_role: string;
+    role: string;
     cargoSpace: number;
     currency: number;
     location: number;
@@ -20,7 +20,7 @@ export class User {
         this.id = id;
         this.username = un;
         this.password = pw;
-        this.user_role= user_role;
+        this.role= user_role;
         this.cargoSpace = cargo_space;
         this.currency = currency;
         this.location = location;

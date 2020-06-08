@@ -34,15 +34,11 @@ function PlanetInfo(props: IMapProps) {
     useEffect(() => {
         let planetDisplayList: any[] = [];
         let fetchPlanetData = async () => {
-            let planets = await getAllPlanets();
             //setPlanetCargoList(planetCargo);
             //let planetPriceMod = await getPlanetPriceMod();
-            let mockPlanetList = [
-                new Planet(1, "Tatooine", 1.5)
-            ];
 
-            if (planets) {
-                for (let planet of planets) {
+            if (planetList) {
+                for (let planet of planetList) {
                     //let priceMod = await getPlanetPriceModByID();
                     planetDisplayList.push(
                         <div className="city-slot-wrapper" key={"planet-" + planet.id} id={"planet-" + planet.id} onClick={selectDetail}>
@@ -146,13 +142,17 @@ function PlanetInfo(props: IMapProps) {
         setCurrentLoc(2);
         props.travelAni(2)
     }
+    let loadData = async () => {
+        let planets = await getAllPlanets();
+        setPlanetList(planets);
+    }
     return (
         <>
             <div className="map-wrapper-city">
                 {planetDisplay}
 
             </div>
-            <div className="map">
+            <div className="map" onClick ={loadData}>
                 <div className="map-inner">
                     <div id="map-city-1" className="icon-locator">
                         <div className="city-icon"></div>

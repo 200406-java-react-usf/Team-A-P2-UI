@@ -1,15 +1,15 @@
 export class PlanetCargo{
-    planet_id: number;
-    good_id: number;
-    price_modifier: number;
+    planetId: number;
+    goodId: number;
+    priceModifier: number;
 
     constructor (
         id: number,
         good_id: number,
         price_mod: number,
     ){
-        this.planet_id = id;
-        this.good_id = good_id;
-        this.price_modifier = price_mod;
+        this.planetId = id;
+        this.goodId = good_id;
+        this.priceModifier = price_mod;
     }
 }

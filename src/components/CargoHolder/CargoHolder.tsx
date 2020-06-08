@@ -28,7 +28,7 @@ function CargoHolder(props: ICargoProps) {
         new Good(3, "Heavy Weaponry", 1000, "Can be used to snuff out a rebellion. Or to start one."),
         new Good(4, "Stimulants", 500, "Bro, maybe the galaxy is moving AROUND us!"),
         new Good(5, "Harvested Organs", 2000, "I poured my heart out for you."),
-        new Good(6, "Yavinnium Gas",200, "Makes you talk funny. Also an important isolant in superconductors."),
+        new Good(6, "Yavinnium Gas", 200, "Makes you talk funny. Also an important isolant in superconductors."),
         new Good(7, "Zeyd Fabric", 1500, "We have an array of vibrant color pallets, but of course black suits you, my Emperor."),
         new Good(8, "Memory Plastic", 300, "I still remeber the time when I was a young and happy dinosaur,"),
         new Good(9, "Luxious Fur Pelt", 500, "No it is not from a Wookie! When would you ask?"),
@@ -54,16 +54,14 @@ function CargoHolder(props: ICargoProps) {
     useEffect(() => {
         let cargoArr: any[] = [];
         let fetchData = async () => {
-            let userCargoList = await getCargoListbyUserId(props.authUser.id);
-            setCargoList(userCargoList)
             if (cargoList) {
                 for (let cargo of cargoList) {
-                    let result = await getGoodbyId(cargo.good_id);
+                    //let result = await getGoodbyId(cargo.id);
+                    let result = mockGoodList[cargo.id - 1];
                     let name = result.name;
-
                     cargoArr.push(
-                        <div className="good-wrapper unselect" key={"invent-"+cargo.good_id} id={"invent-"+cargo.good_id} onClick={selectDetail} >
-                            <GoodHolder good_name={name} good_qauntity={cargo.good_quantity.toString()} cost_of_goods={cargo.cost_of_goods} />
+                        <div className="good-wrapper unselect" key={"invent-" + cargo.id} id={"invent-" + cargo.id} onClick={selectDetail} >
+                            <GoodHolder good_name={name} good_qauntity={cargo.quantity.toString()} cost_of_goods={cargo.costOfGoods} />
                         </div>
                     )
                 }
@@ -76,24 +74,36 @@ function CargoHolder(props: ICargoProps) {
                 setGoodDesc(selectedCargo.description);
             }
         }
-        readDetail()
-        fetchData()
-    }, [cargoList, selectedCargo]);
+        readDetail();
+        fetchData();
 
+    }, [selectedCargo, cargoList]);
+
+
+
+    let loadData = async () => {
+        let userCargoList = await getCargoListbyUserId(props.authUser.id);
+        setCargoList(userCargoList)
+    }
 
     let selectDetail = async (e: any) => {
         let id = e.currentTarget.id.split("-")[1];
         let result = await getGoodbyId(id)
-        setSelectedCargo(result.data);
+        setSelectedCargo(result);
 
         let cargoList = document.getElementsByClassName("good-wrapper-selected");
-        for (let i = 0; i < cargoList.length; i++) {
+        for (let i = 0; i < cargoList.length;) {
             const slot = cargoList[i] as HTMLElement;
             slot.classList.remove("good-wrapper-selected")
         }
+        //@ts-ignore
+        //document.getElementById("good-img-slot-detail").style.backgroundImage = `url('./img/Precious Metal.png')`;
+
         let selected = document.getElementById("invent-" + id) as HTMLDivElement;
         selected.classList.add("good-wrapper-selected");
     }
+
+
     return (
         <>
             <div className="cargo-wrapper unselect">
@@ -105,9 +115,8 @@ function CargoHolder(props: ICargoProps) {
                 </div>
                 {cargoListDisplay}
             </div>
-            <div id="cargo-good-detail" className="detail-wrapper unselect">
-                {/* <div className="good-img-slot-detail" style ={ { backgroundImage: "" } } ></div> */}
-                <div className="good-img-slot-detail"> </div>
+            <div id="cargo-good-detail" className="detail-wrapper unselect" onClick={loadData}>
+                <div id="good-img-slot-detail"></div>
                 <div className="good-name-slot-detail">{goodName}</div>
                 <div className="good-desc-slot-detail">{goodDesc}</div>
             </div>

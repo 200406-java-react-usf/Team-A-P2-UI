@@ -307,7 +307,7 @@ function Entrance(props: ILoginProps) {
                         {(action === "setting") ?
                             <>
                                 <div className="camera-info">
-                                    {((props.authUser) && (props.authUser.user_role === "ADMIN")) ?
+                                    {((props.authUser) && (props.authUser.role === "ADMIN")) ?
                                         < AdminComponent />
                                         : null
                                     }

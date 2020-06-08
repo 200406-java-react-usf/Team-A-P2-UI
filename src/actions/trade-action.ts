@@ -16,17 +16,17 @@ add to cargo, the total cost of the trade action would be done in the front-end,
 export const tradeAction = (user_id: number, good_id: number, cost: number, amount: number) => async (dispatch: Dispatch) => {
 
     try {
-        // get the cargo record
-        let originalCargo: Cargo = await getCargobyUserIdAndGoodId(user_id, good_id)
+        // // get the cargo record
+        // let originalCargo: Cargo = await getCargobyUserIdAndGoodId(user_id, good_id)
 
-        // update the cargo
-        let sum: number = originalCargo.good_quantity * originalCargo.cost_of_goods;
-        let newSum: number = sum + cost;
-        originalCargo.good_quantity += amount;
-        //update avg cost
-        let newCost: number = newSum / originalCargo.good_quantity;
+        // // update the cargo
+        // let sum: number = originalCargo.quantity * originalCargo.costOfGoods;
+        // let newSum: number = sum + cost;
+        // originalCargo.quantity += amount;
+        // //update avg cost
+        // let newCost: number = newSum / originalCargo.quantity;
 
-        await updateCargobyUserIdAndGoodId(user_id, good_id, amount, newCost)
+        await updateCargobyUserIdAndGoodId(user_id, good_id, amount, cost)
         let userCargoList:Cargo[] = await getCargoListbyUserId(user_id);
 
         //currency

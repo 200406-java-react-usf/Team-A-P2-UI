@@ -19,7 +19,7 @@ function GoodHolder(props: IGoodProps) {
     return (
         <>
 
-                <div className="good-img-slot" style ={ { backgroundImage: `url("${goodName}.png")`} } ></div>
+                {/* <div className="good-img-slot" style ={ { backgroundImage: `url("${goodName}.png")`} } ></div> */}
                 <div className="good-img-slot"> </div>
                 <div className="good-name-slot">{goodName}</div>
                 <div className="good-quantity-slot">{goodQauntity}</div>
