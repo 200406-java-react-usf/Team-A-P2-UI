@@ -8,6 +8,6 @@ export async function getAllUser(){
 }
 
 export async function deleteUserbyID(user_id: number){
-    let response = await Client.get(`/users/${user_id}`);
+    let response = await Client.delete(`/users/${user_id}`);
     return await response.data;
 }
