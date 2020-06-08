@@ -105,8 +105,8 @@ function TradeComponent(props: ICargoProps) {
 
                     //let good = await getGoodbyId(planetCargo.good_id);
                     let good = new Good(1, "test", 10, "desc");
-                    let name = good.good_name;
-                    let price = good.good_base_price;
+                    let name = good.name;
+                    let price = good.price;
 
                     cargoArrCity.push(
                         <div className="good-wrapper unselect" key={"city-" + planetCargo.good_id} id={"city-" + planetCargo.good_id} onClick={selectDetail} >
@@ -200,7 +200,7 @@ function TradeComponent(props: ICargoProps) {
                 {user.currency} CREDITS
             </div>
             <div id="trade-interface" className="trade-interface">
-                {/* <div className="good-img-slot-detail" style ={ { backgroundImage: "" } } ></div> */}
+                <div className="good-img-slot-detail" style ={ { backgroundImage: `url("${goodName}.png")` } } ></div> 
                 <div className="good-img-slot-trade"> </div>
                 <div className="good-name-slot-trade unselect">{goodName}</div>
                 <div className="good-desc-slot-trade unselect">{goodDesc}</div>

@@ -12,16 +12,14 @@ export interface IGoodProps {
 
 function GoodHolder(props: IGoodProps) {
 
-    const [readyState, setReadyState] = useState(false);
-
-    const [goodName, setGoodName] = useState(props.good_name);
-    const [goodQauntity, setGoodQauntity] = useState(props.good_qauntity);
-    const [goodCosts, setCostOfGoods] = useState(props.cost_of_goods);
+    const [goodName] = useState(props.good_name);
+    const [goodQauntity] = useState(props.good_qauntity);
+    const [goodCosts] = useState(props.cost_of_goods);
 
     return (
         <>
 
-                {/* <div className="good-img-slot" style ={ { backgroundImage: "" } } ></div> */}
+                <div className="good-img-slot" style ={ { backgroundImage: `url("${goodName}.png")`} } ></div>
                 <div className="good-img-slot"> </div>
                 <div className="good-name-slot">{goodName}</div>
                 <div className="good-quantity-slot">{goodQauntity}</div>

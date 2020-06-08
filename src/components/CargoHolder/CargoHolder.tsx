@@ -4,7 +4,7 @@ import { User } from "../../dtos/user";
 import { Good } from "../../dtos/good";
 import { Cargo } from "../../dtos/cargo";
 
-import { getGoodbyId } from "../../remote/player-service"
+import { getGoodbyId, getCargoListbyUserId } from "../../remote/player-service"
 
 import GoodHolder from "../partials/GoodHolder/GoodHolder";
 
@@ -36,8 +36,7 @@ function CargoHolder(props: ICargoProps) {
         new Good(11, "Kyber Crystal", 5000, "Perfect for creating a positive Feng Shui or light saber.")
     ];
     //@ts-ignore
-    // const [cargoList, setCurrentCargo] = useState(props.userCargo);
-    const [cargoList, setCargoList] = useState(mockCargoList);
+    const [cargoList, setCargoList] = useState(null as Cargo[]);
 
 
     //@ts-ignore
@@ -55,12 +54,12 @@ function CargoHolder(props: ICargoProps) {
     useEffect(() => {
         let cargoArr: any[] = [];
         let fetchData = async () => {
+            let userCargoList = await getCargoListbyUserId(props.authUser.id);
+            setCargoList(userCargoList)
             if (cargoList) {
                 for (let cargo of cargoList) {
-                    //let result = await getGoodById(cargo.good_id);
-                    //let name = result.good_name;
-
-                    let name = "test"
+                    let result = await getGoodbyId(cargo.good_id);
+                    let name = result.name;
 
                     cargoArr.push(
                         <div className="good-wrapper unselect" key={"invent-"+cargo.good_id} id={"invent-"+cargo.good_id} onClick={selectDetail} >
@@ -73,8 +72,8 @@ function CargoHolder(props: ICargoProps) {
         }
         let readDetail = async () => {
             if (selectedCargo) {
-                setGoodName(selectedCargo.good_name);
-                setGoodDesc(selectedCargo.good_description);
+                setGoodName(selectedCargo.name);
+                setGoodDesc(selectedCargo.description);
             }
         }
         readDetail()
@@ -84,9 +83,8 @@ function CargoHolder(props: ICargoProps) {
 
     let selectDetail = async (e: any) => {
         let id = e.currentTarget.id.split("-")[1];
-        //let result = await getGoodById(id)
-        //setSelectedCargo(result.data);
-        setSelectedCargo(mockGoodList[id-1])
+        let result = await getGoodbyId(id)
+        setSelectedCargo(result.data);
 
         let cargoList = document.getElementsByClassName("good-wrapper-selected");
         for (let i = 0; i < cargoList.length; i++) {
