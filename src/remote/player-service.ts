@@ -65,14 +65,14 @@ export async function getCargoListbyPlanetId(id: number) {
 
 //get specific cargo
 export async function getCargobyUserIdAndGoodId(user_id: number, good_id: number) {
-    let response = await Client.get(`/user/${user_id}/good/${good_id}`);
+    let response = await Client.get(`/users/${user_id}/good/${good_id}`);
     return await response.data;
     // return mockCargoList[good_id];
 }
 
 //update specific cargo
 export async function updateCargobyUserIdAndGoodId(user_id: number, good_id: number, cost: number, quantity: number) {
-    let response = await Client.put(`/${user_id}/${good_id}/${cost}/${quantity}`); 
+    let response = await Client.put(`cargos/${user_id}/${good_id}/${cost}/${quantity}`); 
     return await response.data;
 }
 
@@ -92,7 +92,7 @@ export async function newUser(user: User) {
 
 //update user
 export async function updateUser(user: User) {
-    let response = await Client.put(`/user`);
+    let response = await Client.put(`/users`);
     return await response.data;
     //return user;
 }
