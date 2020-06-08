@@ -31,7 +31,7 @@ export const tradeAction = (user_id: number, good_id: number, cost: number, amou
         let user: User = await getUserbyId(user_id);
         user.currency -= amount * cost;
 
-        //        await updateUser(user);
+        await updateUser(user);
 
         // dispatch({
         //     type: cargoListActionTypes.SUCCESSFUL_GETLIST,

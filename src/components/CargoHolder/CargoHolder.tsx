@@ -88,7 +88,7 @@ function CargoHolder(props: ICargoProps) {
 
     let selectDetail = async (e: any) => {
         let id = e.currentTarget.id.split("-")[1];
-        let result = await getGoodbyId(id)
+        let result: Good = await getGoodbyId(id)
         setSelectedCargo(result);
 
         let cargoList = document.getElementsByClassName("good-wrapper-selected");
@@ -96,8 +96,9 @@ function CargoHolder(props: ICargoProps) {
             const slot = cargoList[i] as HTMLElement;
             slot.classList.remove("good-wrapper-selected")
         }
-        //@ts-ignore
-        //document.getElementById("good-img-slot-detail").style.backgroundImage = `url('./img/Precious Metal.png')`;
+        let imgSlot = document.getElementById("good-img-slot-detail") as HTMLDivElement;
+        imgSlot.className = "";
+        imgSlot.classList.add(`good-img-${result.id}`)
 
         let selected = document.getElementById("invent-" + id) as HTMLDivElement;
         selected.classList.add("good-wrapper-selected");
@@ -106,7 +107,7 @@ function CargoHolder(props: ICargoProps) {
 
     return (
         <>
-            <div className="cargo-wrapper unselect">
+            <div className="cargo-wrapper unselect" onClick={loadData}>
                 <div className="good-wrapper-header">
                     <div className="good-img-slot-header"> </div>
                     <div className="good-name-slot-header unselect">NAME</div>
@@ -115,7 +116,7 @@ function CargoHolder(props: ICargoProps) {
                 </div>
                 {cargoListDisplay}
             </div>
-            <div id="cargo-good-detail" className="detail-wrapper unselect" onClick={loadData}>
+            <div id="cargo-good-detail" className="detail-wrapper unselect">
                 <div id="good-img-slot-detail"></div>
                 <div className="good-name-slot-detail">{goodName}</div>
                 <div className="good-desc-slot-detail">{goodDesc}</div>
